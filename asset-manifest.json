@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/PersonalWebsite/static/css/main.85d36fc0.css",
+    "main.js": "/PersonalWebsite/static/js/main.2a104899.js",
+    "static/media/github.svg": "/PersonalWebsite/static/media/github.332297698ae76e9890a9038234d2afde.svg",
+    "static/media/shntnkaushal_resume.pdf": "/PersonalWebsite/static/media/shntnkaushal_resume.9592bb1e5de9bb38b7b9.pdf",
+    "static/media/python.svg": "/PersonalWebsite/static/media/python.703823d6fb60046a667da0a54af19281.svg",
+    "static/media/sql.svg": "/PersonalWebsite/static/media/sql.723c74b2400c80e6a9d624bf3a42006a.svg",
+    "static/media/smithsonian.svg": "/PersonalWebsite/static/media/smithsonian.a76a605c2cb26d2dfc8e8c22e4529d96.svg",
+    "static/media/ml.svg": "/PersonalWebsite/static/media/ml.0ad75b09be6043bff3dd7d7b4739e361.svg",
+    "static/media/scikit.svg": "/PersonalWebsite/static/media/scikit.7a2c07e7685ea93453c4e9ac51037af8.svg",
+    "static/media/webdev.svg": "/PersonalWebsite/static/media/webdev.3ab3452c599ce0f4c077a961d9591a99.svg",
+    "static/media/unreal.svg": "/PersonalWebsite/static/media/unreal.bcb429930673692d901df8edd75868e3.svg",
+    "static/media/htmlcss.svg": "/PersonalWebsite/static/media/htmlcss.f9b03907bcfa6390ace2e420573ef7df.svg",
+    "static/media/javascript.svg": "/PersonalWebsite/static/media/javascript.175ab49e993175419ff47da8a5ecbccd.svg",
+    "static/media/zooniverse.svg": "/PersonalWebsite/static/media/zooniverse.647288f4e757152ede0127b87ba42f9d.svg",
+    "static/media/java.svg": "/PersonalWebsite/static/media/java.9582f8b5207bb48c9d0c935e29d7bf9f.svg",
+    "static/media/data.svg": "/PersonalWebsite/static/media/data.430faa0f368c3aecd23be84accc51720.svg",
+    "static/media/numpy.svg": "/PersonalWebsite/static/media/numpy.f673f62e4d7832e48ae3d228a42efe89.svg",
+    "static/media/ernst.svg": "/PersonalWebsite/static/media/ernst.529c525a5531bcb76c04f30665124c7a.svg",
+    "static/media/linkedin.svg": "/PersonalWebsite/static/media/linkedin.435ce4bde67239bb2df3932724a752bf.svg",
+    "static/media/mail.svg": "/PersonalWebsite/static/media/mail.16fdf35890f13bbe72784e5b9d25740c.svg",
+    "static/media/pandas.svg": "/PersonalWebsite/static/media/pandas.7d54bb1da1dd417dbf409d25764fca0d.svg",
+    "index.html": "/PersonalWebsite/index.html",
+    "main.85d36fc0.css.map": "/PersonalWebsite/static/css/main.85d36fc0.css.map",
+    "main.2a104899.js.map": "/PersonalWebsite/static/js/main.2a104899.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85d36fc0.css",
+    "static/js/main.2a104899.js"
+  ]
+}
