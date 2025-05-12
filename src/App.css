@@ -10,6 +10,15 @@
   to { opacity: 1; }
 }
 
+/* Disable the page fade-in on small screens */
+@media (max-width: 768px) {
+  #root {
+    animation: none;  /* no animation */
+    opacity: 1;       /* immediately fully visible */
+  }
+}
+
+
 :root {
   --accent-color: hsl(176, 96%, 69%);
   --bg-start: #1a2a3a;
@@ -60,19 +69,22 @@ body {
 
 /*  Navbar Base  */
 nav.top-nav {
-  position: sticky;
+  position: fixed;
   top: 1rem;
-  background: rgba(0, 0, 0, 0.85);   
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
   border-radius: 30px;
   padding: 0.5rem 2rem;
   display: flex;
   justify-content: center;
   gap: 2rem;
-  max-width: 1200px;                
-  margin: 0 auto;                   
+  max-width: 1200px;
+  margin: 0 auto;      /* keeps it centered within the viewport */
   z-index: 100;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
+
 
 nav.top-nav a {
   position: relative;
@@ -283,7 +295,7 @@ section h2 {
     padding: 4.5rem 1rem 1rem;
   }
   .intro-left {
-    margin-top: 2rem;  /* pushes the profile down on medium-small screens */
+    margin-top: 5rem;          /* more room under the fixed nav */
   }
   .profile-pic {
     width:  clamp(150px, 30vw, 250px);
@@ -319,7 +331,7 @@ section h2 {
     gap: 1.5rem;
   }
   .intro-left {
-    margin-top: 1.5rem;  /* slightly less, to suit very small phones */
+    margin-top: 4rem;
   }
   .profile-pic {
     width: clamp(120px, 40vw, 180px);
@@ -753,7 +765,7 @@ section h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 
@@ -819,6 +831,8 @@ section h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;  
   gap: 0.75rem;
   background: transparent;
   border: 2px solid var(--accent-color);
@@ -831,6 +845,7 @@ section h2 {
   font-size: 1.5rem;
   cursor: pointer;
   transition: background 0.3s, color 0.3s, transform 0.2s;
+  
 }
 
 .contact-buttons .btn:hover {
@@ -852,6 +867,8 @@ section h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 4rem;   /* or whatever feels comfortable */
+  padding: 1.5em 1rem;
 }
 /*  Stack & scale for large tablets/small laptops (769px–1153px)  */
 @media (min-width: 769px) and (max-width: 1153px) {
@@ -948,4 +965,14 @@ section h2 {
   .contact-section {
     padding: 0 5%;
   }
+}
+
+footer {
+  margin-top: 2rem;                   /* pad above it */
+  padding: 2rem 1rem;                 /* extra space inside */
+  border-top: 1px solid rgba(255,255,255,0.2); /* light divider line */
+  background: var(--bg-end);          /* pick a darker or contrasting shade */
+  color: var(--text-color);           /* make sure your text still reads */
+  text-align: center;
+  font-size: 0.9rem;
 }

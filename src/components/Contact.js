@@ -24,7 +24,7 @@ export default function Contact() {
           }
         >
           <img src={linkedinIcon} alt="LinkedIn" className="btn-icon" />
-          <span>Connect On LinkedIn</span>
+          <span>Connect Via LinkedIn</span>
         </button>
         <button
           className="btn"
