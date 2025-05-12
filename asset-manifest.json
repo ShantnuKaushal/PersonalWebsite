@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/PersonalWebsite/static/css/main.85d36fc0.css",
-    "main.js": "/PersonalWebsite/static/js/main.2a104899.js",
+    "main.css": "/PersonalWebsite/static/css/main.3558fa69.css",
+    "main.js": "/PersonalWebsite/static/js/main.1326aadd.js",
+    "static/media/profile.jpg": "/PersonalWebsite/static/media/profile.75259c4e3e2d0ad6b94d.jpg",
     "static/media/github.svg": "/PersonalWebsite/static/media/github.332297698ae76e9890a9038234d2afde.svg",
     "static/media/shntnkaushal_resume.pdf": "/PersonalWebsite/static/media/shntnkaushal_resume.9592bb1e5de9bb38b7b9.pdf",
     "static/media/python.svg": "/PersonalWebsite/static/media/python.703823d6fb60046a667da0a54af19281.svg",
@@ -22,11 +23,11 @@
     "static/media/mail.svg": "/PersonalWebsite/static/media/mail.16fdf35890f13bbe72784e5b9d25740c.svg",
     "static/media/pandas.svg": "/PersonalWebsite/static/media/pandas.7d54bb1da1dd417dbf409d25764fca0d.svg",
     "index.html": "/PersonalWebsite/index.html",
-    "main.85d36fc0.css.map": "/PersonalWebsite/static/css/main.85d36fc0.css.map",
-    "main.2a104899.js.map": "/PersonalWebsite/static/js/main.2a104899.js.map"
+    "main.3558fa69.css.map": "/PersonalWebsite/static/css/main.3558fa69.css.map",
+    "main.1326aadd.js.map": "/PersonalWebsite/static/js/main.1326aadd.js.map"
   },
   "entrypoints": [
-    "static/css/main.85d36fc0.css",
-    "static/js/main.2a104899.js"
+    "static/css/main.3558fa69.css",
+    "static/js/main.1326aadd.js"
   ]
 }
