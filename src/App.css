@@ -66,6 +66,22 @@ body {
   color: var(--text-color);
   scroll-behavior: smooth;
 }
+/* Black outline on all headings */
+h1, h2, h3, h4, h5, h6 {
+  /* primary stroke for WebKit browsers */
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.7);
+
+  /* fallback outline via text-shadow */
+  text-shadow:
+    1px  1px 0 rgba(0, 0, 0, 0.6),
+   -1px  1px 0 rgba(0, 0, 0, 0.6),
+    1px -1px 0 rgba(0, 0, 0, 0.6),
+   -1px -1px 0 rgba(0, 0, 0, 0.6);
+
+  /* keep your existing font color and weight */
+  color: var(--heading-color);
+  font-weight: 800;
+}
 
 /*  Navbar Base  */
 nav.top-nav {
