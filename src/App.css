@@ -21,6 +21,13 @@
   --heading-color: #ffffff;
 }
 
+html, 
+body {
+  overflow-x: hidden;       /* no horizontal overscroll */
+  overscroll-behavior: none; /* suppress rubber-band bounce on modern browsers */
+}
+
+
 html {
   scroll-behavior: smooth;
 }
@@ -486,6 +493,10 @@ section h2 {
     margin: 0 auto;
     text-align: center;   /* you already have this, just ensuring consistency */
   }
+    /* halve the slide distance so it only moves 4px on touch devices */
+  .about-item:hover {
+    transform: translateX(4px);
+  }
 }
 
 /*  Medium phones & large tablets (≤768px): center text block  */
@@ -499,6 +510,10 @@ section h2 {
     width: 100%;
     max-width: 450px;     /* tighten from 600px down to ~450px */
     margin: 0 auto;
+  }
+    /* halve the slide distance so it only moves 4px on touch devices */
+  .about-item:hover {
+    transform: translateX(4px);
   }
 }
 
