@@ -24,7 +24,7 @@ export default function Skills() {
   const innerRef    = useRef(null);
 
   useEffect(() => {
-    // honor reduced-motion preference
+    
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
@@ -32,13 +32,13 @@ export default function Skills() {
     const scroller = scrollerRef.current;
     const inner    = innerRef.current;
 
-    // pick faster speed for very narrow screens
+    
     const isPhone = window.innerWidth <= 480;
     scroller.setAttribute('data-speed', isPhone ? 'fast' : 'slow');
 
     scroller.setAttribute('data-animated', 'true');
 
-    // duplicate children for seamless loop
+    
     Array.from(inner.children).forEach(child => {
       const clone = child.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');

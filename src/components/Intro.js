@@ -4,18 +4,19 @@ import React from 'react';
 import profilePic   from '../assets/profile.jpg';
 import githubIcon   from '../assets/github.svg';
 import linkedinIcon from '../assets/linkedin.svg';
-import resumePdf from '../assets/shntnkaushal_resume.pdf';
-
+import resumePdf    from '../assets/shntnkaushal_resume.pdf';
 
 export default function Intro() {
   return (
     <div className="intro">
       <div className="intro-left">
-        <img
-          src={profilePic}
-          alt="Shantnu Kaushal"
-          className="profile-pic"
-        />
+        <div className="profile-container">
+          <img
+            src={profilePic}
+            alt="Shantnu Kaushal"
+            className="profile-pic"
+          />
+        </div>
         <div className="social-icons">
           <a
             href="https://github.com/ShantnuKaushal"
@@ -41,7 +42,6 @@ export default function Intro() {
           </a>
         </div>
       </div>
-
       <div className="intro-text">
         <h1>Shantnu Kaushal</h1>
         <p className="subtitle">Software Engineer</p>
@@ -49,7 +49,6 @@ export default function Intro() {
           <a href={resumePdf} target="_blank" rel="noreferrer">
             <button className="btn">Download Resume</button>
           </a>
-
           <a
             href="mailto:shntnkaushal@gmail.com"
             target="_blank"
@@ -60,4 +59,5 @@ export default function Intro() {
         </div>
       </div>
     </div>
-  ); }
+  );
+}

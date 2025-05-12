@@ -20,7 +20,7 @@ export default function About() {
       setTimeout(() => {
         setCurrent(i => (i + 1) % slides.length);
         setVisible(true);
-      }, 600); // match the CSS fade duration
+      }, 600); 
     }, 3000);
     return () => clearInterval(iv);
   }, [slides.length]);

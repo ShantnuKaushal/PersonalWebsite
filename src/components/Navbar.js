@@ -12,7 +12,7 @@ export default function Navbar() {
   const [active, setActive] = useState('home');
 
   useEffect(() => {
-    // Observe when the section’s midpoint hits the viewport center
+    
     const options = {
       root: null,
       rootMargin: '-50% 0px -50% 0px', 

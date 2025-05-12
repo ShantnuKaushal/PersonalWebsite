@@ -51,18 +51,18 @@ body {
   scroll-behavior: smooth;
 }
 
-/* ——— Navbar Base ——— */
+/*  Navbar Base  */
 nav.top-nav {
   position: sticky;
   top: 1rem;
-  background: rgba(0, 0, 0, 0.85);   /* less transparent */
+  background: rgba(0, 0, 0, 0.85);   
   border-radius: 30px;
   padding: 0.5rem 2rem;
   display: flex;
   justify-content: center;
   gap: 2rem;
-  max-width: 1200px;                /* center-container */
-  margin: 0 auto;                   /* horizontally center in viewport */
+  max-width: 1200px;                
+  margin: 0 auto;                   
   z-index: 100;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
@@ -97,21 +97,22 @@ nav.top-nav a.active::after {
   width: 100%;
 }
 
-/* ——— Section Headings ——— */
+/*  Section Headings  */
 section h2 {
   color: var(--heading-color);
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 2rem;
 }
+/*------INTRO---------*/
 
-/* ——— Intro Section ——— */
+/*  Intro Section  */
 .intro {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4rem;
-  padding: 0 2rem 1rem;
+  padding: 5rem 2rem 1rem;  /* top padding increased to clear fixed navbar */
   min-height: 100vh;
 }
 
@@ -122,55 +123,61 @@ section h2 {
   gap: 1rem;
 }
 
-/* Replace your old .profile-pic block with this: */
+/* profile wrapper scales on hover */
+.profile-container {
+  transform-origin: center center;
+  transition: transform 0.3s ease;
+}
+.profile-container:hover {
+  transform: scale(1.05);
+}
+
+/* Floating animation keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
 .profile-pic {
   width: clamp(200px, 40vw, 450px);
   height: clamp(200px, 40vw, 450px);
-  object-fit: cover;                /* crop/scale to fill circle */
+  object-fit: cover;                
   border-radius: 50%;
   border: 8px solid var(--accent-color);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
+  animation: float 3s ease-in-out infinite;
 }
 
+/* pause float and reset translate when hovered */
 .profile-pic:hover {
-  transform: scale(1.05);
+  animation-play-state: paused;
+  transform: translateY(0);
 }
-
-/* no other changes needed to Intro.js */
 
 .intro-text {
   display: inline-block;
   text-align: left;
   width: fit-content;
 }
+
 .intro-text h1 {
   font-size: 4rem;
   font-weight: 800;
   margin: 0;
   color: #fff;
 }
+
 .intro-text p.subtitle {
   font-size: 2rem;
   color: var(--accent-color);
   margin-top: 1rem;
   text-align: right;
   width: 100%;
-}
-
-/* ——— Header Outlines ——— */
-.intro-text h1,
-section h2 {
-  /* WebKit stroke for browsers that support it */
-  -webkit-text-stroke: 0.7px rgba(0, 0, 0, 0.8);
-          text-stroke: 0.7px rgba(0, 0, 0, 0.8);
-
-  /* Fallback outline via four‐way shadow */
-  text-shadow:
-    1px  0    rgba(0, 0, 0, 0.8),
-   -1px  0    rgba(0, 0, 0, 0.8),
-    0    1px rgba(0, 0, 0, 0.8),
-    0   -1px rgba(0, 0, 0, 0.8);
 }
 
 /* Buttons below subtitle */
@@ -180,10 +187,12 @@ section h2 {
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
+
 .btn-group .btn {
   padding: 1rem 2rem;
   font-size: 1.25rem;
 }
+
 .btn {
   background: transparent;
   border: 2px solid var(--accent-color);
@@ -194,40 +203,39 @@ section h2 {
   cursor: pointer;
   margin-right: 1rem;
   transition: background 0.3s, color 0.3s;
+  white-space: nowrap;
 }
+
 .btn:hover {
   background: var(--accent-color);
   color: var(--bg-start);
 }
+
 /* Social icons under profile */
 .intro-left .social-icons {
   display: flex;
+  align-items: center;    /* add this line */
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
+
+
 .intro-left .social-icon {
   width: 48px;
   height: 48px;
   transition: transform 0.2s;
 }
+
 .intro-left .social-icon:hover {
   transform: scale(1.1);
 }
 
-/* keep your base size for all social icons */
-.social-icon {
-  width: 48px;
-  height: 48px;
-  transition: transform 0.2s;
-}
-
-/* bump GitHub up slightly so it visually matches LinkedIn */
 .github-icon {
   width: 54px;
   height: 54px;
 }
 
-/* ——— Common Card Styling ——— */
+/*  Common Card Styling  */
 .card {
   background: var(--card-bg);
   border-radius: 16px;
@@ -236,17 +244,18 @@ section h2 {
   box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   transition: transform 0.3s, background 0.3s;
 }
+
 .card:hover {
   transform: translateY(-5px);
   background: var(--card-bg-hover);
 }
 
-/* ——— Tablets & small laptops (≤1024px): stack halves ——— */
+/*  Tablets & small laptops (≤1024px): stack halves  */
 @media (max-width: 1024px) {
   .intro {
     flex-direction: column;
     gap: 2rem;
-    padding: 2rem 1rem;
+    padding: 5rem 1rem 1rem;
     min-height: auto;
   }
   .intro-left,
@@ -261,10 +270,17 @@ section h2 {
   }
 }
 
-/* ——— Medium phones & large tablets (≤768px): shrink image & text ——— */
+/*  Medium phones & large tablets (≤768px): shrink image & text  */
 @media (max-width: 768px) {
+  .intro {
+    padding: 4.5rem 1rem 1rem;
+  }
+  .intro-left {
+    margin-top: 2rem;  /* pushes the profile down on medium-small screens */
+  }
   .profile-pic {
-    width: clamp(150px, 30vw, 250px);
+    width:  clamp(150px, 30vw, 250px);
+    height: clamp(150px, 30vw, 250px);
     border-width: 6px;
   }
   .intro-text h1 {
@@ -289,14 +305,18 @@ section h2 {
   }
 }
 
-/* ——— Small phones (≤480px): further scale and tighten ——— */
+/*  Small phones (≤480px): further scale and tighten  */
 @media (max-width: 480px) {
   .intro {
-    padding: 1rem;
+    padding: 4rem 1rem 1rem;
     gap: 1.5rem;
+  }
+  .intro-left {
+    margin-top: 1.5rem;  /* slightly less, to suit very small phones */
   }
   .profile-pic {
     width: clamp(120px, 40vw, 180px);
+    height: clamp(120px, 40vw, 180px);
     border-width: 4px;
   }
   .intro-text h1 {
@@ -319,53 +339,52 @@ section h2 {
     height: clamp(32px, 10vw, 40px);
   }
 }
-/* ——— Medium screens: center intro text (769px–1024px) ——— */
-/* ——— Medium screens: stack halves and center all intro content (769px–1024px) ——— */
+
+/*  Medium screens: center intro text (769px–1024px)  */
 @media (min-width: 769px) and (max-width: 1024px) {
   .intro {
-    flex-direction: column;        /* stack image over text */
+    flex-direction: column;        
     gap: 1.5rem;
   }
-
-  /* make each half full-width and center its contents */
   .intro-left,
   .intro-text {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;           /* horizontally center children */
-    text-align: center;            /* center text inside */
+    align-items: center;          
+    text-align: center;            
   }
-
-  /* ensure the subtitle sits directly under the name in the center */
   .intro-text p.subtitle {
     margin: 0.5rem 0 1rem;
     text-align: center;
   }
-
-  /* center buttons too */
   .btn-group {
     justify-content: center;
   }
 }
 
-/* ——— Between tablets and small desktops: right-align intro text (1025px–1184px) ——— */
+/*  Between tablets and small desktops: right-align intro text (1025px–1184px)  */
 @media (min-width: 1025px) and (max-width: 1184px) {
   .intro-text {
-    width: 100%;            /* take all remaining space beside the image */
-    text-align: right;      /* push name and subtitle to the right edge */
+    width: 100%;            
+    text-align: right;      
     display: flex;
     flex-direction: column;
-    align-items: flex-end;  /* keep buttons and icons right-aligned too */
+    align-items: flex-end;  
   }
   .intro-text h1,
   .intro-text p.subtitle {
-    width: auto;            /* allow them to size to their own content */
+    width: auto;            
+  }
+    .btn-group {
+    justify-content: flex-end; /* or center, whichever you prefer */
+    flex-wrap: nowrap;
   }
 }
 
 
-/* ——— About Section ——— */
+
+/*  About Section  */
 #about {
   min-height: 60vh;
   padding-top: 2rem;
@@ -373,7 +392,7 @@ section h2 {
   scroll-margin-top: 120px;
 }
 
-/* ——— Base container / list / items ——— */
+/*Base container / list / items  */
 .about-container {
   display: flex;
   align-items: center;
@@ -422,7 +441,7 @@ section h2 {
   background: var(--accent-color);
 }
 
-/* ——— Base About Carousel & Items ——— */
+/* Base About Carousel & Items*/
 .about-carousel {
   flex: none;
   width: 500px;
@@ -450,7 +469,7 @@ section h2 {
   opacity: 0;
 }
 
-/* ——— Small phones (≤480px): hide carousel, center text block ——— */
+/*Small phones (≤480px): hide carousel, center text block */
 @media (max-width: 480px) {
   .about-carousel {
     display: none;
@@ -461,30 +480,29 @@ section h2 {
   }
 
   .about-list {
+    min-width: auto;
     width: 100%;
-    max-width: 400px;
+    max-width: 320px;     /* keep the cards slim on tiny screens */
     margin: 0 auto;
-    text-align: center;
-    align-items: center;
+    text-align: center;   /* you already have this, just ensuring consistency */
   }
 }
 
-/* ——— Medium phones & large tablets (≤768px): center text block ——— */
+/*  Medium phones & large tablets (≤768px): center text block  */
 @media (max-width: 768px) {
   .about-container {
     padding: 0 5%;
   }
 
   .about-list {
+    min-width: auto;      /* allow it to shrink below 450px */
     width: 100%;
-    max-width: 600px;
+    max-width: 450px;     /* tighten from 600px down to ~450px */
     margin: 0 auto;
-    text-align: center;
-    align-items: center;
   }
 }
 
-/* ——— Tablets & small laptops (≤1024px): stack & shrink carousel ——— */
+/*  Tablets & small laptops (≤1024px): stack & shrink carousel  */
 @media (max-width: 1024px) {
   .about-container {
     flex-direction: column;
@@ -508,7 +526,7 @@ section h2 {
   }
 }
 
-/* ——— Large tablets through large desktops (1025px–1900px): centered row & centered text ——— */
+/*  Large tablets through large desktops (1025px–1900px): centered row & centered text  */
 @media (min-width: 1025px) and (max-width: 1900px) {
   .about-container {
     flex-direction: row;
@@ -533,17 +551,7 @@ section h2 {
   }
 }
 
-/* ——— Above 1900px: default two-column layout with left-aligned text ——— */
-/* No additional rules needed; your base styles will apply */
-
-
-/* ——— Above 1720px: default two-column layout with left-aligned text ——— */
-/* No additional rules needed here; your base styles will take over */
-
-
-
-
-/* ——— Experience Section ——— */
+/*  Experience Section  */
 #experience {
   scroll-margin-top: 20px;
   padding-top: 2rem;
@@ -565,7 +573,7 @@ section h2 {
   .experience-grid {
     grid-template-columns: repeat(2, minmax(320px, 1fr));
     grid-template-rows: repeat(2, auto);
-    padding: 0 1rem;  /* keep a little side padding */
+    padding: 0 1rem;  
   }
 }
 
@@ -625,7 +633,7 @@ section h2 {
   }
 }
 
-/* —————— Infinite Skills Scroller (Responsive) —————— */
+/*  Infinite Skills Scroller (Responsive)  */
 .scroller {
   max-width: 1300px;
   margin: 0 auto;
@@ -679,14 +687,14 @@ section h2 {
   --_animation-duration: 60s;
 }
 
-/* keyframes scroll 50% width */
+
 @keyframes scroll {
   to {
     transform: translateX(calc(-50% - 2rem));
   }
 }
 
-/* hide native scrollbars for webkit */
+
 .scroller__inner::-webkit-scrollbar {
   display: none;
 }
@@ -723,7 +731,7 @@ section h2 {
   text-align: center;
 }
 
-/* ensure each section has room for the 0.6 threshold */
+
 #skills {
   min-height: 60vh;
   scroll-margin-top: 120px;
@@ -733,7 +741,7 @@ section h2 {
   padding: 2rem 0;
 }
 
-/* Responsive tweaks for tablets and below */
+
 @media (max-width: 768px) {
   .scroller__inner {
     gap: 1.5rem;
@@ -742,13 +750,13 @@ section h2 {
     width: clamp(160px, 25%, 200px);
     padding: clamp(0.4rem, 1vw, 0.8rem);
   }
-  /* speed up on medium screens */
+  
   .scroller[data-speed="slow"] {
     --_animation-duration: 45s;
   }
 }
 
-/* Responsive tweaks for phones */
+
 @media (max-width: 480px) {
   .scroller__inner {
     gap: 1rem;
@@ -757,7 +765,7 @@ section h2 {
     width: clamp(140px, 30%, 180px);
     padding: clamp(0.3rem, 1vw, 0.6rem);
   }
-  /* really speed it up on small phones */
+  
   .scroller[data-speed="slow"] {
     --_animation-duration: 30s;
   }
@@ -765,19 +773,18 @@ section h2 {
 
 
 
-/* —— Contact Section Buttons Updated —— */
 
-/* ——— Contact Section: centered buttons only ——— */
+
 .contact-section {
-  min-height: 50vh;               /* keeps the height you chose */
+  min-height: 50vh;               
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;        /* vertical centering */
-  max-width: 600px;               /* don’t stretch full-width */
-  margin: 0 auto;                 /* center horizontally */
-  scroll-margin-top: 120px;       /* offset for your sticky-nav */
-  padding: 2rem 1rem;             /* some breathing room */
+  justify-content: center;        
+  max-width: 600px;               
+  margin: 0 auto;                 
+  scroll-margin-top: 120px;       
+  padding: 2rem 1rem;             
 }
 
 .contact-section h2 {
@@ -789,7 +796,7 @@ section h2 {
 .contact-buttons {
   display: flex;
   gap: 2rem;
-  justify-content: center;        /* horizontal centering */
+  justify-content: center;        
 }
 
 /* Wider Contact Buttons for Single‐Line Labels */
@@ -801,9 +808,9 @@ section h2 {
   background: transparent;
   border: 2px solid var(--accent-color);
   color: var(--accent-color);
-  padding: 2rem 4rem;      /* extra horizontal padding */
-  min-width: 300px;        /* ensure enough width for your longest label */
-  white-space: nowrap;     /* prevent text wrapping */
+  padding: 2rem 4rem;      
+  min-width: 300px;        
+  white-space: nowrap;     
   border-radius: 30px;
   font-weight: 600;
   font-size: 1.5rem;
@@ -822,16 +829,16 @@ section h2 {
   width: 64px;
   height: 64px;
 }
-/* ——— Contact Section: own centered “screen” ——— */
+
 #contact {
-  min-height: 50vh;           /* tall enough for 60% to compute */
+  min-height: 50vh;           
   scroll-margin-top: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-/* ——— Stack & scale for large tablets/small laptops (769px–1153px) ——— */
+/*  Stack & scale for large tablets/small laptops (769px–1153px)  */
 @media (min-width: 769px) and (max-width: 1153px) {
   .contact-buttons {
     flex-direction: column;
@@ -842,7 +849,7 @@ section h2 {
   .contact-buttons .btn {
     /* now full container width down to 300px, so width flexes more */
     width: clamp(300px, 100%, 500px);
-    /* vertical padding held between 1.8rem and 2.2rem */
+    
     padding: clamp(1.8rem, 2.5vw, 2.2rem) clamp(2rem, 4vw, 3rem);
     font-size: clamp(1.4rem, 2vw, 1.6rem);
   }
@@ -853,7 +860,7 @@ section h2 {
   }
 }
 
-/* ——— Stack & scale for tablets & large phones (≤768px) ——— */
+/*  Stack & scale for tablets & large phones (≤768px)  */
 @media (max-width: 768px) {
   .contact-buttons {
     flex-direction: column;
@@ -862,9 +869,9 @@ section h2 {
   }
 
   .contact-buttons .btn {
-    /* full width of parent */
+    
     width: 100%;
-    /* vertical padding kept in a stable range */
+    
     padding: clamp(1.8rem, 4vw, 2.2rem) clamp(1.5rem, 5vw, 2rem);
     font-size: clamp(1.2rem, 3vw, 1.4rem);
   }
@@ -875,7 +882,7 @@ section h2 {
   }
 }
 
-/* ——— Stack & scale for small phones (≤480px) ——— */
+/*  Stack & scale for small phones (≤480px)  */
 @media (max-width: 480px) {
   .contact-buttons {
     flex-direction: column;

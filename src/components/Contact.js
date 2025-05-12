@@ -1,4 +1,4 @@
-// src/components/Contact.js
+
 
 import React from 'react';
 import mailIcon     from '../assets/contact/mail.svg';
