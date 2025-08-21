@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import javaLogo     from '../assets/skills/java.svg';
-import sqlLogo      from '../assets/skills/sql.svg';
-import htmlcssLogo  from '../assets/skills/htmlcss.svg';
-import jsLogo       from '../assets/skills/javascript.svg';
-import pythonLogo   from '../assets/skills/python.svg';
-import pandasLogo   from '../assets/skills/pandas.svg';
-import numpyLogo    from '../assets/skills/numpy.svg';
-import scikitLogo   from '../assets/skills/scikit.svg';
+import javaLogo     from '../../assets/skills/java.svg';
+import sqlLogo      from '../../assets/skills/sql.svg';
+import htmlcssLogo  from '../../assets/skills/htmlcss.svg';
+import jsLogo       from '../../assets/skills/javascript.svg';
+import pythonLogo   from '../../assets/skills/python.svg';
+import pandasLogo   from '../../assets/skills/pandas.svg';
+import numpyLogo    from '../../assets/skills/numpy.svg';
+import scikitLogo   from '../../assets/skills/scikit.svg';
+import './Skills.css';
 
 const skills = [
   { name: 'Java',         icon: javaLogo    },
@@ -15,14 +16,13 @@ const skills = [
   { name: 'JavaScript',   icon: jsLogo      },
   { name: 'Python',       icon: pythonLogo  },
   { name: 'Pandas',       icon: pandasLogo  },
-  { name: 'NumPy',        icon: numpyLogo   },
+  { name: 'NumPy',  
+       icon: numpyLogo   },
   { name: 'scikit-learn', icon: scikitLogo  }
 ];
-
 export default function Skills() {
   const scrollerRef = useRef(null);
   const innerRef    = useRef(null);
-
   useEffect(() => {
     
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -43,6 +43,7 @@ export default function Skills() {
       const clone = child.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
       inner.appendChild(clone);
+ 
     });
   }, []);
 
@@ -57,6 +58,7 @@ export default function Skills() {
       >
         <div ref={innerRef} className="scroller__inner">
           {skills.map((s, i) => (
+         
             <div className="skill-card" key={i}>
               <img src={s.icon} alt={s.name} className="skill-icon" />
               <p className="skill-label">{s.name}</p>

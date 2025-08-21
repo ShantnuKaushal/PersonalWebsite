@@ -19,7 +19,6 @@ To run this site on your own machine, begin by cloning this repository:
 
 ```bash
 git clone https://github.com/ShantnuKaushal/PersonalWebsite.git
-cd PersonalWebsite
 ```
 Install the dependencies and start the development server:
 ```bash

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Navbar.css';
 
 const sections = [
   { id: 'home',       label: 'Home' },
@@ -7,10 +8,8 @@ const sections = [
   { id: 'skills',     label: 'Skills' },
   { id: 'contact',    label: 'Contact' },
 ];
-
 export default function Navbar() {
   const [active, setActive] = useState('home');
-
   useEffect(() => {
     
     const options = {
@@ -27,6 +26,7 @@ export default function Navbar() {
       });
     }, options);
 
+ 
     sections.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
@@ -34,7 +34,6 @@ export default function Navbar() {
 
     return () => observer.disconnect();
   }, []);
-
   return (
     <nav className="top-nav">
       {sections.map(({ id, label }) => (

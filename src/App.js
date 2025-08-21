@@ -1,13 +1,11 @@
-// src/App.js
-
 import React from 'react';
-import Navbar from './components/Navbar';
-import Intro from './components/Intro';
-import About from './components/About';
-import Experience from './components/Experience';
-import Skills from './components/Skills';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Navbar from './components/Navbar/Navbar.js';
+import Intro from './components/Intro/Intro.js';
+import About from './components/About/About.js';
+import Experience from './components/Experience/Experience.js';
+import Skills from './components/Skills/Skills.js';
+import Contact from './components/Contact/Contact.js';
+import Footer from './components/Footer/Footer.js';
 
 function App() {
   return (

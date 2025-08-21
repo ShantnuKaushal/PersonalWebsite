@@ -1,9 +1,8 @@
-
-
 import React from 'react';
-import mailIcon     from '../assets/contact/mail.svg';
-import linkedinIcon from '../assets/contact/linkedin.svg';
-import githubIcon   from '../assets/contact/github.svg';
+import mailIcon     from '../../assets/contact/mail.svg';
+import linkedinIcon from '../../assets/contact/linkedin.svg';
+import githubIcon   from '../../assets/contact/github.svg';
+import './Contact.css';
 
 export default function Contact() {
   return (
@@ -16,6 +15,7 @@ export default function Contact() {
         >
           <img src={mailIcon} alt="Email" className="btn-icon" />
           <span>Send An Email</span>
+  
         </button>
         <button
           className="btn"
@@ -25,6 +25,7 @@ export default function Contact() {
         >
           <img src={linkedinIcon} alt="LinkedIn" className="btn-icon" />
           <span>Connect Via LinkedIn</span>
+        
         </button>
         <button
           className="btn"
@@ -35,6 +36,7 @@ export default function Contact() {
           <img src={githubIcon} alt="GitHub" className="btn-icon" />
           <span>Follow On GitHub</span>
         </button>
+      
       </div>
     </div>
   );

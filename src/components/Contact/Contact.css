@@ -1,0 +1,122 @@
+.contact-section {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+  scroll-margin-top: 120px;
+  padding: 2rem 1rem;
+}
+
+.contact-section h2 {
+  color: var(--heading-color);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.contact-buttons .btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.75rem;
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 2rem 4rem;
+  min-width: 300px;
+  white-space: nowrap;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.contact-buttons .btn:hover {
+  background: var(--accent-color);
+  color: var(--bg-start);
+  transform: scale(1.05);
+}
+
+.contact-buttons .btn-icon {
+  width: 64px;
+  height: 64px;
+}
+
+#contact {
+  min-height: 50vh;
+  scroll-margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
+  padding: 1.5em 1rem;
+}
+
+@media (min-width: 769px) and (max-width: 1153px) {
+  .contact-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  .contact-buttons .btn {
+    width: clamp(300px, 100%, 500px);
+    padding: clamp(1.8rem, 2.5vw, 2.2rem) clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.4rem, 2vw, 1.6rem);
+  }
+  .contact-buttons .btn-icon {
+    width: clamp(48px, 5vw, 56px);
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+  .contact-buttons .btn {
+    width: 100%;
+    padding: clamp(1.8rem, 4vw, 2.2rem) clamp(1.5rem, 5vw, 2rem);
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
+  }
+  .contact-buttons .btn-icon {
+    width: clamp(40px, 6vw, 48px);
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+  .contact-buttons .btn {
+    width: 100%;
+    padding: clamp(1.8rem, 5vw, 2.2rem) clamp(1rem, 6vw, 1.5rem);
+    font-size: clamp(1rem, 4vw, 1.2rem);
+  }
+  .contact-buttons .btn-icon {
+    width: clamp(32px, 8vw, 40px);
+    height: auto;
+  }
+}
+
+.btn-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}

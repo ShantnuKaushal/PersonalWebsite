@@ -1,8 +1,9 @@
 import React from 'react';
-import unrealLogo       from '../assets/experience/unreal.svg';
-import smithsonianLogo  from '../assets/experience/smithsonian.svg';
-import zooniverseLogo   from '../assets/experience/zooniverse.svg';
-import eyLogo           from '../assets/experience/ernst.svg';
+import unrealLogo       from '../../assets/experience/unreal.svg';
+import smithsonianLogo  from '../../assets/experience/smithsonian.svg';
+import zooniverseLogo   from '../../assets/experience/zooniverse.svg';
+import eyLogo           from '../../assets/experience/ernst.svg';
+import './Experience.css';
 
 const experiences = [
   {
@@ -45,6 +46,7 @@ export default function Experience() {
             <img 
               src={exp.logo} 
               alt={`${exp.company} logo`} 
+       
               className="experience-logo" 
             />
             <h3>{exp.company}</h3>
@@ -55,5 +57,6 @@ export default function Experience() {
         ))}
       </div>
     </>
+ 
   );
 }

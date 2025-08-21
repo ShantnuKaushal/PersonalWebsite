@@ -1,0 +1,126 @@
+.scroller {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.scroller__inner {
+  padding: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.scroller[data-animated="true"] {
+  overflow: hidden;
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    white 10%,
+    white 90%,
+    transparent
+  );
+  mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+}
+
+.scroller[data-animated="true"] .scroller__inner {
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: scroll var(--_animation-duration, 60s)
+    var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"] {
+  --_animation-direction: reverse;
+}
+
+.scroller[data-direction="left"] {
+  --_animation-direction: forwards;
+}
+
+.scroller[data-speed="fast"] {
+  --_animation-duration: 30s;
+}
+
+.scroller[data-speed="slow"] {
+  --_animation-duration: 60s;
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(calc(-50% - 2rem));
+  }
+}
+
+.scroller__inner::-webkit-scrollbar {
+  display: none;
+}
+
+.skill-card {
+  flex: 0 0 auto;
+  width: clamp(180px, 20%, 240px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: clamp(0.5rem, 1vw, 1rem);
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+}
+
+.skill-icon {
+  width: clamp(100px, 15vw, 140px);
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+
+.skill-label {
+  margin: 0;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: center;
+}
+
+#skills {
+  min-height: 60vh;
+  scroll-margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .scroller__inner {
+    gap: 1.5rem;
+  }
+  .skill-card {
+    width: clamp(160px, 25%, 200px);
+    padding: clamp(0.4rem, 1vw, 0.8rem);
+  }
+  .scroller[data-speed="slow"] {
+    --_animation-duration: 45s;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroller__inner {
+    gap: 1rem;
+  }
+  .skill-card {
+    width: clamp(140px, 30%, 180px);
+    padding: clamp(0.3rem, 1vw, 0.6rem);
+  }
+  .scroller[data-speed="slow"] {
+    --_animation-duration: 30s;
+  }
+}

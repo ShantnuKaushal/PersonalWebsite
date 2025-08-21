@@ -1,10 +1,9 @@
-// src/components/Intro.js
-
 import React from 'react';
-import profilePic   from '../assets/profile.jpg';
-import githubIcon   from '../assets/github.svg';
-import linkedinIcon from '../assets/linkedin.svg';
-import resumePdf    from '../assets/shntnkaushal_resume.pdf';
+import profilePic   from '../../assets/profile.jpg';
+import githubIcon   from '../../assets/github.svg';
+import linkedinIcon from '../../assets/linkedin.svg';
+import resumePdf    from '../../assets/shntnkaushal_resume.pdf';
+import './Intro.css';
 
 export default function Intro() {
   return (
@@ -17,6 +16,7 @@ export default function Intro() {
             className="profile-pic"
           />
         </div>
+       
         <div className="social-icons">
           <a
             href="https://github.com/ShantnuKaushal"
@@ -26,6 +26,7 @@ export default function Intro() {
             <img
               src={githubIcon}
               alt="GitHub"
+ 
               className="social-icon github-icon"
             />
           </a>
@@ -34,6 +35,7 @@ export default function Intro() {
             target="_blank"
             rel="noopener noreferrer"
           >
+       
             <img
               src={linkedinIcon}
               alt="LinkedIn"
@@ -44,6 +46,7 @@ export default function Intro() {
       </div>
       <div className="intro-text">
         <h1>Shantnu Kaushal</h1>
+ 
         <p className="subtitle">Software Engineer</p>
         <div className="btn-group">
           <a href={resumePdf} target="_blank" rel="noreferrer">
@@ -52,6 +55,7 @@ export default function Intro() {
           <a
             href="mailto:shntnkaushal@gmail.com"
             target="_blank"
+           
             rel="noreferrer"
           >
             <button className="btn">Contact Me</button>

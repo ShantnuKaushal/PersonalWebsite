@@ -1,0 +1,51 @@
+/* Navbar Base  */
+nav.top-nav {
+  position: fixed;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 30px;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+nav.top-nav a {
+  position: relative;
+  color: #ccc;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  transition: color 0.3s;
+}
+
+nav.top-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+nav.top-nav a:hover::after {
+  width: 100%;
+}
+
+nav.top-nav a.active {
+  color: var(--accent-color);
+}
+
+nav.top-nav a.active::after {
+  width: 100%;
+}
