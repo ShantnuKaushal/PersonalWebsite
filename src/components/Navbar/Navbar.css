@@ -49,3 +49,41 @@ nav.top-nav a.active {
 nav.top-nav a.active::after {
   width: 100%;
 }
+
+@media (max-width: 1024px) {
+  nav.top-nav {
+    padding: 0.5rem 1rem;
+    gap: 1.5rem;
+    max-width: 95%;
+  }
+  nav.top-nav a {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  nav.top-nav {
+    padding: 0.5rem 0.5rem;
+    gap: 1rem;
+    border-radius: 20px;
+    max-width: 98%;
+  }
+  nav.top-nav a {
+    font-size: 0.8rem;
+    padding: 0.25rem 0;
+  }
+  nav.top-nav a::after {
+    bottom: -2px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav.top-nav {
+    padding: 0.5rem 0.25rem;
+    gap: 0.5rem;
+    border-radius: 15px;
+  }
+  nav.top-nav a {
+    font-size: 0.7rem;
+  }
+}
