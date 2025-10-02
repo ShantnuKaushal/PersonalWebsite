@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.d1f47e82.css",
-    "main.js": "/static/js/main.f89da1bd.js",
+    "main.js": "/static/js/main.f23302a9.js",
     "static/media/profile.jpg": "/static/media/profile.75259c4e3e2d0ad6b94d.jpg",
     "static/media/github.svg": "/static/media/github.332297698ae76e9890a9038234d2afde.svg",
     "static/media/shntnkaushal_resume.pdf": "/static/media/shntnkaushal_resume.9592bb1e5de9bb38b7b9.pdf",
@@ -16,6 +16,7 @@
     "static/media/javascript.svg": "/static/media/javascript.175ab49e993175419ff47da8a5ecbccd.svg",
     "static/media/zooniverse.svg": "/static/media/zooniverse.647288f4e757152ede0127b87ba42f9d.svg",
     "static/media/java.svg": "/static/media/java.9582f8b5207bb48c9d0c935e29d7bf9f.svg",
+    "static/media/sports-excitement-logo.svg": "/static/media/sports-excitement-logo.ef3633d3eb59ff339190322f1e0fc205.svg",
     "static/media/data.svg": "/static/media/data.430faa0f368c3aecd23be84accc51720.svg",
     "static/media/numpy.svg": "/static/media/numpy.f673f62e4d7832e48ae3d228a42efe89.svg",
     "static/media/ernst.svg": "/static/media/ernst.529c525a5531bcb76c04f30665124c7a.svg",
@@ -24,10 +25,10 @@
     "static/media/pandas.svg": "/static/media/pandas.7d54bb1da1dd417dbf409d25764fca0d.svg",
     "index.html": "/index.html",
     "main.d1f47e82.css.map": "/static/css/main.d1f47e82.css.map",
-    "main.f89da1bd.js.map": "/static/js/main.f89da1bd.js.map"
+    "main.f23302a9.js.map": "/static/js/main.f23302a9.js.map"
   },
   "entrypoints": [
     "static/css/main.d1f47e82.css",
-    "static/js/main.f89da1bd.js"
+    "static/js/main.f23302a9.js"
   ]
 }
