@@ -2,16 +2,17 @@ import React from 'react';
 import unrealLogo       from '../../assets/experience/unreal.svg';
 import smithsonianLogo  from '../../assets/experience/smithsonian.svg';
 import zooniverseLogo   from '../../assets/experience/zooniverse.svg';
+import seLogo   from '../../assets/experience/sports-excitement-logo.svg';
 import eyLogo           from '../../assets/experience/ernst.svg';
 import './Experience.css';
 
 const experiences = [
   {
-    logo: unrealLogo,
-    company: 'Unreal Editor (UEFN)',
-    role: 'UGC Creator',
-    dates: 'July 2023 – Present',
-    description: 'Develop interactive gameplay experiences using Verse and visual scripting to enhance level design. Optimize 3D environments to enhance performance across multiple platforms.'
+    logo: seLogo,
+    company: 'Sports Excitement',
+    role: 'Lead Backend Engineer',
+    dates: 'April 2025 – Present',
+    description: 'Driving the development of a highly scalable, secure, and dynamic backend. The data architecture employs a powerful dual database strategy, and is built upon a custom, enterprise-grade framework that emphasizes modularity, testing, and configuration-driven service management.'
   },
   {
     logo: smithsonianLogo,
