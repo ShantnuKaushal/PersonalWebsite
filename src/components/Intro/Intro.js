@@ -2,7 +2,7 @@ import React from 'react';
 import profilePic   from '../../assets/profile.jpg';
 import githubIcon   from '../../assets/github.svg';
 import linkedinIcon from '../../assets/linkedin.svg';
-import resumePdf    from '../../assets/shntnkaushal_resume.pdf';
+import resumePdf    from '../../assets/shantnu-kaushal-resume.pdf';
 import './Intro.css';
 
 export default function Intro() {
