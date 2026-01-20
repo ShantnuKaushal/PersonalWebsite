@@ -26,7 +26,6 @@ export default function Intro() {
             <img
               src={githubIcon}
               alt="GitHub"
- 
               className="social-icon github-icon"
             />
           </a>
@@ -35,7 +34,6 @@ export default function Intro() {
             target="_blank"
             rel="noopener noreferrer"
           >
-       
             <img
               src={linkedinIcon}
               alt="LinkedIn"
@@ -49,13 +47,17 @@ export default function Intro() {
  
         <p className="subtitle">Software Engineer</p>
         <div className="btn-group">
-          <a href={resumePdf} target="_blank" rel="noreferrer">
+          <a 
+            href={resumePdf} 
+            download="Shantnu_Kaushal_Resume.pdf"
+            target="_blank" 
+            rel="noreferrer"
+          >
             <button className="btn">Download Resume</button>
           </a>
           <a
             href="mailto:shntnkaushal@gmail.com"
             target="_blank"
-           
             rel="noreferrer"
           >
             <button className="btn">Contact Me</button>
