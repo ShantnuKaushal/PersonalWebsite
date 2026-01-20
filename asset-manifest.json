@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/static/css/main.d1f47e82.css",
-    "main.js": "/static/js/main.c87289c9.js",
+    "main.js": "/static/js/main.35fdbe2a.js",
     "static/media/profile.jpg": "/static/media/profile.75259c4e3e2d0ad6b94d.jpg",
     "static/media/github.svg": "/static/media/github.332297698ae76e9890a9038234d2afde.svg",
-    "static/media/shantnu-kaushal-resume.pdf": "/static/media/shantnu-kaushal-resume.c849ee6921b7c22c5540.pdf",
+    "static/media/shantnu-kaushal-resume.pdf": "/static/media/shantnu-kaushal-resume.a99960a043d9ad31096e.pdf",
     "static/media/python.svg": "/static/media/python.703823d6fb60046a667da0a54af19281.svg",
     "static/media/sql.svg": "/static/media/sql.723c74b2400c80e6a9d624bf3a42006a.svg",
     "static/media/smithsonian.svg": "/static/media/smithsonian.a76a605c2cb26d2dfc8e8c22e4529d96.svg",
@@ -25,10 +25,10 @@
     "static/media/pandas.svg": "/static/media/pandas.7d54bb1da1dd417dbf409d25764fca0d.svg",
     "index.html": "/index.html",
     "main.d1f47e82.css.map": "/static/css/main.d1f47e82.css.map",
-    "main.c87289c9.js.map": "/static/js/main.c87289c9.js.map"
+    "main.35fdbe2a.js.map": "/static/js/main.35fdbe2a.js.map"
   },
   "entrypoints": [
     "static/css/main.d1f47e82.css",
-    "static/js/main.c87289c9.js"
+    "static/js/main.35fdbe2a.js"
   ]
 }
