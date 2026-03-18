@@ -1,4 +1,3 @@
-import { Outfit, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 
 const themeInitScript = `
@@ -9,16 +8,6 @@ const themeInitScript = `
     document.documentElement.style.colorScheme = theme;
   })();
 `;
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-display',
-});
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-sans',
-});
 
 export const metadata = {
   metadataBase: new URL('https://shantnukaushal.com'),
@@ -44,7 +33,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.variable} ${outfit.variable}`}>
+      <body>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {children}
       </body>

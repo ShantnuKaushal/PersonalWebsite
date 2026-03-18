@@ -1,10 +1,10 @@
 .siteHeader {
   position: sticky;
-  top: 12px;
+  top: 14px;
   z-index: 30;
   display: flex;
   justify-content: center;
-  padding-top: 8px;
+  padding-top: 10px;
 }
 
 .nav {
@@ -12,45 +12,87 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 18px 44px;
-  width: min(100%, 1180px);
+  padding: 14px 34px;
+  width: min(100%, 1040px);
   border-radius: 999px;
   background: var(--nav-bg);
   border: 1px solid var(--nav-border);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
   transition:
-    box-shadow 180ms ease,
-    transform 180ms ease,
-    border-color 180ms ease;
+    box-shadow 260ms var(--ease-standard),
+    background-color 260ms var(--ease-standard),
+    border-color 260ms var(--ease-standard);
 }
 
 .nav:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+  box-shadow:
+    0 16px 44px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .navLinks {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 42px;
+  gap: 40px;
 }
 
 .navLinks a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 2px;
   color: var(--nav-text);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition:
+    color 220ms var(--ease-standard),
+    opacity 220ms var(--ease-standard),
+    transform 220ms var(--ease-standard);
 }
 
 .navLinks a:hover {
-  color: var(--accent) !important;
+  color: var(--text) !important;
+  transform: translateY(-1px);
+}
+
+.activeLink {
+  color: var(--text) !important;
+}
+
+.activeMarker {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 18px;
+  height: 2px;
+  display: block;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 24%, transparent);
+  transform: translateX(-50%) scaleX(0.25);
+  transform-origin: center;
+  opacity: 0;
+  transition:
+    transform 260ms var(--ease-standard),
+    opacity 220ms var(--ease-standard);
+}
+
+.activeMarkerVisible {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
 }
 
 .navToggle {
   position: absolute;
-  right: 22px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -59,21 +101,28 @@
 
 @media (max-width: 768px) {
   .nav {
-    padding: 14px 18px;
+    padding: 12px 16px;
     width: min(100%, 100%);
   }
 
   .navLinks {
-    gap: 16px;
+    gap: 18px;
     flex-wrap: wrap;
-    padding-right: 54px;
+    padding-right: 50px;
   }
 
   .navLinks a {
-    font-size: 0.78rem;
+    font-size: 0.88rem;
+    min-height: 28px;
+    padding: 0 2px;
+  }
+
+  .activeMarker {
+    width: 16px;
+    bottom: -5px;
   }
 
   .navToggle {
-    right: 14px;
+    right: 12px;
   }
 }

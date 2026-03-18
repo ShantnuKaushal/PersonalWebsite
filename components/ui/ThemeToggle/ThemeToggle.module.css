@@ -2,25 +2,29 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--nav-border);
   border-radius: 50%;
-  background: transparent;
+  background: color-mix(in srgb, var(--surface-strong) 72%, transparent);
   color: var(--nav-text);
   cursor: pointer;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   transition:
-    transform 160ms ease,
-    color 160ms ease,
-    border-color 160ms ease,
-    background-color 160ms ease;
+    transform 220ms var(--ease-standard),
+    color 220ms var(--ease-standard),
+    border-color 220ms var(--ease-standard),
+    background-color 220ms var(--ease-standard),
+    box-shadow 220ms var(--ease-standard);
 }
 
 .toggle:hover {
-  transform: translateY(-1px);
+  transform: translateY(-1px) scale(1.01);
   color: var(--accent);
   border-color: var(--accent);
-  background: var(--button-hover-bg);
+  background: color-mix(in srgb, var(--surface-strong) 86%, transparent);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
 }
 
 .toggle svg {

@@ -1,5 +1,5 @@
 .section {
-  padding: 54px 0;
+  padding: 72px 0;
 }
 
 .aboutGrid {
@@ -12,27 +12,31 @@
 .infoCard {
   border: 1px solid var(--surface-border);
   background: var(--surface);
-  border-radius: 24px;
+  border-radius: 28px;
   box-shadow: var(--shadow);
-  padding: 26px;
+  padding: 30px;
+  backdrop-filter: saturate(180%) blur(22px);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease;
+    transform 280ms var(--ease-standard),
+    box-shadow 280ms var(--ease-standard),
+    border-color 280ms var(--ease-standard),
+    background-color 280ms var(--ease-standard);
 }
 
 .aboutCard:hover,
 .infoCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.2);
-  border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.16);
+  border-color: color-mix(in srgb, var(--accent) 18%, var(--surface-border));
+  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
 }
 
 .aboutCard p {
   margin: 0;
   color: var(--muted);
-  line-height: 1.8;
+  line-height: 1.78;
+  font-size: 1.02rem;
 }
 
 .aboutSplit {
@@ -43,8 +47,9 @@
 .infoCard h3 {
   margin: 0;
   font-family: var(--font-display), sans-serif;
-  letter-spacing: -0.04em;
-  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+  font-size: 1.45rem;
+  font-weight: 600;
 }
 
 .infoCard ul {
@@ -83,11 +88,11 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 40px 0;
+    padding: 48px 0;
   }
 
   .aboutCard,
   .infoCard {
-    padding: 20px;
+    padding: 22px;
   }
 }

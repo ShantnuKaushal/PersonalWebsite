@@ -1,5 +1,5 @@
 .section {
-  padding: 54px 0;
+  padding: 72px 0;
 }
 
 .featuredProjectList {
@@ -11,27 +11,30 @@
 .archiveCard {
   border: 1px solid var(--surface-border);
   background: var(--surface);
-  border-radius: 24px;
+  border-radius: 28px;
   box-shadow: var(--shadow);
+  backdrop-filter: saturate(180%) blur(22px);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease;
+    transform 280ms var(--ease-standard),
+    box-shadow 280ms var(--ease-standard),
+    border-color 280ms var(--ease-standard),
+    background-color 280ms var(--ease-standard);
 }
 
 .featuredProject:hover,
 .archiveCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.2);
-  border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.16);
+  border-color: color-mix(in srgb, var(--accent) 18%, var(--surface-border));
+  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
 }
 
 .featuredProject {
   display: grid;
   grid-template-columns: minmax(220px, 0.76fr) minmax(0, 1fr);
   gap: 24px;
-  padding: 24px;
+  padding: 30px;
 }
 
 .projectVisual {
@@ -45,28 +48,28 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 22px;
-  border-radius: 20px;
+  border-radius: 24px;
   background:
     radial-gradient(circle at top right, var(--project-visual-glow), transparent 28%),
     linear-gradient(180deg, var(--project-visual-start), var(--project-visual-end));
   border: 1px solid var(--project-visual-border);
   transition:
-    transform 200ms ease,
-    box-shadow 200ms ease,
-    border-color 200ms ease;
+    transform 260ms var(--ease-standard),
+    box-shadow 260ms var(--ease-standard),
+    border-color 260ms var(--ease-standard);
 }
 
 .featuredProject:hover .visualFrame {
-  transform: scale(1.01);
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
-  border-color: color-mix(in srgb, var(--accent) 24%, transparent);
+  transform: translateY(-1px) scale(1.006);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.16);
+  border-color: color-mix(in srgb, var(--accent) 18%, var(--project-visual-border));
 }
 
 .visualFrame span {
   font-family: var(--font-display), sans-serif;
   font-size: clamp(3.5rem, 8vw, 5.2rem);
   line-height: 0.9;
-  color: var(--accent);
+  color: var(--text);
 }
 
 .visualFrame p {
@@ -79,7 +82,7 @@
   color: var(--project-visual-muted);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
 }
 
 .projectCopy {
@@ -96,7 +99,8 @@
 }
 
 .projectCopy h3 {
-  font-size: clamp(1.75rem, 3vw, 2.45rem);
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 600;
 }
 
 .projectSummary,
@@ -124,12 +128,12 @@
 }
 
 .inlineLink {
-  color: var(--text);
-  font-weight: 600;
+  color: var(--accent);
+  font-weight: 500;
 }
 
 .inlineLink:hover {
-  color: var(--accent);
+  color: color-mix(in srgb, var(--accent) 82%, white 18%);
 }
 
 .inlineNote {
@@ -146,23 +150,25 @@
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 8px 12px;
+  padding: 9px 14px;
   border-radius: 999px;
-  background: var(--accent-soft);
-  border: 1px solid var(--project-visual-border);
-  color: var(--accent);
-  font-size: 0.84rem;
-  font-weight: 600;
+  background: color-mix(in srgb, var(--surface-strong) 86%, transparent);
+  border: 1px solid var(--surface-border);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 500;
   transition:
-    transform 160ms ease,
-    background-color 160ms ease,
-    border-color 160ms ease;
+    transform 220ms var(--ease-standard),
+    background-color 220ms var(--ease-standard),
+    border-color 220ms var(--ease-standard),
+    color 220ms var(--ease-standard);
 }
 
 .tag:hover {
   transform: translateY(-1px);
-  background: color-mix(in srgb, var(--accent-soft) 70%, transparent);
-  border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+  background: color-mix(in srgb, var(--accent-soft) 72%, var(--surface-strong));
+  border-color: color-mix(in srgb, var(--accent) 20%, var(--surface-border));
+  color: var(--text);
 }
 
 .archiveGrid {
@@ -179,16 +185,17 @@
 .archiveStatus {
   display: inline-flex;
   align-items: center;
-  color: var(--accent);
+  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 600;
 }
 
 .archiveCard h3 {
   margin-top: 14px;
-  font-size: 1.45rem;
+  font-size: 1.55rem;
+  font-weight: 600;
 }
 
 .archiveCard p {
@@ -205,11 +212,11 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 40px 0;
+    padding: 48px 0;
   }
 
   .featuredProject,
   .archiveCard {
-    padding: 20px;
+    padding: 22px;
   }
 }
