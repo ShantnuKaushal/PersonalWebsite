@@ -1,0 +1,211 @@
+.hero {
+  min-height: calc(100vh - 120px);
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 78px;
+  padding: 74px 0 40px;
+}
+
+.heroVisual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.portraitRing {
+  width: min(100%, 430px);
+  aspect-ratio: 1;
+  padding: 9px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--hero-ring-start), var(--hero-ring-end));
+  animation: heroFloat 4.8s ease-in-out infinite;
+  box-shadow:
+    0 0 0 6px var(--hero-ring-shadow),
+    0 18px 40px rgba(0, 0, 0, 0.32);
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.portraitRing:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 0 0 8px var(--hero-ring-shadow),
+    0 24px 48px rgba(0, 0, 0, 0.34);
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--portrait-bg);
+}
+
+.heroCopy {
+  display: grid;
+  grid-template-columns: max-content;
+  justify-items: start;
+  justify-self: start;
+  width: max-content;
+  max-width: 100%;
+  text-align: left;
+  min-width: 0;
+}
+
+.heroCopy h1 {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  letter-spacing: -0.04em;
+  font-size: clamp(4.35rem, 6.7vw, 6.3rem);
+  line-height: 0.95;
+  white-space: nowrap;
+}
+
+.heroRole {
+  margin: 20px 0 0;
+  color: var(--accent);
+  font-size: clamp(1.9rem, 2.6vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  justify-self: end;
+  width: auto;
+  text-align: right;
+  padding-right: 0.15em;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 34px;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.heroLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 28px;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.heroLinks a {
+  color: var(--text);
+  font-weight: 600;
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.heroLinks a:hover {
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 0 38px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.primaryButton {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
+
+.secondaryButton {
+  border: 2px solid var(--button-soft-border);
+  color: var(--accent);
+  background: transparent;
+}
+
+.primaryButton:hover,
+.secondaryButton:hover {
+  transform: translateY(-2px);
+  background: var(--button-hover-bg);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+}
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .heroCopy {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .heroVisual {
+    order: 1;
+  }
+
+  .heroCopy h1 {
+    white-space: normal;
+  }
+
+  .heroRole {
+    align-self: center;
+    text-align: center;
+  }
+
+  .heroLinks,
+  .heroActions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    gap: 34px;
+    padding: 52px 0 24px;
+  }
+
+  .portraitRing {
+    width: min(100%, 300px);
+  }
+
+  .heroCopy h1 {
+    font-size: clamp(4rem, 13vw, 5.8rem);
+    white-space: normal;
+  }
+
+  .heroRole {
+    font-size: clamp(1.7rem, 6vw, 2.15rem);
+    align-self: center;
+    text-align: center;
+  }
+}
