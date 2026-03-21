@@ -40,26 +40,23 @@ export default function Experience() {
       <div className={styles.experienceList}>
         {experiences.map((experience) => (
           <article key={`${experience.company}-${experience.role}`} className={styles.experienceRow}>
-            <div className={styles.experienceHeader}>
-              <div className={styles.experienceIdentity}>
-                <ExperienceLogo
-                  company={experience.company}
-                  logoSrc={experience.logoSrc}
-                  logoAlt={experience.logoAlt}
-                />
-                <div>
+            <ExperienceLogo
+              company={experience.company}
+              logoSrc={experience.logoSrc}
+              logoAlt={experience.logoAlt}
+            />
+            <div className={styles.experienceContent}>
+              <div className={styles.experienceTopline}>
+                <div className={styles.identityLine}>
                   <span className={styles.company}>{experience.company}</span>
+                  <span className={styles.separator} aria-hidden="true">
+                    •
+                  </span>
                   <h3>{experience.role}</h3>
                 </div>
+                <span className={styles.dates}>{experience.dates}</span>
               </div>
-              <span className={styles.dates}>{experience.dates}</span>
-            </div>
-            <div className={styles.experienceBody}>
-              <ul className={styles.experienceHighlights}>
-                {experience.highlights.map((highlight) => (
-                  <li key={highlight}>{highlight}</li>
-                ))}
-              </ul>
+              <p className={styles.summary}>{experience.summary}</p>
               <div className={styles.tagList}>
                 {experience.tech.map((tag) => (
                   <span key={tag} className={styles.tag}>

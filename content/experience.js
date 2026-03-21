@@ -5,24 +5,18 @@ export const experiences = [
     dates: 'Apr 2025 - Present',
     logoSrc: '/images/experience/sports-excitement.svg',
     logoAlt: 'Sports Excitement logo',
-    highlights: [
-      'Orchestrated the development lifecycle of 15+ core product features in an Agile Scrum environment for a production-ready social networking platform.',
-      'Designed a high-performance Node.js, Express, and PostgreSQL backend, improving query latency by 25% for complex user-relational datasets.',
-      'Standardized code reviews and GitHub Actions CI/CD on Linux, increasing deployment reliability and reducing production turnaround by 40%.',
-    ],
-    tech: ['Node.js', 'Express', 'PostgreSQL', 'GitHub Actions', 'Linux', 'Agile Scrum'],
+    summary:
+      'Lead engineering in an Agile Scrum environment, turning product ideas into a working career-growth platform for students and early-career professionals. Own the platform across the stack, from product development and scalable system design to deployment and platform operations.',
+    tech: ['Platform Engineering', 'API Development', 'Next.js', 'Node.js', 'PostgreSQL'],
   },
   {
     company: "NASA L'Space",
-    role: 'Student Researcher',
+    role: 'Machine Learning Engineer',
     dates: 'Sep 2025 - Dec 2025',
-    logoSrc: '',
-    logoAlt: '',
-    highlights: [
-      'Engineered a theoretical signal-processing framework to mitigate radio frequency interference for lunar missions, targeting a 20 dB suppression threshold.',
-      'Designed a hybrid real-time architecture using C++ for high-speed noise cancellation and Python for machine-learning integration to recover faint astronomical signals.',
-      'Authored a New Technology Report for a competitive NASA solicitation, defining the software integration strategy and technology infusion pathway.',
-    ],
-    tech: ['C++', 'Python', 'Signal Processing', 'Machine Learning', 'RF Interference', 'Research'],
+    logoSrc: '/images/experience/nasa_logo.svg',
+    logoAlt: 'NASA logo',
+    summary:
+      "Explored machine-learning and signal-processing methods for improving interference mitigation in lunar and low-frequency astronomy settings. Helped define a theoretical SDR-based approach targeting roughly 20 dB interference suppression and translated the work into proposal materials and a New Technology Report for potential NASA applications.",
+    tech: ['Python', 'Machine Learning', 'Systems Design', 'Research'],
   },
 ];
