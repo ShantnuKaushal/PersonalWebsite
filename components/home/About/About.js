@@ -6,28 +6,27 @@ export default function About() {
   return (
     <section className={styles.section} id="about">
       <SectionHeading title="About" />
-      <div className={styles.aboutLayout}>
-        <div className={styles.copyPanel}>
+      <div className={styles.aboutBoard}>
+        <div className={styles.introPanel}>
           <p className={styles.headline}>{about.headline}</p>
-          <p className={styles.body}>{about.body}</p>
+          <p className={styles.summary}>{about.summary}</p>
+          <p className={styles.detail}>{about.detail}</p>
         </div>
-        <div className={styles.profilePanel} aria-label="Technical profile">
-          <div className={styles.profileHeader}>
-            <span className={styles.profileLabel}>profile.ts</span>
-            <span className={styles.profileMeta}>technical profile</span>
+        <div className={styles.capabilityPanel} aria-label="Technical capabilities">
+          <div className={styles.capabilityHeader}>
+            <span className={styles.capabilityEyebrow}>Technical Focus</span>
           </div>
-          <div className={styles.profileRows}>
-            {about.profileRows.map((row) => (
-              <div key={row.label} className={styles.profileRow}>
-                <span className={styles.rowLabel}>{row.label}</span>
-                <span className={styles.rowValue}>{row.value}</span>
+          <div className={styles.capabilityList}>
+            {about.capabilityRows.map((row) => (
+              <div key={row.label} className={styles.capabilityRow}>
+                <span className={styles.capabilityLabel}>{row.label}</span>
+                <p className={styles.capabilityValue}>{row.value}</p>
               </div>
             ))}
           </div>
-          <div className={styles.profileFooter}>
-            <span className={styles.footerLabel}>building</span>
-            <p className={styles.footerValue}>{about.profileFooter}</p>
-          </div>
+        </div>
+        <div className={styles.footerPanel}>
+          <p>{about.footer}</p>
         </div>
       </div>
     </section>

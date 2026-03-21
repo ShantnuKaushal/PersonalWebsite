@@ -1,14 +1,26 @@
 export const about = {
-  headline:
-    "I'm a software engineer with a B.S. in Computer Science from St. John's University, focused on backend systems, machine learning, and full-stack products that have to work under real constraints.",
-  body:
-    'A lot of my work sits at the intersection of distributed architecture, data pipelines, APIs, and applied machine learning. Across projects like TweetCheck, ReSource, AirAware, and ApexStox, I tend to gravitate toward systems that combine technical depth with clear product utility.',
-  profileRows: [
-    { label: 'focus', value: 'backend systems, ML, data applications' },
-    { label: 'strengths', value: 'APIs, distributed services, full-stack delivery' },
-    { label: 'recent work', value: 'real-time analytics, RAG, predictive systems' },
-    { label: 'tooling', value: 'Python, TypeScript, C#, PostgreSQL' },
-    { label: 'approach', value: 'technical depth, practical execution' },
+  headline: "Software engineer with a B.S. in Computer Science from St. John's University.",
+  summary:
+    'I build backend systems, ML-driven applications, and full-stack products meant for real-world use.',
+  detail:
+    'Most of my work sits around APIs, data pipelines, distributed services, and applied AI.',
+  capabilityRows: [
+    {
+      label: 'Backend & APIs',
+      value: 'Python, FastAPI, C#/.NET, SQL, PostgreSQL',
+    },
+    {
+      label: 'ML & Data',
+      value: 'PyTorch, TensorFlow, Hugging Face, RAG, vector search',
+    },
+    {
+      label: 'Infrastructure',
+      value: 'Kafka, Docker, AWS, Kubernetes, Terraform',
+    },
+    {
+      label: 'Frontend',
+      value: 'TypeScript, Next.js, React',
+    },
   ],
-  profileFooter: 'systems that move data, make decisions, and surface useful output',
+  footer: 'I like turning technically messy ideas into software that is reliable, clear, and useful.',
 };
