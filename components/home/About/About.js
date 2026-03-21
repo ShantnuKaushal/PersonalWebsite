@@ -6,27 +6,29 @@ export default function About() {
   return (
     <section className={styles.section} id="about">
       <SectionHeading title="About" />
-      <div className={styles.aboutBoard}>
-        <div className={styles.introPanel}>
-          <p className={styles.headline}>{about.headline}</p>
-          <p className={styles.summary}>{about.summary}</p>
-          <p className={styles.detail}>{about.detail}</p>
+      <div className={styles.readmePanel} aria-label="About readme">
+        <div className={styles.panelHeader}>
+          <span className={styles.fileLabel}>{about.fileLabel}</span>
         </div>
-        <div className={styles.capabilityPanel} aria-label="Technical capabilities">
-          <div className={styles.capabilityHeader}>
-            <span className={styles.capabilityEyebrow}>Technical Focus</span>
-          </div>
-          <div className={styles.capabilityList}>
-            {about.capabilityRows.map((row) => (
-              <div key={row.label} className={styles.capabilityRow}>
-                <span className={styles.capabilityLabel}>{row.label}</span>
-                <p className={styles.capabilityValue}>{row.value}</p>
-              </div>
+        <div className={styles.panelBody}>
+          <div className={styles.copyBlock}>
+            {about.intro.map((line) => (
+              <p key={line} className={styles.copyLine}>
+                {line}
+              </p>
             ))}
           </div>
-        </div>
-        <div className={styles.footerPanel}>
-          <p>{about.footer}</p>
+          <div className={styles.skillsBlock}>
+            <span className={styles.skillsHeading}>Technical Skills</span>
+            <div className={styles.skillsList}>
+              {about.skillRows.map((row) => (
+                <div key={row.label} className={styles.skillRow}>
+                  <span className={styles.skillLabel}>{row.label}</span>
+                  <p className={styles.skillValue}>{row.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

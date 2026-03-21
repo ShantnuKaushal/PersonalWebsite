@@ -1,26 +1,22 @@
 export const about = {
-  headline: "Software engineer with a B.S. in Computer Science from St. John's University.",
-  summary:
-    'I build backend systems, ML-driven applications, and full-stack products meant for real-world use.',
-  detail:
-    'Most of my work sits around APIs, data pipelines, distributed services, and applied AI.',
-  capabilityRows: [
+  fileLabel: 'README.md',
+  intro: [
+    "I'm a software engineer with a B.S. in Computer Science from St. John's University.",
+    'I like working on backend systems, APIs, machine learning, and full-stack software built for real-world use.',
+    'My interests sit around distributed systems, data-heavy applications, and applied AI.',
+  ],
+  skillRows: [
     {
-      label: 'Backend & APIs',
-      value: 'Python, FastAPI, C#/.NET, SQL, PostgreSQL',
+      label: 'Programming & Frameworks',
+      value: 'Python, Golang, C#/.NET, C++, Java, SQL, TypeScript/JavaScript, FastAPI, Next.js, React',
     },
     {
-      label: 'ML & Data',
-      value: 'PyTorch, TensorFlow, Hugging Face, RAG, vector search',
+      label: 'AI & ML',
+      value: 'PyTorch, TensorFlow, Hugging Face Transformers, RAG, NLP, vector search, Pandas, NumPy, scikit-learn',
     },
     {
-      label: 'Infrastructure',
-      value: 'Kafka, Docker, AWS, Kubernetes, Terraform',
-    },
-    {
-      label: 'Frontend',
-      value: 'TypeScript, Next.js, React',
+      label: 'Data & Infrastructure',
+      value: 'AWS, Kubernetes, Terraform, Apache Kafka, PostgreSQL, Redis, Docker, CI/CD',
     },
   ],
-  footer: 'I like turning technically messy ideas into software that is reliable, clear, and useful.',
 };
