@@ -16,11 +16,14 @@ export default function About() {
       <div className={styles.aboutLayout}>
         <div className={styles.copyPanel}>
           <div className={styles.copyHeader}>
-            <span className={styles.fileLabel}>about</span>
+            <span className={styles.fileLabel}>{about.readmeLabel}</span>
           </div>
           <div className={styles.copyBody}>
-            <p className={styles.lead}>{about.lead}</p>
-            <p className={styles.support}>{about.support}</p>
+            {about.readmeBlocks.map((block, index) => (
+              <p key={block} className={index === 0 ? styles.readmeLead : styles.readmeBlock}>
+                {block}
+              </p>
+            ))}
           </div>
         </div>
         <div className={styles.commandPanel} aria-label="Technical skills">

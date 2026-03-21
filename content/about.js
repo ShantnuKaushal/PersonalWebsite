@@ -1,8 +1,11 @@
 export const about = {
+  readmeLabel: 'README.md',
   fileLabel: 'skills.ts',
-  lead: "Software engineer with a B.S. in Computer Science from St. John's University.",
-  support:
-    'I build backend systems, APIs, machine learning workflows, and full-stack software with a focus on reliability, data flow, and real-world use. My strongest interests sit around distributed systems, data-heavy applications, and applied AI.',
+  readmeBlocks: [
+    'Most of my work sits at the intersection of backend systems, machine learning, and full-stack software built for real-world use.',
+    "I'm a software engineer with a B.S. in Computer Science from St. John's University, and I tend to gravitate toward work where reliability, data flow, and system design matter just as much as the interface.",
+    'That usually means building data-heavy applications, distributed services, analytics workflows, and predictive systems, while taking an active role in product and platform decisions across projects, startup work, and research-oriented engineering.',
+  ],
   defaultMode: 'programming',
   commandModes: [
     {

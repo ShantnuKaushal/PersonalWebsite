@@ -66,29 +66,30 @@
 
 .copyBody {
   padding: 28px 28px 30px;
+  display: grid;
+  gap: 16px;
 }
 
-.lead,
-.support {
+.readmeLead,
+.readmeBlock {
   margin: 0;
   max-width: none;
   text-wrap: pretty;
 }
 
-.lead {
+.readmeLead {
   color: var(--text);
-  font-size: clamp(1rem, 1.35vw, 1.16rem);
-  line-height: 1.7;
-  letter-spacing: -0.015em;
+  font-size: 1.02rem;
+  line-height: 1.76;
+  letter-spacing: -0.012em;
   font-weight: 500;
 }
 
-.support {
-  margin-top: 18px;
+.readmeBlock {
   color: var(--muted);
   font-size: 0.98rem;
-  line-height: 1.76;
-  max-width: 44rem;
+  line-height: 1.78;
+  max-width: 46rem;
 }
 
 .commandBody {
@@ -212,7 +213,7 @@
     grid-template-columns: 1fr;
   }
 
-  .support {
+  .readmeBlock {
     max-width: none;
   }
 }
@@ -237,12 +238,8 @@
     padding: 22px 18px 22px;
   }
 
-  .lead {
-    font-size: 0.98rem;
-  }
-
-  .support {
-    margin-top: 14px;
+  .readmeLead,
+  .readmeBlock {
     font-size: 0.92rem;
   }
 
