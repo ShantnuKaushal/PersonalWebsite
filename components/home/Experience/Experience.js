@@ -36,7 +36,7 @@ function ExperienceLogo({ company, logoSrc, logoAlt }) {
 export default function Experience() {
   return (
     <section className={styles.section} id="experience">
-      <SectionHeading eyebrow="Professional Experience" title="Experience built on shipped work." />
+      <SectionHeading title="Experience" />
       <div className={styles.experienceList}>
         {experiences.map((experience) => (
           <article key={`${experience.company}-${experience.role}`} className={styles.experienceRow}>

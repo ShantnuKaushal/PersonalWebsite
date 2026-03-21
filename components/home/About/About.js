@@ -5,7 +5,7 @@ import styles from './About.module.css';
 export default function About() {
   return (
     <section className={styles.section} id="about">
-      <SectionHeading eyebrow="About" title="What I like working on." />
+      <SectionHeading title="About" />
       <div className={styles.aboutGrid}>
         <div className={styles.aboutCard}>
           <p>{about.intro}</p>

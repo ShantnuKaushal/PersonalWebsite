@@ -26,11 +26,7 @@ function ProjectLinks({ githubUrl, liveUrl }) {
 export default function Projects() {
   return (
     <section className={styles.section} id="projects">
-      <SectionHeading
-        eyebrow="Projects"
-        title="Projects."
-        description="Placeholder structure is ready. Final repos and project details can drop in later."
-      />
+      <SectionHeading title="Projects" />
 
       <div className={styles.featuredProjectList}>
         {featuredProjects.map((project, index) => (
