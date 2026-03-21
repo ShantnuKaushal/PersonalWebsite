@@ -2,7 +2,15 @@
   padding: 72px 0;
 }
 
-.readmePanel {
+.aboutLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.copyPanel,
+.commandPanel {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--surface-border);
@@ -13,22 +21,35 @@
   -webkit-backdrop-filter: saturate(165%) blur(18px);
 }
 
-.readmePanel::before {
+.copyPanel::before,
+.commandPanel::before {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
+}
+
+.copyPanel::before {
   background:
-    radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 8%, transparent), transparent 28%),
+    radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 8%, transparent), transparent 30%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 44%);
 }
 
+.commandPanel::before {
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 10%, transparent), transparent 26%),
+    linear-gradient(140deg, transparent 0%, rgba(255, 255, 255, 0.025) 46%, transparent 68%);
+}
+
+.copyHeader,
+.copyBody,
 .panelHeader,
-.panelBody {
+.commandBody {
   position: relative;
   z-index: 1;
 }
 
+.copyHeader,
 .panelHeader {
   padding: 18px 24px 16px;
   border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 84%, transparent);
@@ -38,79 +59,162 @@
   color: var(--text);
   font-family:
     ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+}
+
+.copyBody {
+  padding: 28px 28px 30px;
+}
+
+.lead,
+.support {
+  margin: 0;
+  max-width: none;
+  text-wrap: pretty;
+}
+
+.lead {
+  color: var(--text);
+  font-size: clamp(1rem, 1.35vw, 1.16rem);
+  line-height: 1.7;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+}
+
+.support {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.76;
+  max-width: 44rem;
+}
+
+.commandBody {
+  padding: 22px 22px 24px;
+  display: grid;
+  gap: 18px;
+}
+
+.commandBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.commandButton,
+.commandActive {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 13px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--surface-border) 88%, transparent);
+  background: color-mix(in srgb, var(--surface-strong) 52%, transparent);
+  color: var(--muted);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    background-color 180ms var(--ease-standard),
+    border-color 180ms var(--ease-standard),
+    color 180ms var(--ease-standard),
+    transform 180ms var(--ease-standard);
+}
+
+.commandButton:hover,
+.commandActive:hover {
+  transform: translateY(-1px);
+}
+
+.commandButton:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 16%, var(--surface-border));
+}
+
+.commandActive {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--surface-border));
+  background: color-mix(in srgb, var(--accent-soft) 72%, var(--surface-strong));
+}
+
+.commandPrompt {
+  color: var(--accent);
+}
+
+.commandOutput {
+  border: 1px solid color-mix(in srgb, var(--surface-border) 84%, transparent);
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--surface-strong) 64%, transparent);
+  padding: 18px;
+}
+
+.outputHeader {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 70%, transparent);
+}
+
+.outputLabel {
+  color: var(--text);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
 }
 
-.panelBody {
-  padding: 28px 28px 30px;
-  display: grid;
-  gap: 26px;
-}
-
-.copyBlock {
-  display: grid;
-  gap: 14px;
-  max-width: 52rem;
-}
-
-.copyLine {
+.outputDescription {
   margin: 0;
-  color: var(--text);
-  font-size: 1rem;
-  line-height: 1.72;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.62;
   text-wrap: pretty;
 }
 
-.copyLine:first-child {
-  font-size: clamp(1.16rem, 1.9vw, 1.42rem);
-  line-height: 1.52;
-  letter-spacing: -0.025em;
-  font-weight: 600;
-}
-
-.skillsBlock {
+.skillGrid {
   display: grid;
-  gap: 14px;
-  max-width: 62rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+  margin-top: 16px;
 }
 
-.skillsHeading {
-  display: inline-flex;
-  color: var(--muted);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.skillItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 30px;
 }
 
-.skillsList {
-  display: grid;
-  gap: 14px;
+.skillMarker {
+  width: 8px;
+  height: 8px;
+  margin-top: 0.46rem;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--accent) 74%, white);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-soft) 60%, transparent);
+  flex: 0 0 auto;
 }
 
-.skillRow {
-  display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-  padding-top: 14px;
-  border-top: 1px solid color-mix(in srgb, var(--surface-border) 72%, transparent);
-}
-
-.skillLabel {
-  color: var(--text);
-  font-size: 0.94rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.skillValue {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.68;
+.skillText {
+  color: color-mix(in srgb, var(--text) 90%, transparent);
+  font-size: 0.9rem;
+  line-height: 1.56;
   text-wrap: pretty;
+}
+
+@media (max-width: 1024px) {
+  .aboutLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .support {
+    max-width: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -118,46 +222,56 @@
     padding: 48px 0;
   }
 
-  .readmePanel {
+  .copyPanel,
+  .commandPanel,
+  .commandOutput {
     border-radius: 24px;
   }
 
+  .copyHeader,
   .panelHeader {
     padding: 16px 18px 14px;
   }
 
-  .panelBody {
+  .copyBody {
     padding: 22px 18px 22px;
-    gap: 22px;
   }
 
-  .copyBlock {
-    gap: 12px;
+  .lead {
+    font-size: 0.98rem;
   }
 
-  .copyLine {
-    font-size: 0.94rem;
+  .support {
+    margin-top: 14px;
+    font-size: 0.92rem;
   }
 
-  .copyLine:first-child {
-    font-size: 1.08rem;
+  .commandBody {
+    padding: 18px;
   }
 
-  .skillsList {
-    gap: 12px;
-  }
-
-  .skillRow {
-    grid-template-columns: 1fr;
+  .commandBar {
     gap: 8px;
-    padding-top: 12px;
   }
 
-  .skillLabel {
-    font-size: 0.86rem;
+  .commandButton,
+  .commandActive {
+    min-height: 36px;
+    padding: 0 11px;
+    font-size: 0.72rem;
   }
 
-  .skillValue {
+  .commandOutput {
+    padding: 15px;
+  }
+
+  .outputDescription,
+  .skillText {
     font-size: 0.84rem;
+  }
+
+  .skillGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }
