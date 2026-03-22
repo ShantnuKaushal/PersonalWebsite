@@ -2,9 +2,9 @@ export const about = {
   readmeLabel: 'README.md',
   fileLabel: 'skills.ts',
   readmeBlocks: [
-    'Most of my work sits at the intersection of backend systems, machine learning, and full-stack software built for real-world use.',
-    "I'm a software engineer with a B.S. in Computer Science from St. John's University, and I tend to gravitate toward work where reliability, data flow, and system design matter just as much as the interface.",
-    'That usually means building data-heavy applications, distributed services, analytics workflows, and predictive systems, while taking an active role in product and platform decisions across projects, startup work, and research-oriented engineering.',
+    "I'm a software engineer with a B.S. in Computer Science from St. John's University. I'm most interested in backend systems, machine learning, and the kind of technical work that turns rough ideas into software people can actually use.",
+    'A lot of my recent work has been in full-stack products and data-heavy systems, with a growing focus on AI and machine learning. I enjoy building APIs, shaping platform architecture, and working on ML-driven systems that connect strong technical ideas to something useful in practice.',
+    "I'm especially drawn to projects that need both good engineering judgment and attention to detail. Whether the work is product-focused or more research-oriented, I like building things that feel practical, thoughtful, and technically strong.",
   ],
   defaultMode: 'programming',
   commandModes: [

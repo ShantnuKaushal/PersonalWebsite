@@ -19,8 +19,8 @@ export default function About() {
             <span className={styles.fileLabel}>{about.readmeLabel}</span>
           </div>
           <div className={styles.copyBody}>
-            {about.readmeBlocks.map((block, index) => (
-              <p key={block} className={index === 0 ? styles.readmeLead : styles.readmeBlock}>
+            {about.readmeBlocks.map((block) => (
+              <p key={block} className={styles.readmeBlock}>
                 {block}
               </p>
             ))}

@@ -70,19 +70,10 @@
   gap: 16px;
 }
 
-.readmeLead,
 .readmeBlock {
   margin: 0;
   max-width: none;
   text-wrap: pretty;
-}
-
-.readmeLead {
-  color: var(--text);
-  font-size: 1.02rem;
-  line-height: 1.76;
-  letter-spacing: -0.012em;
-  font-weight: 500;
 }
 
 .readmeBlock {
@@ -238,7 +229,6 @@
     padding: 22px 18px 22px;
   }
 
-  .readmeLead,
   .readmeBlock {
     font-size: 0.92rem;
   }
