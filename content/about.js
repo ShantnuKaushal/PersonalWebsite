@@ -14,7 +14,7 @@ export const about = {
       description: 'Languages, runtimes, and application-layer tools I use most.',
       skills: [
         { label: 'Python', icon: 'python' },
-        { label: 'TypeScript/JavaScript', icon: 'code' },
+        { label: 'TypeScript', icon: 'typescript' },
         { label: 'Node.js', icon: 'node' },
         { label: 'Golang', icon: 'golang' },
         { label: 'C++', icon: 'cplusplus' },

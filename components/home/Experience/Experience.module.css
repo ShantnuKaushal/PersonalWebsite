@@ -8,14 +8,10 @@
 }
 
 .experienceRow {
-  display: grid;
-  grid-template-columns: 82px minmax(0, 1fr);
-  align-items: start;
-  gap: 24px;
-  padding: 30px 32px;
+  overflow: hidden;
   border: 1px solid var(--surface-border);
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
-  border-radius: 28px;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border-radius: 30px;
   box-shadow: var(--shadow);
   backdrop-filter: saturate(170%) blur(18px);
   -webkit-backdrop-filter: saturate(170%) blur(18px);
@@ -33,57 +29,64 @@
   background: color-mix(in srgb, var(--surface-strong) 84%, transparent);
 }
 
-.experienceContent {
-  min-width: 0;
-}
-
-.experienceTopline {
+.entryBar {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
+  padding: 16px 22px;
+  border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 82%, transparent);
+  background: color-mix(in srgb, var(--surface-strong) 44%, transparent);
 }
 
-.identityLine {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 10px;
-  min-width: 0;
+.entryLabel,
+.entryStatus {
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
 }
 
-.company {
+.entryLabel {
+  color: var(--text);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+.entryStatus {
   display: inline-flex;
   align-items: center;
-  color: var(--text);
-  letter-spacing: -0.03em;
-  font-size: 1.34rem;
+  gap: 8px;
+  min-height: 30px;
+  padding: 0 11px;
+  border-radius: 11px;
+  border: 1px solid var(--surface-border);
+  font-size: 0.68rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
 }
 
-.separator {
-  color: color-mix(in srgb, var(--muted) 88%, transparent);
-  font-size: 1rem;
+.statusActive {
+  color: #8fe3a5;
+  background: rgba(20, 92, 55, 0.28);
+  border-color: rgba(98, 211, 141, 0.22);
 }
 
-.identityLine h3 {
-  margin: 0;
-  color: var(--muted);
-  font-size: 1.12rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
+.statusInactive {
+  color: #ffabab;
+  background: rgba(112, 34, 34, 0.28);
+  border-color: rgba(255, 117, 117, 0.2);
 }
 
-.dates {
-  color: var(--muted);
-  font-size: 0.96rem;
-  white-space: nowrap;
-  text-align: right;
-  padding-top: 2px;
+.entryBody {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  padding: 24px 28px 30px;
 }
 
 .logoBadge {
-  flex: 0 0 auto;
   width: 82px;
   height: 82px;
   display: inline-flex;
@@ -95,6 +98,37 @@
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 14px 28px rgba(0, 0, 0, 0.14);
+}
+
+.statusOrb {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  animation: statusPulse 2.2s ease-in-out infinite;
+}
+
+.orbActive {
+  background: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.12);
+}
+
+.orbInactive {
+  background: #f87171;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.1);
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.92;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
 }
 
 .logoImage {
@@ -116,19 +150,60 @@
   transform: translateY(1px);
 }
 
+.experienceContent {
+  min-width: 0;
+}
+
+.experienceTopline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.identityBlock {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.company {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  font-size: 1.34rem;
+  font-weight: 600;
+}
+
+.identityBlock h3 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.dates {
+  color: var(--muted);
+  font-size: 0.94rem;
+  white-space: nowrap;
+  text-align: right;
+  padding-top: 2px;
+}
+
 .summary {
   margin: 14px 0 0;
   color: var(--muted);
-  font-size: 1.1rem;
-  line-height: 1.7;
-  text-wrap: pretty;
+  font-size: 1rem;
+  line-height: 1.68;
 }
 
 .tagList {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .tag {
@@ -156,6 +231,34 @@
   color: var(--text);
 }
 
+html[data-theme='light'] .entryStatus {
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+html[data-theme='light'] .statusActive {
+  color: #166534;
+  background: #e8f7ee;
+  border-color: #b7e4c7;
+}
+
+html[data-theme='light'] .statusInactive {
+  color: #b42318;
+  background: #fff0ee;
+  border-color: #f7c4bf;
+}
+
+html[data-theme='light'] .orbActive {
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+html[data-theme='light'] .orbInactive {
+  background: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
 @media (max-width: 1024px) {
   .experienceTopline {
     flex-direction: column;
@@ -173,28 +276,39 @@
     padding: 48px 0;
   }
 
-  .experienceRow {
+  .entryBar {
+    padding: 14px 16px;
+  }
+
+  .entryBody {
     grid-template-columns: 64px minmax(0, 1fr);
     gap: 16px;
-    padding: 22px;
+    padding: 18px 18px 22px;
   }
 
   .logoBadge {
     width: 64px;
     height: 64px;
+  }
+
+  .logoBadge {
     border-radius: 20px;
+  }
+
+  .statusOrb {
+    width: 7px;
+    height: 7px;
   }
 
   .company {
     font-size: 1.12rem;
   }
 
-  .identityLine h3 {
+  .identityBlock h3 {
     font-size: 0.98rem;
   }
 
   .summary {
-    margin-top: 10px;
-    font-size: 1rem;
+    font-size: 0.94rem;
   }
 }

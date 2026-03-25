@@ -202,6 +202,13 @@
   display: block;
 }
 
+.skillIconTypescript {
+  width: 15px;
+  height: 15px;
+  opacity: 0.94;
+  transform: translateY(0.2px);
+}
+
 .skillText {
   color: color-mix(in srgb, var(--text) 90%, transparent);
   font-size: 0.9rem;
@@ -275,6 +282,11 @@
   .skillIcon {
     width: 17px;
     height: 17px;
+  }
+
+  .skillIconTypescript {
+    width: 14px;
+    height: 14px;
   }
 
   .skillGrid {

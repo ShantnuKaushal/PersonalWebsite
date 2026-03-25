@@ -23,6 +23,7 @@ import {
   SiRedis,
   SiScikitlearn,
   SiTensorflow,
+  SiTypescript,
 } from 'react-icons/si';
 import { about } from '../../../content/about';
 import SectionHeading from '../SectionHeading/SectionHeading';
@@ -30,6 +31,7 @@ import styles from './About.module.css';
 
 const skillIcons = {
   python: SiPython,
+  typescript: SiTypescript,
   code: HiOutlineCodeBracketSquare,
   node: SiNodedotjs,
   golang: SiGo,
@@ -106,11 +108,15 @@ export default function About() {
               <div className={styles.skillGrid}>
                 {activeCommand.skills.map((skill) => {
                   const Icon = skillIcons[skill.icon] ?? HiOutlineCodeBracketSquare;
+                  const iconClass =
+                    skill.icon === 'typescript'
+                      ? `${styles.skillIcon} ${styles.skillIconTypescript}`
+                      : styles.skillIcon;
 
                   return (
                     <div key={skill.label} className={styles.skillItem}>
                       <span className={styles.skillIconFrame}>
-                        <Icon className={styles.skillIcon} aria-hidden="true" />
+                        <Icon className={iconClass} aria-hidden="true" />
                       </span>
                       <span className={styles.skillText}>{skill.label}</span>
                     </div>

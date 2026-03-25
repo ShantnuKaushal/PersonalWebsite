@@ -38,35 +38,49 @@ export default function Experience() {
     <section className={styles.section} id="experience">
       <SectionHeading title="Experience" />
       <div className={styles.experienceList}>
-        {experiences.map((experience) => (
-          <article key={`${experience.company}-${experience.role}`} className={styles.experienceRow}>
-            <ExperienceLogo
-              company={experience.company}
-              logoSrc={experience.logoSrc}
-              logoAlt={experience.logoAlt}
-            />
-            <div className={styles.experienceContent}>
-              <div className={styles.experienceTopline}>
-                <div className={styles.identityLine}>
-                  <span className={styles.company}>{experience.company}</span>
-                  <span className={styles.separator} aria-hidden="true">
-                    •
-                  </span>
-                  <h3>{experience.role}</h3>
+        {experiences.map((experience) => {
+          const stateClass = experience.isActive ? styles.statusActive : styles.statusInactive;
+          const dotClass = experience.isActive ? styles.orbActive : styles.orbInactive;
+          const stateLabel = experience.isActive ? 'active' : 'inactive';
+
+          return (
+            <article key={`${experience.company}-${experience.role}`} className={styles.experienceRow}>
+              <div className={styles.entryBar}>
+                <span className={styles.entryLabel}>{experience.entryLabel}</span>
+                <span className={`${styles.entryStatus} ${stateClass}`}>
+                  <span className={`${styles.statusOrb} ${dotClass}`} aria-hidden="true" />
+                  {stateLabel}
+                </span>
+              </div>
+              <div className={styles.entryBody}>
+                <ExperienceLogo
+                  company={experience.company}
+                  logoSrc={experience.logoSrc}
+                  logoAlt={experience.logoAlt}
+                />
+                <div className={styles.experienceContent}>
+                  <div className={styles.experienceTopline}>
+                    <div className={styles.identityBlock}>
+                      <span className={styles.company}>{experience.company}</span>
+                      <h3>{experience.role}</h3>
+                    </div>
+                    <span className={styles.dates}>{experience.dates}</span>
+                  </div>
+
+                  <p className={styles.summary}>{experience.summary}</p>
+
+                  <div className={styles.tagList}>
+                    {experience.tech.map((tag) => (
+                      <span key={tag} className={styles.tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <span className={styles.dates}>{experience.dates}</span>
               </div>
-              <p className={styles.summary}>{experience.summary}</p>
-              <div className={styles.tagList}>
-                {experience.tech.map((tag) => (
-                  <span key={tag} className={styles.tag}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </section>
   );
