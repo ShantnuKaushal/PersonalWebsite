@@ -17,16 +17,17 @@
 .portraitRing {
   width: min(100%, 430px);
   aspect-ratio: 1;
-  padding: 12px;
+  padding: 10px;
   border-radius: 50%;
+  overflow: hidden;
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 88%, transparent), color-mix(in srgb, var(--bg) 78%, transparent)),
+    radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--surface-strong) 82%, transparent), color-mix(in srgb, var(--bg) 82%, transparent) 72%),
     linear-gradient(135deg, var(--hero-ring-start), var(--hero-ring-end));
   border: 1px solid rgba(255, 255, 255, 0.08);
   animation: heroFloat 4.8s ease-in-out infinite;
   box-shadow:
-    0 0 0 10px var(--hero-ring-shadow),
-    0 24px 80px rgba(0, 0, 0, 0.38);
+    0 0 0 9px var(--hero-ring-shadow),
+    0 22px 68px rgba(0, 0, 0, 0.34);
   backdrop-filter: saturate(160%) blur(28px);
   -webkit-backdrop-filter: saturate(160%) blur(28px);
   transition:
@@ -37,16 +38,34 @@
 .portraitRing:hover {
   transform: translateY(-4px) scale(1.008);
   box-shadow:
-    0 0 0 11px var(--hero-ring-shadow),
-    0 22px 64px rgba(0, 0, 0, 0.34);
+    0 0 0 10px var(--hero-ring-shadow),
+    0 20px 56px rgba(0, 0, 0, 0.3);
 }
 
 .portrait {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 54%;
   border-radius: 50%;
   background: var(--portrait-bg);
+  transform: scale(1.03);
+}
+
+html[data-theme='light'] .portraitRing {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(245, 247, 250, 0.98), rgba(233, 237, 243, 0.96) 72%),
+    linear-gradient(135deg, rgba(29, 29, 31, 0.06), rgba(29, 29, 31, 0.1));
+  border-color: rgba(29, 29, 31, 0.08);
+  box-shadow:
+    0 0 0 7px rgba(29, 29, 31, 0.06),
+    0 20px 46px rgba(15, 23, 42, 0.1);
+}
+
+html[data-theme='light'] .portraitRing:hover {
+  box-shadow:
+    0 0 0 8px rgba(29, 29, 31, 0.06),
+    0 18px 38px rgba(15, 23, 42, 0.09);
 }
 
 .heroCopy {

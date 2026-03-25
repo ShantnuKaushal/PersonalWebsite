@@ -6,5 +6,5 @@ export const profile = {
   email: 'shntnkaushal@gmail.com',
   github: 'https://github.com/ShantnuKaushal',
   linkedin: 'https://www.linkedin.com/in/shantnu-kaushal/',
-  profileImage: '/images/profile/profile.jpg',
+  profileImage: '/images/profile/astronaut.jpg',
 };
