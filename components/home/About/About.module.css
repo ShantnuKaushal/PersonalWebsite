@@ -177,19 +177,29 @@
 
 .skillItem {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  min-height: 30px;
+  align-items: center;
+  gap: 12px;
+  min-height: 42px;
 }
 
-.skillMarker {
-  width: 8px;
-  height: 8px;
-  margin-top: 0.46rem;
-  border-radius: 2px;
-  background: color-mix(in srgb, var(--accent) 74%, white);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-soft) 60%, transparent);
+.skillIconFrame {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--surface-border) 88%, transparent);
+  background: color-mix(in srgb, var(--surface) 84%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  color: color-mix(in srgb, var(--text) 74%, var(--accent) 26%);
   flex: 0 0 auto;
+}
+
+.skillIcon {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .skillText {
@@ -255,6 +265,16 @@
   .outputDescription,
   .skillText {
     font-size: 0.84rem;
+  }
+
+  .skillIconFrame {
+    width: 30px;
+    height: 30px;
+  }
+
+  .skillIcon {
+    width: 17px;
+    height: 17px;
   }
 
   .skillGrid {

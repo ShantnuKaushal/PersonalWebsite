@@ -1,9 +1,59 @@
 'use client';
 
 import { useState } from 'react';
+import { FaJava } from 'react-icons/fa6';
+import { HiOutlineCircleStack, HiOutlineCodeBracketSquare } from 'react-icons/hi2';
+import { LuGitBranchPlus, LuSearchCode, LuWorkflow } from 'react-icons/lu';
+import {
+  SiApachekafka,
+  SiCplusplus,
+  SiDocker,
+  SiGo,
+  SiHuggingface,
+  SiMinio,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiNumpy,
+  SiPandas,
+  SiPostgresql,
+  SiPrisma,
+  SiPytorch,
+  SiPython,
+  SiReact,
+  SiRedis,
+  SiScikitlearn,
+  SiTensorflow,
+} from 'react-icons/si';
 import { about } from '../../../content/about';
 import SectionHeading from '../SectionHeading/SectionHeading';
 import styles from './About.module.css';
+
+const skillIcons = {
+  python: SiPython,
+  code: HiOutlineCodeBracketSquare,
+  node: SiNodedotjs,
+  golang: SiGo,
+  cplusplus: SiCplusplus,
+  react: SiReact,
+  nextjs: SiNextdotjs,
+  java: FaJava,
+  pytorch: SiPytorch,
+  tensorflow: SiTensorflow,
+  huggingface: SiHuggingface,
+  rag: LuWorkflow,
+  'vector-search': LuSearchCode,
+  pandas: SiPandas,
+  numpy: SiNumpy,
+  'scikit-learn': SiScikitlearn,
+  postgresql: SiPostgresql,
+  sql: HiOutlineCircleStack,
+  redis: SiRedis,
+  kafka: SiApachekafka,
+  docker: SiDocker,
+  minio: SiMinio,
+  prisma: SiPrisma,
+  cicd: LuGitBranchPlus,
+};
 
 export default function About() {
   const [activeMode, setActiveMode] = useState(about.defaultMode);
@@ -54,12 +104,18 @@ export default function About() {
                 <p className={styles.outputDescription}>{activeCommand.description}</p>
               </div>
               <div className={styles.skillGrid}>
-                {activeCommand.skills.map((skill) => (
-                  <div key={skill} className={styles.skillItem}>
-                    <span className={styles.skillMarker} aria-hidden="true" />
-                    <span className={styles.skillText}>{skill}</span>
-                  </div>
-                ))}
+                {activeCommand.skills.map((skill) => {
+                  const Icon = skillIcons[skill.icon] ?? HiOutlineCodeBracketSquare;
+
+                  return (
+                    <div key={skill.label} className={styles.skillItem}>
+                      <span className={styles.skillIconFrame}>
+                        <Icon className={styles.skillIcon} aria-hidden="true" />
+                      </span>
+                      <span className={styles.skillText}>{skill.label}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
