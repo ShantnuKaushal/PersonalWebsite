@@ -9,6 +9,8 @@
 
 .featuredProject,
 .archiveCard {
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--surface-border);
   background: var(--surface);
   border-radius: 28px;
@@ -22,6 +24,19 @@
     background-color 280ms var(--ease-standard);
 }
 
+.featuredProject::before,
+.archiveCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 10%, transparent), transparent 24%),
+    linear-gradient(90deg, color-mix(in srgb, var(--surface-border) 68%, transparent) 0 1px, transparent 1px);
+  background-size: auto, 20px 20px;
+  opacity: 0.42;
+}
+
 .featuredProject:hover,
 .archiveCard:hover {
   transform: translateY(-2px);
@@ -32,9 +47,16 @@
 
 .featuredProject {
   display: grid;
-  grid-template-columns: minmax(220px, 0.76fr) minmax(0, 1fr);
+  grid-template-columns: minmax(260px, 0.76fr) minmax(0, 1fr);
   gap: 24px;
   padding: 30px;
+}
+
+.projectVisual,
+.projectCopy,
+.archiveCard > * {
+  position: relative;
+  z-index: 1;
 }
 
 .projectVisual {
@@ -43,14 +65,13 @@
 
 .visualFrame {
   width: 100%;
-  min-height: 250px;
+  min-height: 272px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 22px;
+  padding: 18px;
   border-radius: 24px;
   background:
-    radial-gradient(circle at top right, var(--project-visual-glow), transparent 28%),
+    radial-gradient(circle at top right, var(--project-visual-glow), transparent 26%),
     linear-gradient(180deg, var(--project-visual-start), var(--project-visual-end));
   border: 1px solid var(--project-visual-border);
   transition:
@@ -65,30 +86,168 @@
   border-color: color-mix(in srgb, var(--accent) 18%, var(--project-visual-border));
 }
 
-.visualFrame span {
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(3.5rem, 8vw, 5.2rem);
-  line-height: 0.9;
-  color: var(--text);
+.repoHeader,
+.repoTree,
+.snapshotItem,
+.casefileLabel,
+.projectStatus,
+.repoLabel,
+.repoState,
+.repoBranch,
+.metaItem dt,
+.archiveRepo,
+.archiveStatus,
+.archiveBuild {
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
 }
 
-.visualFrame p {
-  margin: 0;
-  max-width: 22ch;
+.repoHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--project-visual-border) 88%, transparent);
+}
+
+.repoLabel {
   color: var(--project-visual-text);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
 }
 
-.visualFrame small {
-  color: var(--project-visual-muted);
+.repoState {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-soft) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--project-visual-border));
+  color: var(--project-visual-text);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.68rem;
+}
+
+.repoBody {
+  display: grid;
+  gap: 16px;
+  height: 100%;
+  padding-top: 20px;
+}
+
+.repoIdentity {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.repoSlash {
+  color: color-mix(in srgb, var(--accent) 62%, var(--project-visual-text));
+  font-family: var(--font-display), sans-serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.repoIdentity p {
+  margin: 0;
+  color: var(--project-visual-text);
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.repoBranch {
+  color: var(--project-visual-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.repoTree {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.repoTree span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--project-visual-border) 88%, transparent);
+  background: color-mix(in srgb, var(--surface-strong) 54%, transparent);
+  color: var(--project-visual-text);
+  font-size: 0.7rem;
+}
+
+.snapshotList {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.snapshotItem {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.snapshotItem span {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 64%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-soft) 54%, transparent);
+}
+
+.snapshotItem small {
+  color: var(--project-visual-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 .projectCopy {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.projectHeader,
+.archiveTopline,
+.archiveFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.casefileLabel {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+.projectStatus {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 11px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--surface-border));
+  background: color-mix(in srgb, var(--accent-soft) 72%, var(--surface-strong));
+  color: color-mix(in srgb, var(--text) 88%, transparent);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .projectCopy h3,
@@ -99,8 +258,53 @@
 }
 
 .projectCopy h3 {
-  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  margin-top: 12px;
+  font-size: clamp(1.9rem, 3vw, 2.4rem);
   font-weight: 600;
+}
+
+.archiveCard h3 {
+  margin-top: 12px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.metaRail,
+.archiveMeta {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.metaRail {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.archiveMeta {
+  grid-template-columns: 1fr;
+}
+
+.metaItem {
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--surface-border) 88%, transparent);
+  background: color-mix(in srgb, var(--surface-strong) 72%, transparent);
+}
+
+.metaItem dt {
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+.metaItem dd {
+  margin: 8px 0 0;
+  color: var(--text);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .projectSummary,
@@ -110,14 +314,16 @@
 }
 
 .projectSummary {
-  margin: 14px 0 0;
+  margin: 18px 0 0;
   font-size: 1rem;
   line-height: 1.75;
+  text-wrap: pretty;
 }
 
 .projectDetail {
   margin: 12px 0 0;
   line-height: 1.75;
+  text-wrap: pretty;
 }
 
 .projectActions {
@@ -179,33 +385,54 @@
 }
 
 .archiveCard {
+  display: flex;
+  flex-direction: column;
   padding: 24px;
+}
+
+.archiveRepo {
+  color: var(--text);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
 }
 
 .archiveStatus {
   display: inline-flex;
-  align-items: center;
   color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.72rem;
-  font-weight: 600;
-}
-
-.archiveCard h3 {
-  margin-top: 14px;
-  font-size: 1.55rem;
-  font-weight: 600;
 }
 
 .archiveCard p {
-  margin: 12px 0 0;
-  line-height: 1.75;
+  margin: 14px 0 0;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.archiveFooter {
+  margin-top: 16px;
+}
+
+.archiveBuild {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--surface-border) 88%, transparent);
+  background: color-mix(in srgb, var(--surface-strong) 72%, transparent);
+  color: var(--muted);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 @media (max-width: 1024px) {
   .featuredProject,
-  .archiveGrid {
+  .archiveGrid,
+  .metaRail {
     grid-template-columns: 1fr;
   }
 }
@@ -218,5 +445,28 @@
   .featuredProject,
   .archiveCard {
     padding: 22px;
+  }
+
+  .visualFrame {
+    min-height: 248px;
+    padding: 16px;
+  }
+
+  .projectHeader,
+  .archiveTopline {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .repoIdentity p {
+    font-size: 1.45rem;
+  }
+
+  .projectSummary,
+  .projectDetail,
+  .archiveCard p,
+  .metaItem dd,
+  .snapshotItem small {
+    font-size: 0.9rem;
   }
 }
