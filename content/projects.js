@@ -1,16 +1,16 @@
 export const featuredProjects = [
   {
-    title: 'Featured Project Slot 01',
+    title: 'TweetCheck',
     summary:
-      'Reserved for a flagship build with a strong product story, meaningful technical depth, and a GitHub repo worth highlighting near the top of the site.',
+      'Distributed sentiment analysis platform that simulates a live tweet stream, classifies messages with a fine-tuned BERT model, and broadcasts real-time system state to an operator dashboard.',
     detail:
-      'Use this slot for a project where the architecture, user value, and shipped scope are all strong enough to anchor the portfolio.',
-    tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Primary Case Study', 'Repo Pending'],
-    githubUrl: '',
+      'Built as an event-driven system with Go ingestion, Kafka transport, a Python inference worker, Redis-backed live state, FastAPI WebSocket updates, and a Next.js control surface packaged through Docker Compose.',
+    tags: ['Go', 'Kafka', 'PyTorch', 'FastAPI', 'Next.js'],
+    githubUrl: 'https://github.com/ShantnuKaushal/TweetCheck',
     liveUrl: '',
     branch: 'main',
-    projectType: 'Full-stack',
-    visualLabel: 'Hero image or product mockup',
+    projectType: 'Distributed AI System',
+    visualLabel: 'Live sentiment operations dashboard',
     visualImage: '/images/projects/light-tweet-source.jpg',
     visualAlt: 'Tweet project light source preview',
     visualImageDark: '/images/projects/light-tweet-source.jpg',
@@ -18,17 +18,17 @@ export const featuredProjects = [
     hideVisualOverlay: true,
   },
   {
-    title: 'Featured Project Slot 02',
+    title: 'ReSource',
     summary:
-      'Reserved for a backend, systems, or data-focused project that shows engineering rigor and complements the first featured project.',
+      'Browser-first PDF retrieval workspace for grounded document question answering with local embeddings, persistent vector search, and conversation-level source selection.',
     detail:
-      'Use this slot for work where infrastructure, APIs, performance, or data pipelines are the main story rather than UI polish alone.',
-    tags: ['APIs', 'Data Pipelines', 'Infrastructure', 'Systems', 'Repo Pending'],
-    githubUrl: '',
+      'The stack pairs a Flask ingestion and retrieval API with PostgreSQL plus pgvector, local all-MiniLM-L6-v2 embeddings, PDF parsing, and a Next.js interface that keeps answers tied to uploaded source material.',
+    tags: ['Python', 'pgvector', 'Flask', 'TypeScript', 'RAG'],
+    githubUrl: 'https://github.com/ShantnuKaushal/ReSource',
     liveUrl: '',
-    branch: 'staging',
-    projectType: 'Systems',
-    visualLabel: 'Architecture visual or interface preview',
+    branch: 'main',
+    projectType: 'Retrieval Workspace',
+    visualLabel: 'Document research workspace',
     visualImage: '/images/projects/light-resource.jpg',
     visualAlt: 'Resource preview in light theme',
     visualImageDark: '/images/projects/light-resource.jpg',
@@ -39,35 +39,21 @@ export const featuredProjects = [
 
 export const projectArchive = [
   {
-    title: 'Project Slot 03',
-    summary: 'A compact card for a smaller but still credible build.',
-    tags: ['Project Type', 'Tech Tags'],
-    githubUrl: '',
+    title: 'AirAware',
+    summary:
+      'Aviation logistics and predictive maintenance platform that combines .NET microservices, gRPC communication, PostgreSQL state, and Redis caching for fleet health monitoring.',
+    tags: ['.NET 8', 'gRPC', 'PostgreSQL', 'Redis'],
+    githubUrl: 'https://github.com/ShantnuKaushal/AirAware',
     liveUrl: '',
-    projectType: 'Utility',
+    projectType: 'Cloud-native Systems',
   },
   {
-    title: 'Project Slot 04',
-    summary: 'Use for a technical experiment, tool, or strong academic build.',
-    tags: ['Project Type', 'Tech Tags'],
-    githubUrl: '',
+    title: 'VCRTS',
+    summary:
+      'Vehicular Cloud Real-Time System for allocating distributed compute jobs across contributed vehicles, with Java desktop workflows, persistence, validation, and live task coordination.',
+    tags: ['Java', 'Distributed Systems', 'MySQL', 'Desktop App'],
+    githubUrl: 'https://github.com/ShantnuKaushal/vcrts',
     liveUrl: '',
-    projectType: 'Research',
-  },
-  {
-    title: 'Project Slot 05',
-    summary: 'Use for a project with clear functionality and clean code quality.',
-    tags: ['Project Type', 'Tech Tags'],
-    githubUrl: '',
-    liveUrl: '',
-    projectType: 'Applied product',
-  },
-  {
-    title: 'Project Slot 06',
-    summary: 'Use for a project that adds range without diluting the overall story.',
-    tags: ['Project Type', 'Tech Tags'],
-    githubUrl: '',
-    liveUrl: '',
-    projectType: 'Supporting build',
+    projectType: 'Systems Research',
   },
 ];

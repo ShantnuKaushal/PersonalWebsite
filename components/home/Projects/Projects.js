@@ -4,22 +4,22 @@ import { featuredProjects, projectArchive } from '../../../content/projects';
 import styles from './Projects.module.css';
 
 function ProjectLinks({ githubUrl, liveUrl }) {
+  if (!githubUrl && !liveUrl) {
+    return null;
+  }
+
   return (
     <div className={styles.projectActions}>
       {githubUrl ? (
         <a href={githubUrl} target="_blank" rel="noreferrer" className={styles.inlineLink}>
           GitHub
         </a>
-      ) : (
-        <span className={styles.inlineNote}>GitHub link pending</span>
-      )}
+      ) : null}
       {liveUrl ? (
         <a href={liveUrl} target="_blank" rel="noreferrer" className={styles.inlineLink}>
           Live preview
         </a>
-      ) : (
-        <span className={styles.inlineNote}>Demo optional</span>
-      )}
+      ) : null}
     </div>
   );
 }
