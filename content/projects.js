@@ -5,7 +5,7 @@ export const featuredProjects = [
       'Distributed sentiment analysis platform that simulates a live tweet stream, classifies messages with a fine-tuned BERT model, and broadcasts real-time system state to an operator dashboard.',
     detail:
       'Built as an event-driven system with Go ingestion, Kafka transport, a Python inference worker, Redis-backed live state, FastAPI WebSocket updates, and a Next.js control surface packaged through Docker Compose.',
-    tags: ['Go', 'Kafka', 'PyTorch', 'FastAPI', 'Next.js'],
+    tags: ['Kafka', 'BERT', 'PyTorch', 'Go', 'FastAPI'],
     githubUrl: 'https://github.com/ShantnuKaushal/TweetCheck',
     liveUrl: '',
     branch: 'main',
@@ -23,7 +23,7 @@ export const featuredProjects = [
       'Browser-first PDF retrieval workspace for grounded document question answering with local embeddings, persistent vector search, and conversation-level source selection.',
     detail:
       'The stack pairs a Flask ingestion and retrieval API with PostgreSQL plus pgvector, local all-MiniLM-L6-v2 embeddings, PDF parsing, and a Next.js interface that keeps answers tied to uploaded source material.',
-    tags: ['Python', 'pgvector', 'Flask', 'TypeScript', 'RAG'],
+    tags: ['Local Embeddings', 'RAG', 'pgvector', 'PDF Retrieval', 'Flask'],
     githubUrl: 'https://github.com/ShantnuKaushal/ReSource',
     liveUrl: '',
     branch: 'main',
@@ -32,7 +32,7 @@ export const featuredProjects = [
     visualImage: '/images/projects/light-resource.jpg',
     visualAlt: 'Resource preview in light theme',
     visualImageDark: '/images/projects/light-resource.jpg',
-    visualPosition: '64% 55%',
+    visualPosition: '50% 55%',
     hideVisualOverlay: true,
   },
 ];
@@ -42,7 +42,7 @@ export const projectArchive = [
     title: 'AirAware',
     summary:
       'Aviation logistics and predictive maintenance platform that combines .NET microservices, gRPC communication, PostgreSQL state, and Redis caching for fleet health monitoring.',
-    tags: ['.NET 8', 'gRPC', 'PostgreSQL', 'Redis'],
+    tags: ['Microservices', 'Service Orchestration', 'gRPC', '.NET 8'],
     githubUrl: 'https://github.com/ShantnuKaushal/AirAware',
     liveUrl: '',
     projectType: 'Cloud-native Systems',
@@ -51,7 +51,7 @@ export const projectArchive = [
     title: 'VCRTS',
     summary:
       'Vehicular Cloud Real-Time System for allocating distributed compute jobs across contributed vehicles, with Java desktop workflows, persistence, validation, and live task coordination.',
-    tags: ['Java', 'Distributed Systems', 'MySQL', 'Desktop App'],
+    tags: ['Vehicular Cloud', 'Resource Allocation', 'Job Scheduling', 'Java'],
     githubUrl: 'https://github.com/ShantnuKaushal/vcrts',
     liveUrl: '',
     projectType: 'Systems Research',
