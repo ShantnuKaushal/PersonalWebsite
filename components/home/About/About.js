@@ -26,7 +26,6 @@ import {
   SiTypescript,
 } from 'react-icons/si';
 import { about } from '../../../content/about';
-import SectionHeading from '../SectionHeading/SectionHeading';
 import styles from './About.module.css';
 
 const skillIcons = {
@@ -64,10 +63,12 @@ export default function About() {
 
   return (
     <section className={styles.section} id="about">
-      <SectionHeading title="About" />
+      <div className={styles.sectionHeader}>
+        <h2>About</h2>
+      </div>
       <div className={styles.aboutLayout}>
         <div className={styles.copyPanel}>
-          <div className={styles.copyHeader}>
+          <div className={styles.panelHeader}>
             <span className={styles.fileLabel}>{about.readmeLabel}</span>
           </div>
           <div className={styles.copyBody}>
@@ -93,36 +94,31 @@ export default function About() {
                   role="tab"
                   aria-selected={mode.id === activeCommand.id}
                 >
-                  <span className={styles.commandPrompt} aria-hidden="true">
-                    $
-                  </span>
                   {mode.label}
                 </button>
               ))}
             </div>
-            <div className={styles.commandOutput}>
-              <div className={styles.outputHeader}>
-                <span className={styles.outputLabel}>{activeCommand.label}</span>
-                <p className={styles.outputDescription}>{activeCommand.description}</p>
-              </div>
-              <div className={styles.skillGrid}>
-                {activeCommand.skills.map((skill) => {
-                  const Icon = skillIcons[skill.icon] ?? HiOutlineCodeBracketSquare;
-                  const iconClass =
-                    skill.icon === 'typescript'
-                      ? `${styles.skillIcon} ${styles.skillIconTypescript}`
-                      : styles.skillIcon;
+            <div className={styles.outputHeader}>
+              <h3>{activeCommand.label}</h3>
+              <p className={styles.outputDescription}>{activeCommand.description}</p>
+            </div>
+            <div className={styles.skillGrid}>
+              {activeCommand.skills.map((skill) => {
+                const Icon = skillIcons[skill.icon] ?? HiOutlineCodeBracketSquare;
+                const iconClass =
+                  skill.icon === 'typescript'
+                    ? `${styles.skillIcon} ${styles.skillIconTypescript}`
+                    : styles.skillIcon;
 
-                  return (
-                    <div key={skill.label} className={styles.skillItem}>
-                      <span className={styles.skillIconFrame}>
-                        <Icon className={iconClass} aria-hidden="true" />
-                      </span>
-                      <span className={styles.skillText}>{skill.label}</span>
-                    </div>
-                  );
-                })}
-              </div>
+                return (
+                  <div key={skill.label} className={styles.skillItem}>
+                    <span className={styles.skillIconFrame}>
+                      <Icon className={iconClass} aria-hidden="true" />
+                    </span>
+                    <span className={styles.skillText}>{skill.label}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

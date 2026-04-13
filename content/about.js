@@ -3,15 +3,14 @@ export const about = {
   fileLabel: 'skills.ts',
   readmeBlocks: [
     "I'm a software engineer with a B.S. in Computer Science from St. John's University. I'm most interested in backend systems, machine learning, and the kind of technical work that turns rough ideas into software people can actually use.",
-    'A lot of my recent work has been in full-stack products and data-heavy systems, with a growing focus on AI and machine learning. I enjoy building APIs, shaping platform architecture, and working on ML-driven systems that connect strong technical ideas to something useful in practice.',
-    "I'm especially drawn to projects that need both good engineering judgment and attention to detail. Whether the work is product-focused or more research-oriented, I like building things that feel practical, thoughtful, and technically strong.",
+    'Most of my recent work sits at the intersection of full-stack products, backend architecture, and applied AI. I enjoy building APIs, shaping platform systems, and turning strong technical ideas into software that feels practical, thoughtful, and durable.',
   ],
   defaultMode: 'programming',
   commandModes: [
     {
       id: 'programming',
-      label: 'programming',
-      description: 'Languages, runtimes, and application-layer tools I use most.',
+      label: 'software',
+      description: 'Languages and frameworks I reach for when building products end to end.',
       skills: [
         { label: 'Python', icon: 'python' },
         { label: 'TypeScript', icon: 'typescript' },
@@ -26,7 +25,7 @@ export const about = {
     {
       id: 'ai_ml',
       label: 'ai_ml',
-      description: 'Modeling, retrieval, and applied ML tooling I work with most.',
+      description: 'Modeling, retrieval, and evaluation tools I use in applied machine learning work.',
       skills: [
         { label: 'PyTorch', icon: 'pytorch' },
         { label: 'TensorFlow', icon: 'tensorflow' },
@@ -40,8 +39,8 @@ export const about = {
     },
     {
       id: 'data_infra',
-      label: 'data_platform',
-      description: 'Data, storage, orchestration, and delivery systems I work with.',
+      label: 'systems',
+      description: 'Storage, messaging, and deployment tools that support reliable production systems.',
       skills: [
         { label: 'PostgreSQL', icon: 'postgresql' },
         { label: 'SQL', icon: 'sql' },
