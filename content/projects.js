@@ -11,6 +11,11 @@ export const featuredProjects = [
     branch: 'main',
     projectType: 'Full-stack',
     visualLabel: 'Hero image or product mockup',
+    visualImage: '/images/projects/light-tweet-source.jpg',
+    visualAlt: 'Tweet project light source preview',
+    visualImageDark: '/images/projects/dark-tweet-source.jpg',
+    visualPosition: '14% 50%',
+    hideVisualOverlay: true,
   },
   {
     title: 'Featured Project Slot 02',
@@ -24,6 +29,11 @@ export const featuredProjects = [
     branch: 'staging',
     projectType: 'Systems',
     visualLabel: 'Architecture visual or interface preview',
+    visualImage: '/images/projects/light-resource.jpg',
+    visualAlt: 'Resource preview in light theme',
+    visualImageDark: '/images/projects/dark-resource.jpg',
+    visualPosition: '64% 55%',
+    hideVisualOverlay: true,
   },
 ];
 
