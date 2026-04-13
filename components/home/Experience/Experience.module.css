@@ -67,15 +67,15 @@
 }
 
 .statusActive {
-  color: #8fe3a5;
-  background: rgba(20, 92, 55, 0.28);
-  border-color: rgba(98, 211, 141, 0.22);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface-strong));
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--surface-border));
 }
 
 .statusInactive {
-  color: #ffabab;
-  background: rgba(112, 34, 34, 0.28);
-  border-color: rgba(255, 117, 117, 0.2);
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+  border-color: color-mix(in srgb, var(--surface-border) 94%, transparent);
 }
 
 .entryBody {
@@ -109,13 +109,13 @@
 }
 
 .orbActive {
-  background: #4ade80;
-  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.12);
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 .orbInactive {
-  background: #f87171;
-  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.1);
+  background: color-mix(in srgb, var(--muted) 78%, var(--surface-border));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--surface-border) 24%, transparent);
 }
 
 @keyframes statusPulse {
@@ -235,28 +235,6 @@ html[data-theme='light'] .entryStatus {
   border-radius: 10px;
   font-weight: 700;
   letter-spacing: 0.06em;
-}
-
-html[data-theme='light'] .statusActive {
-  color: #166534;
-  background: #e8f7ee;
-  border-color: #b7e4c7;
-}
-
-html[data-theme='light'] .statusInactive {
-  color: #b42318;
-  background: #fff0ee;
-  border-color: #f7c4bf;
-}
-
-html[data-theme='light'] .orbActive {
-  background: #22c55e;
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
-}
-
-html[data-theme='light'] .orbInactive {
-  background: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 @media (max-width: 1024px) {

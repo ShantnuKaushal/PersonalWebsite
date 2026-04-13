@@ -76,7 +76,6 @@
   display: block;
   border-radius: 999px;
   background: var(--accent);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 24%, transparent);
   transform: translateX(-50%) scaleX(0.25);
   transform-origin: center;
   opacity: 0;

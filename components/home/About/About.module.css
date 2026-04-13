@@ -31,13 +31,11 @@
 
 .copyPanel::before {
   background:
-    radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 8%, transparent), transparent 30%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 44%);
 }
 
 .commandPanel::before {
   background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 10%, transparent), transparent 26%),
     linear-gradient(140deg, transparent 0%, rgba(255, 255, 255, 0.025) 46%, transparent 68%);
 }
 
