@@ -38,7 +38,7 @@ export default function Experience() {
     <section className={styles.section} id="experience">
       <SectionHeading title="Experience" />
       <div className={styles.sectionMeta}>
-        <span className={styles.fileLabel}>career.log</span>
+        <span className={styles.fileLabel}>career.yml</span>
       </div>
       <div className={styles.experienceList}>
         {experiences.map((experience) => (

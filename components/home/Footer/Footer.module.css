@@ -1,64 +1,179 @@
-.footer {
+.section {
+  padding: 68px 0 18px;
+}
+
+.terminalWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.terminalShell {
+  width: min(100%, 720px);
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--surface-border) 84%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 82%, transparent), transparent),
+    linear-gradient(180deg, #111111, #161616);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+}
+
+.windowBar {
   position: relative;
-  margin-top: auto;
-  padding: 72px 0 18px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 72%, transparent);
+  background: color-mix(in srgb, var(--bg) 72%, var(--surface-strong));
 }
 
-.footer::before {
-  content: '';
+.windowDots {
   position: absolute;
-  top: 0;
-  left: 50%;
-  width: 100vw;
-  height: 1px;
-  transform: translateX(-50%);
-  background: color-mix(in srgb, var(--surface-border) 88%, transparent);
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.footerInner {
-  display: grid;
-  justify-items: center;
-  gap: 12px;
-  padding-top: 6px;
-}
-
-.signoff,
-.attribution {
-  margin: 0;
-}
-
-.signoff {
-  color: color-mix(in srgb, var(--text) 78%, var(--muted));
+.windowTitle {
+  color: var(--muted);
   font-family:
     ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
 
-.attribution {
-  color: var(--footer-muted);
-  font-size: 0.88rem;
+.windowDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.windowDotClose {
+  background: #ff5f57;
+}
+
+.windowDotMinimize {
+  background: #febc2e;
+}
+
+.windowDotExpand {
+  background: #28c840;
+}
+
+.terminal {
+  display: grid;
+  gap: 10px;
+  padding: 18px 22px 20px;
+}
+
+.line {
+  margin: 0;
+  min-height: 1.24rem;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.82rem;
   line-height: 1.5;
+  white-space: nowrap;
+}
+
+.promptLine {
+  letter-spacing: 0.01em;
+}
+
+.promptPrefix {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.promptCommand {
+  color: var(--text);
+}
+
+.outputLine {
+  color: var(--muted);
+}
+
+.outputText {
+  color: color-mix(in srgb, var(--text) 58%, var(--muted));
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.52rem;
+  height: 1.04em;
+  margin-left: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+  animation: systemStatusCursorBlink 1s steps(1, end) infinite;
+}
+
+@keyframes systemStatusCursorBlink {
+  0%,
+  48% {
+    opacity: 1;
+  }
+
+  49%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 768px) {
-  .footer {
-    padding: 58px 0 14px;
+  .section {
+    padding: 52px 0 10px;
   }
 
-  .footerInner {
-    gap: 10px;
+  .terminalWrap {
+    justify-content: center;
   }
 
-  .signoff {
-    font-size: 0.74rem;
-    letter-spacing: 0.12em;
+  .terminalShell {
+    border-radius: 14px;
   }
 
-  .attribution {
-    font-size: 0.84rem;
+  .windowBar {
+    height: 34px;
+    padding: 0 12px;
+  }
+
+  .windowDots {
+    left: 12px;
+    gap: 7px;
+  }
+
+  .windowTitle {
+    font-size: 0.62rem;
+  }
+
+  .windowDot {
+    width: 9px;
+    height: 9px;
+  }
+
+  .terminal {
+    gap: 8px;
+    padding: 15px 16px 16px;
+  }
+
+  .line {
+    min-height: 1.14rem;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  .cursor {
+    width: 0.46rem;
+    height: 0.96em;
   }
 }
