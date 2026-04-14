@@ -2,6 +2,22 @@
   padding: 72px 0;
 }
 
+.sectionMeta {
+  margin-top: 30px;
+  padding-bottom: 16px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 92%, transparent);
+}
+
+.fileLabel {
+  color: var(--muted);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .experienceList {
   display: grid;
   gap: 38px;
@@ -10,7 +26,7 @@
 .experienceRow {
   display: grid;
   grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
-  align-items: start;
+  align-items: center;
   gap: 48px;
   padding: 24px 0 18px;
   transition: transform 240ms var(--ease-standard);
@@ -22,6 +38,8 @@
 
 .anchorColumn {
   position: relative;
+  display: flex;
+  align-items: center;
   min-height: 100%;
   padding-right: 36px;
 }
@@ -29,10 +47,11 @@
 .anchorColumn::after {
   content: '';
   position: absolute;
-  top: 2px;
+  top: 50%;
   right: 0;
   width: 1px;
-  height: min(168px, 100%);
+  height: 124px;
+  transform: translateY(-50%);
   background: color-mix(in srgb, var(--surface-border) 72%, transparent);
   transition: background-color 220ms var(--ease-standard);
 }
@@ -44,7 +63,7 @@
 .identityCluster {
   display: grid;
   grid-template-columns: 72px minmax(0, 1fr);
-  align-items: start;
+  align-items: center;
   gap: 20px;
 }
 
@@ -63,8 +82,8 @@
 }
 
 .experienceRow:hover .logoBadge {
-  border-color: color-mix(in srgb, var(--accent) 22%, var(--surface-border));
-  background: color-mix(in srgb, var(--surface-strong) 74%, transparent);
+  border-color: color-mix(in srgb, var(--surface-border) 82%, transparent);
+  background: color-mix(in srgb, var(--surface-strong) 58%, transparent);
 }
 
 .logoImage {
@@ -97,23 +116,28 @@
   align-items: center;
   color: var(--text);
   letter-spacing: -0.035em;
-  font-size: clamp(1.58rem, 2vw, 1.92rem);
+  font-size: clamp(1.38rem, 1.8vw, 1.68rem);
   font-weight: 700;
   line-height: 1.02;
+  transition: color 220ms var(--ease-standard);
 }
 
 .identityBlock h3 {
   margin: 0;
   color: color-mix(in srgb, var(--text) 88%, var(--muted));
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.25;
   transition: color 220ms var(--ease-standard);
 }
 
+.experienceRow:hover .company {
+  color: var(--accent);
+}
+
 .experienceRow:hover .identityBlock h3 {
-  color: var(--text);
+  color: var(--accent);
 }
 
 .contentColumn {
@@ -121,7 +145,7 @@
   display: grid;
   justify-items: start;
   gap: 0;
-  padding-top: 2px;
+  padding-top: 0;
 }
 
 .dates {
@@ -180,6 +204,7 @@
 @media (max-width: 1024px) {
   .experienceRow {
     grid-template-columns: 1fr;
+    align-items: start;
     gap: 22px;
   }
 
@@ -200,6 +225,11 @@
 @media (max-width: 768px) {
   .section {
     padding: 48px 0;
+  }
+
+  .sectionMeta {
+    margin-top: 24px;
+    margin-bottom: 22px;
   }
 
   .experienceList {
@@ -226,11 +256,11 @@
   }
 
   .company {
-    font-size: 1.38rem;
+    font-size: 1.28rem;
   }
 
   .identityBlock h3 {
-    font-size: 0.94rem;
+    font-size: 0.9rem;
   }
 
   .dates {

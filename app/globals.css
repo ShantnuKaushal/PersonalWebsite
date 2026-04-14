@@ -41,7 +41,7 @@
   --footer-muted: rgba(161, 161, 166, 0.82);
   --page-glow: transparent;
   --page-top: #121212;
-  --page-mid: #1e1e1e;
+  --page-mid: #1b1b1b;
   --page-bottom: #121212;
   --page-grid: transparent;
   --page-fade: rgba(18, 18, 18, 0);
@@ -79,7 +79,7 @@ html[data-theme='light'] {
   --footer-muted: rgba(74, 74, 74, 0.84);
   --page-glow: transparent;
   --page-top: #ffffff;
-  --page-mid: #f8f8f8;
+  --page-mid: #fafafa;
   --page-bottom: #ffffff;
   --page-grid: transparent;
   --page-fade: rgba(255, 255, 255, 0);
@@ -99,7 +99,14 @@ body {
   min-width: 320px;
   font-family: var(--font-sans), sans-serif;
   color: var(--text);
-  background: linear-gradient(180deg, var(--page-top) 0%, var(--page-mid) 45%, var(--page-bottom) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--page-top) 0%,
+    color-mix(in srgb, var(--page-top) 78%, var(--page-mid)) 24%,
+    var(--page-mid) 52%,
+    color-mix(in srgb, var(--page-bottom) 78%, var(--page-mid)) 78%,
+    var(--page-bottom) 100%
+  );
   transition:
     background 360ms var(--ease-standard),
     color 220ms var(--ease-standard);

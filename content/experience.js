@@ -2,17 +2,17 @@ export const experiences = [
   {
     company: 'Sports Excitement',
     role: 'Founding Software Engineer',
-    dates: 'Apr 2025 - Present',
+    dates: 'Apr 2025 — Present',
     logoSrc: '/images/experience/sports-excitement.svg',
     logoAlt: 'Sports Excitement logo',
     summary:
-      'Lead engineering in an Agile Scrum environment, turning product ideas into a working career-growth platform for students and early-career professionals. Own the platform across the stack, from product development and scalable system design to deployment and platform operations.',
+      'Driving platform engineering in an Agile Scrum environment, turning product ideas into a working career-growth platform for students and early-career professionals. Owning the platform across the stack, from product development and scalable system design to deployment and platform operations.',
     tech: ['Platform Engineering', 'API Development', 'Next.js', 'Node.js', 'PostgreSQL'],
   },
   {
     company: "NASA L'Space",
     role: 'Machine Learning Engineer',
-    dates: 'Sep 2025 - Dec 2025',
+    dates: 'Sep 2025 — Dec 2025',
     logoSrc: '/images/experience/nasa_logo.svg',
     logoAlt: 'NASA logo',
     summary:

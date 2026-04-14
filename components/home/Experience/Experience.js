@@ -37,6 +37,9 @@ export default function Experience() {
   return (
     <section className={styles.section} id="experience">
       <SectionHeading title="Experience" />
+      <div className={styles.sectionMeta}>
+        <span className={styles.fileLabel}>career.log</span>
+      </div>
       <div className={styles.experienceList}>
         {experiences.map((experience) => (
           <article key={`${experience.company}-${experience.role}`} className={styles.experienceRow}>

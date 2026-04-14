@@ -25,7 +25,7 @@ export const about = {
     },
     {
       id: 'ai_ml',
-      label: 'ai_ml',
+      label: 'ai/ml',
       description: 'Modeling and retrieval tooling I use when building applied ML systems.',
       skills: [
         { label: 'PyTorch', icon: 'pytorch' },
