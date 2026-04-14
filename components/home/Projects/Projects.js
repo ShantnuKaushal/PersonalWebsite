@@ -79,6 +79,9 @@ export default function Projects() {
   return (
     <section className={styles.section} id="projects">
       <SectionHeading title="Projects" />
+      <div className={styles.sectionMeta}>
+        <span className={styles.fileLabel}>builds.json</span>
+      </div>
 
       <div className={styles.projectList}>
         {projects.map((project, index) => {

@@ -20,11 +20,11 @@
   padding: 10px;
   border-radius: 50%;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--hero-ring-start), var(--hero-ring-end));
-  border: 1px solid var(--surface-border);
+  background: linear-gradient(135deg, #101010, #1a1a1a);
+  border: 1px solid #202020;
   animation: heroFloat 4.8s ease-in-out infinite;
   box-shadow:
-    0 0 0 9px var(--hero-ring-shadow),
+    0 0 0 9px color-mix(in srgb, var(--accent) 82%, #9f7b1f),
     0 18px 44px rgba(0, 0, 0, 0.2);
   backdrop-filter: saturate(160%) blur(28px);
   -webkit-backdrop-filter: saturate(160%) blur(28px);
@@ -36,7 +36,7 @@
 .portraitRing:hover {
   transform: translateY(-4px) scale(1.008);
   box-shadow:
-    0 0 0 10px var(--hero-ring-shadow),
+    0 0 0 10px color-mix(in srgb, var(--accent) 88%, #a88323),
     0 16px 34px rgba(0, 0, 0, 0.18);
 }
 

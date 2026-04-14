@@ -22,7 +22,7 @@ export const projects = [
       'Browser-first PDF retrieval workspace for grounded document question answering with local embeddings, persistent vector search, and conversation-level source selection.',
     detail:
       'The stack pairs a Flask ingestion and retrieval API with PostgreSQL plus pgvector, local all-MiniLM-L6-v2 embeddings, PDF parsing, and a Next.js interface that keeps answers tied to uploaded source material.',
-    tags: ['Local Embeddings', 'RAG', 'pgvector', 'PDF Retrieval', 'Flask'],
+    tags: ['Local Embeddings', 'RAG', 'pgvector', 'Flask'],
     githubUrl: 'https://github.com/ShantnuKaushal/ReSource',
     liveUrl: '',
     visualImage: '/images/projects/light-resource.jpg',
@@ -49,7 +49,7 @@ export const projects = [
       'Vehicular Cloud Real-Time System for allocating distributed compute jobs across contributed vehicles, with Java desktop workflows, persistence, validation, and live task coordination.',
     detail:
       'Designed as a systems research project focused on scheduling, validation, and real-time coordination between contributed nodes so compute jobs can be dispatched and tracked across the network.',
-    tags: ['Vehicular Cloud', 'Resource Allocation', 'Job Scheduling', 'Java'],
+    tags: ['Vehicular Cloud', 'Resource Allocation', 'Scheduling', 'Java'],
     githubUrl: 'https://github.com/ShantnuKaushal/vcrts',
     liveUrl: '',
   },
