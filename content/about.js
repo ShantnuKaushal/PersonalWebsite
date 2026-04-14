@@ -4,13 +4,14 @@ export const about = {
   readmeBlocks: [
     "I'm a software engineer with a B.S. in Computer Science from St. John's University. I'm most interested in backend systems, machine learning, and the kind of technical work that turns rough ideas into software people can actually use.",
     'Most of my recent work sits at the intersection of full-stack products, backend architecture, and applied AI. I enjoy building APIs, shaping platform systems, and turning strong technical ideas into software that feels practical, thoughtful, and durable.',
+    'I am especially drawn to work that rewards good engineering judgment and attention to detail, whether the goal is product execution, platform design, or research-informed problem solving.',
   ],
   defaultMode: 'programming',
   commandModes: [
     {
       id: 'programming',
       label: 'software',
-      description: 'Languages and frameworks I reach for when building products end to end.',
+      description: 'Core languages and frameworks I rely on when shipping product work.',
       skills: [
         { label: 'Python', icon: 'python' },
         { label: 'TypeScript', icon: 'typescript' },
@@ -25,11 +26,11 @@ export const about = {
     {
       id: 'ai_ml',
       label: 'ai_ml',
-      description: 'Modeling, retrieval, and evaluation tools I use in applied machine learning work.',
+      description: 'Modeling and retrieval tooling I use when building applied ML systems.',
       skills: [
         { label: 'PyTorch', icon: 'pytorch' },
         { label: 'TensorFlow', icon: 'tensorflow' },
-        { label: 'Hugging Face Transformers', icon: 'huggingface' },
+        { label: 'Transformers', icon: 'huggingface' },
         { label: 'RAG', icon: 'rag' },
         { label: 'Vector Search', icon: 'vector-search' },
         { label: 'Pandas', icon: 'pandas' },
@@ -40,7 +41,7 @@ export const about = {
     {
       id: 'data_infra',
       label: 'systems',
-      description: 'Storage, messaging, and deployment tools that support reliable production systems.',
+      description: 'Storage, messaging, and delivery tools behind reliable production systems.',
       skills: [
         { label: 'PostgreSQL', icon: 'postgresql' },
         { label: 'SQL', icon: 'sql' },

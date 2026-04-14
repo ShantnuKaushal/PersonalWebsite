@@ -99,9 +99,9 @@ export default function About() {
               ))}
             </div>
             <div className={styles.outputHeader}>
-              <h3>{activeCommand.label}</h3>
               <p className={styles.outputDescription}>{activeCommand.description}</p>
             </div>
+            <div className={styles.skillDivider} aria-hidden="true" />
             <div className={styles.skillGrid}>
               {activeCommand.skills.map((skill) => {
                 const Icon = skillIcons[skill.icon] ?? HiOutlineCodeBracketSquare;

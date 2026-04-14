@@ -56,14 +56,16 @@
 }
 
 .commandBody {
-  padding-top: 28px;
+  padding: 34px 32px 30px;
+  border: 1px solid color-mix(in srgb, var(--surface-border) 92%, transparent);
+  background: color-mix(in srgb, var(--surface-strong) 44%, transparent);
 }
 
 .commandBar {
   display: flex;
   flex-wrap: wrap;
   gap: 28px;
-  margin-bottom: 34px;
+  margin-bottom: 22px;
 }
 
 .commandButton,
@@ -72,13 +74,13 @@
   align-items: center;
   padding: 0 0 10px;
   border: 0;
-  border-bottom: 2px solid transparent;
+  border-bottom: 1px solid transparent;
   background: transparent;
   color: var(--muted);
   font-family: var(--font-display), sans-serif;
-  font-size: 0.7rem;
-  font-weight: 650;
-  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
   transition:
@@ -97,52 +99,61 @@
 
 .outputHeader {
   display: grid;
-  gap: 10px;
-  margin-bottom: 36px;
-}
-
-.outputHeader h3 {
-  margin: 0;
-  color: var(--text);
-  font-family: var(--font-display), sans-serif;
-  font-size: 0.92rem;
-  font-weight: 650;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
-  text-transform: uppercase;
+  gap: 0;
+  margin-bottom: 18px;
 }
 
 .outputDescription {
   margin: 0;
-  max-width: 34rem;
+  max-width: 31rem;
   color: var(--muted);
-  font-size: 0.88rem;
-  line-height: 1.7;
+  font-size: 0.84rem;
+  line-height: 1.72;
   text-wrap: pretty;
+}
+
+.skillDivider {
+  height: 1px;
+  margin-bottom: 24px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--surface-border) 92%, transparent),
+    color-mix(in srgb, var(--surface-border) 48%, transparent)
+  );
 }
 
 .skillGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 26px 28px;
+  gap: 0 42px;
 }
 
 .skillItem {
   display: flex;
   align-items: center;
   gap: 14px;
+  padding: 16px 0 16px 16px;
   min-width: 0;
+  border-left: 1px solid color-mix(in srgb, var(--surface-border) 82%, transparent);
+  transition:
+    border-color 180ms var(--ease-standard),
+    transform 180ms var(--ease-standard);
 }
 
 .skillIconFrame {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   flex: 0 0 auto;
-  color: color-mix(in srgb, var(--muted) 72%, var(--surface-border));
+  color: color-mix(in srgb, var(--muted) 74%, var(--surface-border));
   transition: color 180ms var(--ease-standard);
+}
+
+.skillItem:hover {
+  border-left-color: var(--accent);
+  transform: translateX(2px);
 }
 
 .skillItem:hover .skillIconFrame {
@@ -150,30 +161,34 @@
 }
 
 .skillIcon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   display: block;
 }
 
 .skillIconTypescript {
-  width: 15px;
-  height: 15px;
+  width: 14px;
+  height: 14px;
 }
 
 .skillText {
-  color: var(--muted);
-  font-size: 0.96rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  line-height: 1.4;
-  transition: color 180ms var(--ease-standard);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--text);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  transition:
+    color 180ms var(--ease-standard),
+    text-shadow 180ms var(--ease-standard);
+  white-space: normal;
 }
 
 .skillItem:hover .skillText {
   color: var(--text);
+  text-shadow: 0 0 10px rgba(245, 245, 247, 0.12);
 }
 
 @media (max-width: 1024px) {
@@ -208,30 +223,33 @@
 
   .commandBar {
     gap: 16px;
-    margin-bottom: 28px;
+    margin-bottom: 14px;
   }
 
-  .commandButton,
-  .commandActive {
-    font-size: 0.64rem;
-    letter-spacing: 0.12em;
+.commandButton,
+.commandActive {
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
   }
 
   .outputHeader {
-    margin-bottom: 28px;
+    margin-bottom: 12px;
   }
 
   .outputDescription {
     font-size: 0.82rem;
   }
 
+  .skillDivider {
+    margin-bottom: 20px;
+  }
+
   .skillGrid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 0;
   }
 
   .skillText {
-    font-size: 0.9rem;
-    white-space: normal;
+    font-size: 0.74rem;
   }
 }
