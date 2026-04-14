@@ -2,9 +2,7 @@ export const experiences = [
   {
     company: 'Sports Excitement',
     role: 'Founding Software Engineer',
-    dates: 'Apr 2025 – Present',
-    entryLabel: 'entry-01.log',
-    isActive: true,
+    dates: 'Apr 2025 - Present',
     logoSrc: '/images/experience/sports-excitement.svg',
     logoAlt: 'Sports Excitement logo',
     summary:
@@ -14,9 +12,7 @@ export const experiences = [
   {
     company: "NASA L'Space",
     role: 'Machine Learning Engineer',
-    dates: 'Sep 2025 – Dec 2025',
-    entryLabel: 'entry-02.log',
-    isActive: false,
+    dates: 'Sep 2025 - Dec 2025',
     logoSrc: '/images/experience/nasa_logo.svg',
     logoAlt: 'NASA logo',
     summary:

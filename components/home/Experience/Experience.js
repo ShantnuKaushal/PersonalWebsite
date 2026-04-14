@@ -10,8 +10,8 @@ function ExperienceLogo({ company, logoSrc, logoAlt }) {
         <Image
           src={logoSrc}
           alt={logoAlt || `${company} logo`}
-          width={64}
-          height={64}
+          width={56}
+          height={56}
           className={styles.logoImage}
         />
       </div>
@@ -38,49 +38,36 @@ export default function Experience() {
     <section className={styles.section} id="experience">
       <SectionHeading title="Experience" />
       <div className={styles.experienceList}>
-        {experiences.map((experience) => {
-          const stateClass = experience.isActive ? styles.statusActive : styles.statusInactive;
-          const dotClass = experience.isActive ? styles.orbActive : styles.orbInactive;
-          const stateLabel = experience.isActive ? 'active' : 'inactive';
-
-          return (
-            <article key={`${experience.company}-${experience.role}`} className={styles.experienceRow}>
-              <div className={styles.entryBar}>
-                <span className={styles.entryLabel}>{experience.entryLabel}</span>
-                <span className={`${styles.entryStatus} ${stateClass}`}>
-                  <span className={`${styles.statusOrb} ${dotClass}`} aria-hidden="true" />
-                  {stateLabel}
-                </span>
-              </div>
-              <div className={styles.entryBody}>
+        {experiences.map((experience) => (
+          <article key={`${experience.company}-${experience.role}`} className={styles.experienceRow}>
+            <div className={styles.anchorColumn}>
+              <div className={styles.identityCluster}>
                 <ExperienceLogo
                   company={experience.company}
                   logoSrc={experience.logoSrc}
                   logoAlt={experience.logoAlt}
                 />
-                <div className={styles.experienceContent}>
-                  <div className={styles.experienceTopline}>
-                    <div className={styles.identityBlock}>
-                      <span className={styles.company}>{experience.company}</span>
-                      <h3>{experience.role}</h3>
-                    </div>
-                    <span className={styles.dates}>{experience.dates}</span>
-                  </div>
-
-                  <p className={styles.summary}>{experience.summary}</p>
-
-                  <div className={styles.tagList}>
-                    {experience.tech.map((tag) => (
-                      <span key={tag} className={styles.tag}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                <div className={styles.identityBlock}>
+                  <span className={styles.company}>{experience.company}</span>
+                  <h3>{experience.role}</h3>
                 </div>
               </div>
-            </article>
-          );
-        })}
+            </div>
+
+            <div className={styles.contentColumn}>
+              <span className={styles.dates}>{experience.dates}</span>
+              <p className={styles.summary}>{experience.summary}</p>
+
+              <div className={styles.tagList}>
+                {experience.tech.map((tag) => (
+                  <span key={tag} className={styles.tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );

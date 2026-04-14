@@ -4,144 +4,80 @@
 
 .experienceList {
   display: grid;
-  gap: 20px;
+  gap: 38px;
 }
 
 .experienceRow {
-  overflow: hidden;
-  border: 1px solid var(--surface-border);
-  background: color-mix(in srgb, var(--surface) 90%, transparent);
-  border-radius: 30px;
-  box-shadow: var(--shadow);
-  backdrop-filter: saturate(170%) blur(18px);
-  -webkit-backdrop-filter: saturate(170%) blur(18px);
-  transition:
-    transform 280ms var(--ease-standard),
-    box-shadow 280ms var(--ease-standard),
-    border-color 280ms var(--ease-standard),
-    background-color 280ms var(--ease-standard);
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  align-items: start;
+  gap: 48px;
+  padding: 24px 0 18px;
+  transition: transform 240ms var(--ease-standard);
 }
 
 .experienceRow:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.18);
-  border-color: color-mix(in srgb, var(--accent) 18%, var(--surface-border));
-  background: color-mix(in srgb, var(--surface-strong) 84%, transparent);
+  transform: translateX(2px);
 }
 
-.entryBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 16px 22px;
-  border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 82%, transparent);
-  background: color-mix(in srgb, var(--surface-strong) 44%, transparent);
+.anchorColumn {
+  position: relative;
+  min-height: 100%;
+  padding-right: 36px;
 }
 
-.entryLabel,
-.entryStatus {
-  font-family:
-    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+.anchorColumn::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 1px;
+  height: min(168px, 100%);
+  background: color-mix(in srgb, var(--surface-border) 72%, transparent);
+  transition: background-color 220ms var(--ease-standard);
 }
 
-.entryLabel {
-  color: var(--text);
-  font-size: 0.76rem;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
+.experienceRow:hover .anchorColumn::after {
+  background: color-mix(in srgb, var(--accent) 34%, var(--surface-border));
 }
 
-.entryStatus {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 30px;
-  padding: 0 11px;
-  border-radius: 11px;
-  border: 1px solid var(--surface-border);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
-}
-
-.statusActive {
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 10%, var(--surface-strong));
-  border-color: color-mix(in srgb, var(--accent) 32%, var(--surface-border));
-}
-
-.statusInactive {
-  color: var(--muted);
-  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
-  border-color: color-mix(in srgb, var(--surface-border) 94%, transparent);
-}
-
-.entryBody {
+.identityCluster {
   display: grid;
-  grid-template-columns: 82px minmax(0, 1fr);
+  grid-template-columns: 72px minmax(0, 1fr);
   align-items: start;
-  gap: 24px;
-  padding: 24px 28px 30px;
+  gap: 20px;
 }
 
 .logoBadge {
-  width: 82px;
-  height: 82px;
+  width: 72px;
+  height: 72px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 24px;
-  border: 1px solid var(--surface-border);
-  background: color-mix(in srgb, var(--surface-strong) 92%, transparent);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 14px 28px rgba(0, 0, 0, 0.14);
-}
-
-.statusOrb {
-  width: 8px;
-  height: 8px;
-  flex: 0 0 auto;
   border-radius: 999px;
-  animation: statusPulse 2.2s ease-in-out infinite;
+  border: 1px solid color-mix(in srgb, var(--surface-border) 82%, transparent);
+  background: color-mix(in srgb, var(--surface-strong) 46%, transparent);
+  transition:
+    border-color 220ms var(--ease-standard),
+    background-color 220ms var(--ease-standard);
 }
 
-.orbActive {
-  background: var(--accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
-}
-
-.orbInactive {
-  background: color-mix(in srgb, var(--muted) 78%, var(--surface-border));
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--surface-border) 24%, transparent);
-}
-
-@keyframes statusPulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.92;
-  }
-
-  50% {
-    transform: scale(1.12);
-    opacity: 1;
-  }
+.experienceRow:hover .logoBadge {
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--surface-border));
+  background: color-mix(in srgb, var(--surface-strong) 74%, transparent);
 }
 
 .logoImage {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 12px;
+  padding: 7px;
 }
 
 .logoFallback {
   color: var(--text);
   font-family: var(--font-display), sans-serif;
-  font-size: 1rem;
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.08em;
 }
@@ -150,20 +86,9 @@
   transform: translateY(1px);
 }
 
-.experienceContent {
-  min-width: 0;
-}
-
-.experienceTopline {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-}
-
 .identityBlock {
   display: grid;
-  gap: 6px;
+  gap: 7px;
   min-width: 0;
 }
 
@@ -171,52 +96,73 @@
   display: inline-flex;
   align-items: center;
   color: var(--text);
-  letter-spacing: -0.03em;
-  font-size: 1.34rem;
-  font-weight: 600;
+  letter-spacing: -0.035em;
+  font-size: clamp(1.58rem, 2vw, 1.92rem);
+  font-weight: 700;
+  line-height: 1.02;
 }
 
 .identityBlock h3 {
   margin: 0;
-  color: var(--muted);
-  font-size: 1.08rem;
+  color: color-mix(in srgb, var(--text) 88%, var(--muted));
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: -0.02em;
+  line-height: 1.25;
+  transition: color 220ms var(--ease-standard);
+}
+
+.experienceRow:hover .identityBlock h3 {
+  color: var(--text);
+}
+
+.contentColumn {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 0;
+  padding-top: 2px;
 }
 
 .dates {
   color: var(--muted);
-  font-size: 0.94rem;
-  white-space: nowrap;
-  text-align: right;
-  padding-top: 2px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  justify-self: end;
+  margin-bottom: 16px;
 }
 
 .summary {
-  margin: 14px 0 0;
+  margin: 0;
   color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.68;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  max-width: 62ch;
 }
 
 .tagList {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
+  gap: 8px;
+  margin-top: 22px;
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--surface-strong) 68%, transparent);
-  border: 1px solid var(--surface-border);
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--surface-strong) 54%, transparent);
+  border: 1px solid color-mix(in srgb, var(--surface-border) 80%, transparent);
   color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
   transition:
     transform 220ms var(--ease-standard),
     background-color 220ms var(--ease-standard),
@@ -226,26 +172,28 @@
 
 .tag:hover {
   transform: translateY(-1px);
-  background: color-mix(in srgb, var(--accent-soft) 56%, var(--surface-strong));
-  border-color: color-mix(in srgb, var(--accent) 16%, var(--surface-border));
+  background: color-mix(in srgb, var(--accent-soft) 34%, var(--surface-strong));
+  border-color: color-mix(in srgb, var(--accent) 24%, var(--surface-border));
   color: var(--text);
 }
 
-html[data-theme='light'] .entryStatus {
-  border-radius: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-}
-
 @media (max-width: 1024px) {
-  .experienceTopline {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+  .experienceRow {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .anchorColumn {
+    padding-right: 0;
+  }
+
+  .anchorColumn::after {
+    display: none;
   }
 
   .dates {
-    text-align: left;
+    justify-self: start;
+    margin-bottom: 14px;
   }
 }
 
@@ -254,39 +202,54 @@ html[data-theme='light'] .entryStatus {
     padding: 48px 0;
   }
 
-  .entryBar {
-    padding: 14px 16px;
+  .experienceList {
+    gap: 28px;
   }
 
-  .entryBody {
-    grid-template-columns: 64px minmax(0, 1fr);
+  .experienceRow {
+    gap: 18px;
+    padding: 14px 0 10px;
+  }
+
+  .identityCluster {
+    grid-template-columns: 58px minmax(0, 1fr);
     gap: 16px;
-    padding: 18px 18px 22px;
   }
 
   .logoBadge {
-    width: 64px;
-    height: 64px;
+    width: 58px;
+    height: 58px;
   }
 
-  .logoBadge {
-    border-radius: 20px;
-  }
-
-  .statusOrb {
-    width: 7px;
-    height: 7px;
+  .logoImage {
+    padding: 6px;
   }
 
   .company {
-    font-size: 1.12rem;
+    font-size: 1.38rem;
   }
 
   .identityBlock h3 {
-    font-size: 0.98rem;
+    font-size: 0.94rem;
+  }
+
+  .dates {
+    font-size: 0.68rem;
+    margin-bottom: 12px;
   }
 
   .summary {
     font-size: 0.94rem;
+    line-height: 1.66;
+  }
+
+  .tagList {
+    gap: 7px;
+    margin-top: 16px;
+  }
+
+  .tag {
+    font-size: 0.64rem;
+    padding: 6px 9px;
   }
 }
