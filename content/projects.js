@@ -1,5 +1,6 @@
-export const featuredProjects = [
+export const projects = [
   {
+    slug: 'tweetcheck',
     title: 'TweetCheck',
     summary:
       'Distributed sentiment analysis platform that simulates a live tweet stream, classifies messages with a fine-tuned BERT model, and broadcasts real-time system state to an operator dashboard.',
@@ -8,16 +9,14 @@ export const featuredProjects = [
     tags: ['Kafka', 'BERT', 'PyTorch', 'Go', 'FastAPI'],
     githubUrl: 'https://github.com/ShantnuKaushal/TweetCheck',
     liveUrl: '',
-    branch: 'main',
-    projectType: 'Distributed AI System',
-    visualLabel: 'Live sentiment operations dashboard',
     visualImage: '/images/projects/light-tweet-source.jpg',
-    visualAlt: 'Tweet project light source preview',
-    visualImageDark: '/images/projects/light-tweet-source.jpg',
+    visualAlt: 'TweetCheck dashboard preview',
+    visualImageDark: '/images/projects/dark-tweet-source.jpg',
+    visualAltDark: 'TweetCheck dashboard preview in dark theme',
     visualPosition: '14% 50%',
-    hideVisualOverlay: true,
   },
   {
+    slug: 'resource',
     title: 'ReSource',
     summary:
       'Browser-first PDF retrieval workspace for grounded document question answering with local embeddings, persistent vector search, and conversation-level source selection.',
@@ -26,34 +25,32 @@ export const featuredProjects = [
     tags: ['Local Embeddings', 'RAG', 'pgvector', 'PDF Retrieval', 'Flask'],
     githubUrl: 'https://github.com/ShantnuKaushal/ReSource',
     liveUrl: '',
-    branch: 'main',
-    projectType: 'Retrieval Workspace',
-    visualLabel: 'Document research workspace',
     visualImage: '/images/projects/light-resource.jpg',
-    visualAlt: 'Resource preview in light theme',
-    visualImageDark: '/images/projects/light-resource.jpg',
+    visualAlt: 'ReSource document workspace preview',
+    visualImageDark: '/images/projects/dark-resource.jpg',
+    visualAltDark: 'ReSource document workspace preview in dark theme',
     visualPosition: '50% 55%',
-    hideVisualOverlay: true,
   },
-];
-
-export const projectArchive = [
   {
+    slug: 'airaware',
     title: 'AirAware',
     summary:
       'Aviation logistics and predictive maintenance platform that combines .NET microservices, gRPC communication, PostgreSQL state, and Redis caching for fleet health monitoring.',
+    detail:
+      'Structured around service orchestration, internal RPC flows, and operational data movement so fleet health signals stay queryable, responsive, and reliable across the wider platform.',
     tags: ['Microservices', 'Service Orchestration', 'gRPC', '.NET 8'],
     githubUrl: 'https://github.com/ShantnuKaushal/AirAware',
     liveUrl: '',
-    projectType: 'Cloud-native Systems',
   },
   {
+    slug: 'vcrts',
     title: 'VCRTS',
     summary:
       'Vehicular Cloud Real-Time System for allocating distributed compute jobs across contributed vehicles, with Java desktop workflows, persistence, validation, and live task coordination.',
+    detail:
+      'Designed as a systems research project focused on scheduling, validation, and real-time coordination between contributed nodes so compute jobs can be dispatched and tracked across the network.',
     tags: ['Vehicular Cloud', 'Resource Allocation', 'Job Scheduling', 'Java'],
     githubUrl: 'https://github.com/ShantnuKaushal/vcrts',
     liveUrl: '',
-    projectType: 'Systems Research',
   },
 ];

@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import SectionHeading from '../SectionHeading/SectionHeading';
-import { featuredProjects, projectArchive } from '../../../content/projects';
+import { projects } from '../../../content/projects';
 import styles from './Projects.module.css';
 
-function ProjectLinks({ githubUrl, liveUrl }) {
+function ProjectActions({ githubUrl, liveUrl }) {
   if (!githubUrl && !liveUrl) {
     return null;
   }
@@ -11,15 +11,66 @@ function ProjectLinks({ githubUrl, liveUrl }) {
   return (
     <div className={styles.projectActions}>
       {githubUrl ? (
-        <a href={githubUrl} target="_blank" rel="noreferrer" className={styles.inlineLink}>
-          GitHub
+        <a href={githubUrl} target="_blank" rel="noreferrer" className={styles.primaryAction}>
+          <span>View GitHub</span>
         </a>
       ) : null}
       {liveUrl ? (
-        <a href={liveUrl} target="_blank" rel="noreferrer" className={styles.inlineLink}>
+        <a href={liveUrl} target="_blank" rel="noreferrer" className={styles.secondaryAction}>
           Live preview
         </a>
       ) : null}
+    </div>
+  );
+}
+
+function ProjectMedia({ project }) {
+  const hasVisualImage = Boolean(project.visualImage);
+  const hasThemeSwapImage = Boolean(project.visualImage && project.visualImageDark);
+  const mediaStyle = project.visualPosition
+    ? { '--project-visual-position': project.visualPosition }
+    : undefined;
+
+  if (hasVisualImage) {
+    return (
+      <div className={styles.projectMedia} style={mediaStyle}>
+        {hasThemeSwapImage ? (
+          <>
+            <Image
+              src={project.visualImage}
+              alt={project.visualAlt ?? `${project.title} preview`}
+              fill
+              sizes="(max-width: 900px) calc(100vw - 28px), (max-width: 1200px) 44vw, 36vw"
+              className={`${styles.projectImage} ${styles.projectImageLight}`}
+            />
+            <Image
+              src={project.visualImageDark}
+              alt={project.visualAltDark ?? project.visualAlt ?? `${project.title} preview`}
+              fill
+              sizes="(max-width: 900px) calc(100vw - 28px), (max-width: 1200px) 44vw, 36vw"
+              className={`${styles.projectImage} ${styles.projectImageDark}`}
+            />
+          </>
+        ) : (
+          <Image
+            src={project.visualImage}
+            alt={project.visualAlt ?? `${project.title} preview`}
+            fill
+            sizes="(max-width: 900px) calc(100vw - 28px), (max-width: 1200px) 44vw, 36vw"
+            className={styles.projectImage}
+          />
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${styles.projectMedia} ${styles.projectMediaPlaceholder}`}>
+      <div className={`${styles.placeholderCanvas} ${styles[`placeholderCanvas${project.slug}`]}`} aria-hidden="true">
+        <span className={styles.placeholderPanel} />
+        <span className={styles.placeholderPanel} />
+        <span className={styles.placeholderPanel} />
+      </div>
     </div>
   );
 }
@@ -29,99 +80,41 @@ export default function Projects() {
     <section className={styles.section} id="projects">
       <SectionHeading title="Projects" />
 
-      <div className={styles.featuredProjectList}>
-        {featuredProjects.map((project, index) => {
-          const hasVisualImage = Boolean(project.visualImage);
-          const hasThemeSwapImage = Boolean(project.visualImage && project.visualImageDark);
-          const showVisualOverlay = !(hasVisualImage && project.hideVisualOverlay);
-          const visualFrameStyle = project.visualPosition
-            ? { '--project-visual-position': project.visualPosition }
-            : undefined;
+      <div className={styles.projectList}>
+        {projects.map((project, index) => {
+          const isReversed = index % 2 === 1;
 
           return (
-            <article key={project.title} className={styles.featuredProject}>
-              <div className={styles.projectVisual}>
-                <div className={styles.visualFrame} style={visualFrameStyle}>
-                  <div
-                    className={`${styles.visualMediaLayer}${hasVisualImage ? ` ${styles.visualMediaLayerFilled}` : ''}${hasThemeSwapImage ? ` ${styles.themeSwapMediaLayer}` : ''}`}
-                  >
-                    {hasVisualImage ? (
-                      hasThemeSwapImage ? (
-                        <>
-                          <Image
-                            src={project.visualImage}
-                            alt={project.visualAlt ?? `${project.title} preview`}
-                            fill
-                            sizes="(max-width: 1024px) calc(100vw - 44px), 40vw"
-                            className={`${styles.visualMedia} ${styles.visualMediaLight}`}
-                          />
-                          <Image
-                            src={project.visualImageDark}
-                            alt={project.visualAltDark ?? project.visualAlt ?? `${project.title} preview`}
-                            fill
-                            sizes="(max-width: 1024px) calc(100vw - 44px), 40vw"
-                            className={`${styles.visualMedia} ${styles.visualMediaDark}`}
-                          />
-                        </>
-                      ) : (
-                        <Image
-                          src={project.visualImage}
-                          alt={project.visualAlt ?? `${project.title} preview`}
-                          fill
-                          sizes="(max-width: 1024px) calc(100vw - 44px), 40vw"
-                          className={styles.visualMedia}
-                        />
-                      )
-                    ) : (
-                      <div className={styles.visualPlaceholderBackdrop} aria-hidden="true" />
-                    )}
-                  </div>
-
-                  {showVisualOverlay ? (
-                    <div className={styles.visualOverlay}>
-                      <span className={styles.visualNumber}>0{index + 1}</span>
-                      <p className={styles.visualLabel}>{project.visualLabel}</p>
-                      <small className={styles.branchLine}>branch: {project.branch}</small>
-                    </div>
-                  ) : null}
-                </div>
+            <article
+              key={project.title}
+              className={`${styles.projectRow}${isReversed ? ` ${styles.projectRowReversed}` : ''}`}
+            >
+              <div className={styles.mediaColumn}>
+                <ProjectMedia project={project} />
               </div>
 
-              <div className={styles.projectCopy}>
-                <span className={styles.projectTypeChip}>{project.projectType}</span>
-                <h3>{project.title}</h3>
-                <p className={styles.projectSummary}>{project.summary}</p>
-                <p className={styles.projectDetail}>{project.detail}</p>
-                <div className={styles.tagList}>
-                  {project.tags.map((tag) => (
-                    <span key={tag} className={styles.tag}>
-                      {tag}
-                    </span>
-                  ))}
+              <div className={styles.copyColumn}>
+                <div className={styles.projectHeader}>
+                  <h3>{project.title}</h3>
+                  <div className={styles.tagList}>
+                    {project.tags.map((tag) => (
+                      <span key={tag} className={styles.tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <ProjectLinks githubUrl={project.githubUrl} liveUrl={project.liveUrl} />
+
+                <div className={styles.projectBody}>
+                  <p className={styles.projectSummary}>{project.summary}</p>
+                  {project.detail ? <p className={styles.projectDetail}>{project.detail}</p> : null}
+                </div>
+
+                <ProjectActions githubUrl={project.githubUrl} liveUrl={project.liveUrl} />
               </div>
             </article>
           );
         })}
-      </div>
-
-      <div className={styles.archiveGrid}>
-        {projectArchive.map((project) => (
-          <article key={project.title} className={styles.archiveCard}>
-            <span className={styles.archiveType}>{project.projectType}</span>
-            <h3>{project.title}</h3>
-            <p>{project.summary}</p>
-            <div className={styles.tagList}>
-              {project.tags.map((tag) => (
-                <span key={tag} className={styles.tag}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <ProjectLinks githubUrl={project.githubUrl} liveUrl={project.liveUrl} />
-          </article>
-        ))}
       </div>
     </section>
   );
