@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa6';
 import { profile } from '../../../content/profile';
 import styles from './Hero.module.css';
 
@@ -23,23 +24,19 @@ export default function Hero() {
         <p className={styles.heroRole}>{profile.role}</p>
         <div className={styles.heroActions}>
           <a href={profile.resumeHref} target="_blank" rel="noreferrer" className={styles.primaryButton}>
-            Download Resume
+            Download CV
           </a>
           <a href={`mailto:${profile.email}`} className={styles.secondaryButton}>
-            Contact Me
+            Get in touch
           </a>
         </div>
         <div className={styles.heroLinks}>
-          <a href={profile.linkedin} target="_blank" rel="noreferrer">
-            LinkedIn
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+            <FaLinkedinIn aria-hidden="true" className={styles.socialIcon} />
           </a>
-          <a href={profile.github} target="_blank" rel="noreferrer">
-            GitHub
+          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub profile">
+            <FaGithub aria-hidden="true" className={`${styles.socialIcon} ${styles.githubIcon}`} />
           </a>
-          <a href={profile.resumeHref} target="_blank" rel="noreferrer">
-            Resume
-          </a>
-          <a href={`mailto:${profile.email}`}>Email</a>
         </div>
       </div>
     </section>
