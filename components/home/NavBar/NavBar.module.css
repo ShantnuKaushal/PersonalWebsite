@@ -15,13 +15,13 @@
   padding: 14px 34px;
   width: min(100%, 1040px);
   border-radius: 999px;
-  background: var(--nav-bg);
-  border: 1px solid var(--nav-border);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  border: 1px solid color-mix(in srgb, var(--surface-border) 86%, transparent);
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  backdrop-filter: saturate(180%) blur(24px);
-  -webkit-backdrop-filter: saturate(180%) blur(24px);
+    0 8px 20px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  backdrop-filter: saturate(130%) blur(14px);
+  -webkit-backdrop-filter: saturate(130%) blur(14px);
   transition:
     box-shadow 260ms var(--ease-standard),
     background-color 260ms var(--ease-standard),
@@ -30,8 +30,8 @@
 
 .nav:hover {
   box-shadow:
-    0 16px 44px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 10px 24px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .navLinks {

@@ -6,7 +6,7 @@ export const projects = [
       'Distributed sentiment analysis platform that simulates a live tweet stream, classifies messages with a fine-tuned BERT model, and broadcasts real-time system state to an operator dashboard.',
     detail:
       'Built as an event-driven system with Go ingestion, Kafka transport, a Python inference worker, Redis-backed live state, FastAPI WebSocket updates, and a Next.js control surface packaged through Docker Compose.',
-    tags: ['Kafka', 'BERT', 'PyTorch', 'Go', 'FastAPI'],
+    tags: ['PyTorch', 'Go', 'Kafka', 'BERT', 'FastAPI'],
     githubUrl: 'https://github.com/ShantnuKaushal/TweetCheck',
     liveUrl: '',
     visualImage: '/images/projects/light-tweet-source.jpg',
@@ -22,7 +22,7 @@ export const projects = [
       'Browser-first PDF retrieval workspace for grounded document question answering with local embeddings, persistent vector search, and conversation-level source selection.',
     detail:
       'The stack pairs a Flask ingestion and retrieval API with PostgreSQL plus pgvector, local all-MiniLM-L6-v2 embeddings, PDF parsing, and a Next.js interface that keeps answers tied to uploaded source material.',
-    tags: ['Local Embeddings', 'RAG', 'pgvector', 'Flask'],
+    tags: ['RAG', 'pgvector', 'Local Embeddings', 'Flask'],
     githubUrl: 'https://github.com/ShantnuKaushal/ReSource',
     liveUrl: '',
     visualImage: '/images/projects/light-resource.jpg',

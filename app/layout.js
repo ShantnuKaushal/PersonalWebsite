@@ -11,14 +11,14 @@ const themeInitScript = `
 
 export const metadata = {
   metadataBase: new URL('https://shantnukaushal.com'),
-  title: 'Shantnu Kaushal | Software Engineer',
+  title: 'Shantnu Kaushal',
   description:
     'Portfolio site for Shantnu Kaushal, featuring selected engineering work, professional experience, and contact details.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Shantnu Kaushal | Software Engineer',
+    title: 'Shantnu Kaushal',
     description:
       'Selected work, experience, and contact details for Shantnu Kaushal.',
     url: 'https://shantnukaushal.com',
