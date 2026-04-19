@@ -30,6 +30,11 @@
   align-items: center;
 }
 
+.projectRowFeature {
+  grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
+  align-items: start;
+}
+
 .projectRowReversed .mediaColumn {
   order: 2;
 }
@@ -56,10 +61,20 @@
     box-shadow 260ms var(--ease-standard);
 }
 
+.projectRow:hover .projectMedia,
+.projectRow:focus-within .projectMedia,
 .projectMedia:hover {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--accent) 10%, var(--surface-border));
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+}
+
+.projectMediaVideoFrame {
+  aspect-ratio: 16 / 9;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(45, 230, 125, 0.1), transparent 22%),
+    radial-gradient(circle at 84% 14%, rgba(71, 151, 255, 0.1), transparent 24%),
+    linear-gradient(180deg, #071018 0%, #0b1823 100%);
 }
 
 .projectMediaIllustrated {
@@ -545,6 +560,22 @@
   transform: scale(var(--project-visual-scale, 1));
 }
 
+.projectVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: var(--project-visual-position, 50% 50%);
+  transform:
+    translateX(var(--project-visual-translate-x, 0))
+    scale(var(--project-visual-scale, 1));
+  background: transparent;
+}
+
+.projectVideoReady {
+  background: #071018;
+}
+
 .projectImageLight {
   display: none;
 }
@@ -768,7 +799,8 @@ html[data-theme='light'] .projectImageDark {
 
 @media (max-width: 1100px) {
   .projectRow,
-  .projectRowReversed {
+  .projectRowReversed,
+  .projectRowFeature {
     grid-template-columns: 1fr;
     gap: 22px;
   }
@@ -780,6 +812,10 @@ html[data-theme='light'] .projectImageDark {
 
   .projectMedia {
     aspect-ratio: 1.5 / 1;
+  }
+
+  .projectMediaVideoFrame {
+    aspect-ratio: 16 / 9;
   }
 
   .tweetGrid {
@@ -812,6 +848,10 @@ html[data-theme='light'] .projectImageDark {
   .projectMedia {
     aspect-ratio: 1.28 / 1;
     border-radius: 14px;
+  }
+
+  .projectMediaVideoFrame {
+    aspect-ratio: 16 / 9;
   }
 
   .tweetCover,

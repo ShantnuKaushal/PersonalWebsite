@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import SectionHeading from '../SectionHeading/SectionHeading';
 import { projects } from '../../../content/projects';
@@ -172,7 +175,114 @@ function ProjectMediaCover({ project }) {
   return null;
 }
 
+function ProjectVideoMedia({ project, mediaStyle }) {
+  const videoRef = useRef(null);
+  const [hasFirstFrame, setHasFirstFrame] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) {
+      return undefined;
+    }
+
+    let cancelled = false;
+
+    const markReady = () => {
+      if (!cancelled) {
+        setHasFirstFrame(true);
+      }
+    };
+
+    const warmVideo = async () => {
+      try {
+        const playPromise = video.play();
+
+        if (playPromise?.then) {
+          await playPromise;
+        }
+
+        requestAnimationFrame(() => {
+          video.pause();
+          video.currentTime = 0;
+          markReady();
+        });
+      } catch {
+        markReady();
+      }
+    };
+
+    if (video.readyState >= 2) {
+      warmVideo();
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    const handleLoadedData = () => {
+      warmVideo();
+    };
+
+    video.addEventListener('loadeddata', handleLoadedData, { once: true });
+
+    return () => {
+      cancelled = true;
+      video.removeEventListener('loadeddata', handleLoadedData);
+    };
+  }, [project.visualVideo]);
+
+  const handleMediaMouseEnter = () => {
+    const video = videoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    const playPromise = video.play();
+
+    if (playPromise?.catch) {
+      playPromise.catch(() => {});
+    }
+  };
+
+  const handleMediaMouseLeave = () => {
+    const video = videoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    video.pause();
+  };
+
+  return (
+    <div
+      className={`${styles.projectMedia} ${styles.projectMediaVideoFrame}`}
+      style={mediaStyle}
+      role="img"
+      aria-label={project.visualAlt ?? `${project.title} demo`}
+      onMouseEnter={handleMediaMouseEnter}
+      onMouseLeave={handleMediaMouseLeave}
+    >
+      <video
+        ref={videoRef}
+        className={`${styles.projectVideo}${hasFirstFrame ? ` ${styles.projectVideoReady}` : ''}`}
+        poster={hasFirstFrame ? undefined : project.visualPoster}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        aria-hidden="true"
+      >
+        <source src={project.visualVideo} type="video/mp4" />
+      </video>
+    </div>
+  );
+}
+
 function ProjectMedia({ project }) {
+
   if (project.visualVariant) {
     return (
       <div
@@ -186,14 +296,20 @@ function ProjectMedia({ project }) {
   }
 
   const hasVisualImage = Boolean(project.visualImage);
+  const hasVisualVideo = Boolean(project.visualVideo);
   const hasThemeSwapImage = Boolean(project.visualImage && project.visualImageDark);
   const mediaStyle =
-    project.visualPosition || project.visualScale
+    project.visualPosition || project.visualScale || project.visualTranslateX
       ? {
           ...(project.visualPosition ? { '--project-visual-position': project.visualPosition } : {}),
           ...(project.visualScale ? { '--project-visual-scale': project.visualScale } : {}),
+          ...(project.visualTranslateX ? { '--project-visual-translate-x': project.visualTranslateX } : {}),
         }
       : undefined;
+
+  if (hasVisualVideo) {
+    return <ProjectVideoMedia project={project} mediaStyle={mediaStyle} />;
+  }
 
   if (hasVisualImage) {
     return (
@@ -240,6 +356,30 @@ function ProjectMedia({ project }) {
 }
 
 export default function Projects() {
+  const handleProjectRowMouseEnter = (event) => {
+    const video = event.currentTarget.querySelector('video');
+
+    if (!video) {
+      return;
+    }
+
+    const playPromise = video.play();
+
+    if (playPromise?.catch) {
+      playPromise.catch(() => {});
+    }
+  };
+
+  const handleProjectRowMouseLeave = (event) => {
+    const video = event.currentTarget.querySelector('video');
+
+    if (!video) {
+      return;
+    }
+
+    video.pause();
+  };
+
   return (
     <section className={styles.section} id="projects">
       <SectionHeading title="Projects" />
@@ -250,11 +390,16 @@ export default function Projects() {
       <div className={styles.projectList}>
         {projects.map((project, index) => {
           const isReversed = index % 2 === 1;
+          const rowClassName = `${styles.projectRow}${isReversed ? ` ${styles.projectRowReversed}` : ''}${
+            project.visualEmphasis === 'feature' ? ` ${styles.projectRowFeature}` : ''
+          }`;
 
           return (
             <article
               key={project.title}
-              className={`${styles.projectRow}${isReversed ? ` ${styles.projectRowReversed}` : ''}`}
+              className={rowClassName}
+              onMouseEnter={project.visualVideo ? handleProjectRowMouseEnter : undefined}
+              onMouseLeave={project.visualVideo ? handleProjectRowMouseLeave : undefined}
             >
               <div className={styles.mediaColumn}>
                 <ProjectMedia project={project} />
