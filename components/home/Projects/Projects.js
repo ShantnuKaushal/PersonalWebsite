@@ -1,3 +1,6 @@
+'use client';
+
+import { useRef, useState } from 'react';
 import SectionHeading from '../SectionHeading/SectionHeading';
 import { projects } from '../../../content/projects';
 import styles from './Projects.module.css';
@@ -27,7 +30,63 @@ function ProjectActions({ githubUrl, liveUrl }) {
   );
 }
 
-function ProjectFrame({ project, index }) {
+function LocalVideoProjectFrame({ project }) {
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handleMouseEnter = () => {
+    const video = videoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    video.muted = true;
+    const playPromise = video.play();
+
+    if (playPromise?.catch) {
+      playPromise.catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    const video = videoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    video.pause();
+  };
+
+  return (
+    <div className={styles.mediaShell} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <div className={styles.mediaViewport}>
+        <video
+          ref={videoRef}
+          className={styles.mediaVideo}
+          src={project.videoSrc}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          aria-label={`${project.title} demo reel`}
+        />
+
+        <span
+          className={`${styles.mediaPlayButton}${isPlaying ? ` ${styles.mediaPlayButtonHidden}` : ''}`}
+          aria-hidden="true"
+        >
+          <span className={styles.mediaPlayGlyph} />
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function PlaceholderProjectFrame({ project, index }) {
   const indexLabel = formatProjectIndex(index);
   const frameClassName = styles[`placeholderStage${project.slug}`] ?? '';
 
@@ -72,6 +131,14 @@ function ProjectFrame({ project, index }) {
       </div>
     </div>
   );
+}
+
+function ProjectFrame({ project, index }) {
+  if (project.videoSrc) {
+    return <LocalVideoProjectFrame project={project} />;
+  }
+
+  return <PlaceholderProjectFrame project={project} index={index} />;
 }
 
 export default function Projects() {

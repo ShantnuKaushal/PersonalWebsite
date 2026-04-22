@@ -9,6 +9,7 @@ export const projects = [
     tags: ['PyTorch', 'Go', 'Kafka', 'BERT', 'FastAPI'],
     githubUrl: 'https://github.com/ShantnuKaushal/TweetCheck',
     liveUrl: '',
+    videoSrc: '/videos/projects/tweetcheck-demo.mov',
   },
   {
     slug: 'resource',
