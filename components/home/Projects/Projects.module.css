@@ -20,7 +20,7 @@
 
 .projectList {
   display: grid;
-  gap: 34px;
+  gap: 64px;
 }
 
 .projectRow {
@@ -33,6 +33,11 @@
 .projectRowFeature {
   grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
   align-items: start;
+  margin-bottom: 28px;
+}
+
+.projectRowFeature.projectRowReversed {
+  grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
 }
 
 .projectRowReversed .mediaColumn {
@@ -70,7 +75,6 @@
 }
 
 .projectMediaVideoFrame {
-  aspect-ratio: 16 / 9;
   background:
     radial-gradient(circle at 18% 16%, rgba(45, 230, 125, 0.1), transparent 22%),
     radial-gradient(circle at 84% 14%, rgba(71, 151, 255, 0.1), transparent 24%),
@@ -805,6 +809,10 @@ html[data-theme='light'] .projectImageDark {
     gap: 22px;
   }
 
+  .projectRowFeature {
+    margin-bottom: 0;
+  }
+
   .projectRowReversed .mediaColumn,
   .projectRowReversed .copyColumn {
     order: initial;
@@ -812,10 +820,6 @@ html[data-theme='light'] .projectImageDark {
 
   .projectMedia {
     aspect-ratio: 1.5 / 1;
-  }
-
-  .projectMediaVideoFrame {
-    aspect-ratio: 16 / 9;
   }
 
   .tweetGrid {
@@ -838,7 +842,7 @@ html[data-theme='light'] .projectImageDark {
   }
 
   .projectList {
-    gap: 26px;
+    gap: 44px;
   }
 
   .projectRow {
@@ -848,10 +852,6 @@ html[data-theme='light'] .projectImageDark {
   .projectMedia {
     aspect-ratio: 1.28 / 1;
     border-radius: 14px;
-  }
-
-  .projectMediaVideoFrame {
-    aspect-ratio: 16 / 9;
   }
 
   .tweetCover,

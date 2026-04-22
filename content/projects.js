@@ -14,7 +14,6 @@ export const projects = [
     visualAlt: 'TweetCheck dashboard demo',
     visualScale: '1.015',
     visualTranslateX: '0.9%',
-    visualEmphasis: 'feature',
   },
   {
     slug: 'resource',
@@ -26,8 +25,11 @@ export const projects = [
     tags: ['RAG', 'pgvector', 'Local Embeddings', 'Flask'],
     githubUrl: 'https://github.com/ShantnuKaushal/ReSource',
     liveUrl: '',
-    visualVariant: 'resource',
-    visualAlt: 'ReSource document workspace preview',
+    visualVideo: '/videos/projects/resource-demo.mp4',
+    visualPoster: '/images/projects/resource-video-poster.jpg',
+    visualAlt: 'ReSource document workspace demo',
+    visualScale: '1.015',
+    visualTranslateX: '0.9%',
   },
   {
     slug: 'airaware',
