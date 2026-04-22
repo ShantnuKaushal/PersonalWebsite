@@ -1,9 +1,12 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SectionHeading from '../SectionHeading/SectionHeading';
 import { projects } from '../../../content/projects';
 import styles from './Projects.module.css';
+
+const LOOP_HANDOFF_WINDOW_SECONDS = 0.58;
+const LOOP_CROSSFADE_DURATION_MS = 520;
 
 function formatProjectIndex(index) {
   return String(index + 1).padStart(2, '0');
@@ -30,57 +33,267 @@ function ProjectActions({ githubUrl, liveUrl }) {
   );
 }
 
-function LocalVideoProjectFrame({ project }) {
-  const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+function LocalVideoProjectFrame({ project, isPlaybackActive }) {
+  const primaryVideoRef = useRef(null);
+  const secondaryVideoRef = useRef(null);
+  const animationFrameRef = useRef(null);
+  const crossfadeTimeoutRef = useRef(null);
+  const durationRef = useRef(0);
+  const activeIndexRef = useRef(0);
+  const crossfadeStateRef = useRef(null);
+  const isPlaybackActiveRef = useRef(isPlaybackActive);
+  const [hasMounted, setHasMounted] = useState(false);
+  const [visibleIndex, setVisibleIndex] = useState(0);
 
-  const handleMouseEnter = () => {
-    const video = videoRef.current;
+  const getVideoRefs = () => [primaryVideoRef, secondaryVideoRef];
 
-    if (!video) {
+  const cancelPlaybackMonitor = () => {
+    if (!animationFrameRef.current) {
       return;
     }
 
-    video.muted = true;
-    const playPromise = video.play();
+    cancelAnimationFrame(animationFrameRef.current);
+    animationFrameRef.current = null;
+  };
 
+  const clearCrossfadeTimeout = () => {
+    if (!crossfadeTimeoutRef.current) {
+      return;
+    }
+
+    clearTimeout(crossfadeTimeoutRef.current);
+    crossfadeTimeoutRef.current = null;
+  };
+
+  const finalizeCrossfade = () => {
+    const crossfadeState = crossfadeStateRef.current;
+
+    if (!crossfadeState) {
+      return;
+    }
+
+    const videoRefs = getVideoRefs();
+    const fromVideo = videoRefs[crossfadeState.fromIndex].current;
+    const toVideo = videoRefs[crossfadeState.toIndex].current;
+
+    clearCrossfadeTimeout();
+
+    if (fromVideo) {
+      fromVideo.pause();
+      fromVideo.currentTime = 0;
+    }
+
+    if (toVideo) {
+      toVideo.muted = true;
+    }
+
+    activeIndexRef.current = crossfadeState.toIndex;
+    crossfadeStateRef.current = null;
+    setVisibleIndex(crossfadeState.toIndex);
+  };
+
+  const scheduleCrossfadeFinalize = (durationMs) => {
+    clearCrossfadeTimeout();
+    crossfadeTimeoutRef.current = setTimeout(() => {
+      finalizeCrossfade();
+    }, durationMs);
+  };
+
+  const startCrossfade = () => {
+    if (crossfadeStateRef.current) {
+      return;
+    }
+
+    const videoRefs = getVideoRefs();
+    const fromIndex = activeIndexRef.current;
+    const toIndex = fromIndex === 0 ? 1 : 0;
+    const fromVideo = videoRefs[fromIndex].current;
+    const toVideo = videoRefs[toIndex].current;
+
+    if (!fromVideo || !toVideo) {
+      return;
+    }
+
+    toVideo.pause();
+    toVideo.currentTime = 0;
+    toVideo.muted = true;
+
+    const playPromise = toVideo.play();
     if (playPromise?.catch) {
       playPromise.catch(() => {});
     }
+
+    crossfadeStateRef.current = {
+      fromIndex,
+      toIndex,
+      durationMs: LOOP_CROSSFADE_DURATION_MS,
+      remainingMs: LOOP_CROSSFADE_DURATION_MS,
+      startedAt: performance.now(),
+    };
+
+    setVisibleIndex(toIndex);
+    scheduleCrossfadeFinalize(LOOP_CROSSFADE_DURATION_MS);
   };
 
-  const handleMouseLeave = () => {
-    const video = videoRef.current;
+  const monitorLoopBoundary = () => {
+    cancelPlaybackMonitor();
 
-    if (!video) {
+    const tick = () => {
+      if (!isPlaybackActiveRef.current) {
+        animationFrameRef.current = null;
+        return;
+      }
+
+      const activeVideo = getVideoRefs()[activeIndexRef.current].current;
+      const duration = durationRef.current || activeVideo?.duration || 0;
+
+      if (
+        activeVideo &&
+        duration > LOOP_HANDOFF_WINDOW_SECONDS &&
+        !crossfadeStateRef.current &&
+        duration - activeVideo.currentTime <= LOOP_HANDOFF_WINDOW_SECONDS
+      ) {
+        startCrossfade();
+      }
+
+      animationFrameRef.current = requestAnimationFrame(tick);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(tick);
+  };
+
+  const pauseAllVideos = () => {
+    cancelPlaybackMonitor();
+
+    const crossfadeState = crossfadeStateRef.current;
+    if (crossfadeState && crossfadeState.startedAt !== null) {
+      const elapsedMs = Math.max(0, performance.now() - crossfadeState.startedAt);
+      crossfadeState.remainingMs = Math.max(0, crossfadeState.durationMs - elapsedMs);
+      crossfadeState.startedAt = null;
+      clearCrossfadeTimeout();
+    }
+
+    getVideoRefs().forEach((videoRef) => {
+      videoRef.current?.pause();
+    });
+  };
+
+  const resumeVideos = () => {
+    const videoRefs = getVideoRefs();
+    let crossfadeState = crossfadeStateRef.current;
+
+    if (crossfadeState) {
+      if (crossfadeState.remainingMs <= 40) {
+        finalizeCrossfade();
+        crossfadeState = crossfadeStateRef.current;
+      }
+    }
+
+    if (crossfadeState) {
+      const fromVideo = videoRefs[crossfadeState.fromIndex].current;
+      const toVideo = videoRefs[crossfadeState.toIndex].current;
+
+      if (fromVideo) {
+        fromVideo.muted = true;
+        const fromPlayPromise = fromVideo.play();
+        if (fromPlayPromise?.catch) {
+          fromPlayPromise.catch(() => {});
+        }
+      }
+
+      if (toVideo) {
+        toVideo.muted = true;
+        const toPlayPromise = toVideo.play();
+        if (toPlayPromise?.catch) {
+          toPlayPromise.catch(() => {});
+        }
+      }
+
+      crossfadeState.durationMs = Math.max(crossfadeState.remainingMs, 40);
+      crossfadeState.startedAt = performance.now();
+      scheduleCrossfadeFinalize(crossfadeState.durationMs);
+      monitorLoopBoundary();
       return;
     }
 
-    video.pause();
+    const activeVideo = videoRefs[activeIndexRef.current].current;
+    if (!activeVideo) {
+      return;
+    }
+
+    activeVideo.muted = true;
+    const playPromise = activeVideo.play();
+    if (playPromise?.catch) {
+      playPromise.catch(() => {});
+    }
+
+    monitorLoopBoundary();
   };
 
-  return (
-    <div className={styles.mediaShell} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <div className={styles.mediaViewport}>
-        <video
-          ref={videoRef}
-          className={styles.mediaVideo}
-          src={project.videoSrc}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          aria-label={`${project.title} demo reel`}
-        />
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
-        <span
-          className={`${styles.mediaPlayButton}${isPlaying ? ` ${styles.mediaPlayButtonHidden}` : ''}`}
-          aria-hidden="true"
-        >
-          <span className={styles.mediaPlayGlyph} />
-        </span>
+  useEffect(() => {
+    isPlaybackActiveRef.current = isPlaybackActive;
+
+    if (!hasMounted) {
+      return undefined;
+    }
+
+    if (isPlaybackActive) {
+      resumeVideos();
+      return undefined;
+    }
+
+    pauseAllVideos();
+    return undefined;
+  }, [hasMounted, isPlaybackActive]);
+
+  useEffect(() => {
+    return () => {
+      cancelPlaybackMonitor();
+      clearCrossfadeTimeout();
+    };
+  }, []);
+
+  return (
+    <div className={styles.mediaShell}>
+      <div className={styles.mediaViewport} aria-label={`${project.title} demo reel`}>
+        {hasMounted ? (
+          <>
+            <video
+              ref={primaryVideoRef}
+              className={`${styles.mediaVideo} ${styles.mediaVideoLayer} ${
+                visibleIndex === 0 ? styles.mediaVideoVisible : ''
+              }`}
+              src={project.videoSrc}
+              muted
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+              onLoadedMetadata={(event) => {
+                durationRef.current = event.currentTarget.duration || durationRef.current;
+              }}
+            />
+            <video
+              ref={secondaryVideoRef}
+              className={`${styles.mediaVideo} ${styles.mediaVideoLayer} ${
+                visibleIndex === 1 ? styles.mediaVideoVisible : ''
+              }`}
+              src={project.videoSrc}
+              muted
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+              onLoadedMetadata={(event) => {
+                durationRef.current = event.currentTarget.duration || durationRef.current;
+              }}
+            />
+          </>
+        ) : (
+          <div className={styles.mediaVideoMountPlaceholder} aria-hidden="true" />
+        )}
       </div>
     </div>
   );
@@ -133,15 +346,17 @@ function PlaceholderProjectFrame({ project, index }) {
   );
 }
 
-function ProjectFrame({ project, index }) {
+function ProjectFrame({ project, index, isPlaybackActive }) {
   if (project.videoSrc) {
-    return <LocalVideoProjectFrame project={project} />;
+    return <LocalVideoProjectFrame project={project} isPlaybackActive={isPlaybackActive} />;
   }
 
   return <PlaceholderProjectFrame project={project} index={index} />;
 }
 
 export default function Projects() {
+  const [activeProjectSlug, setActiveProjectSlug] = useState(null);
+
   return (
     <section className={styles.section} id="projects">
       <SectionHeading title="Projects" />
@@ -155,9 +370,18 @@ export default function Projects() {
           const rowClassName = `${styles.projectRow}${isMediaRight ? ` ${styles.projectRowReversed}` : ''}`;
 
           return (
-            <article key={project.slug} className={rowClassName}>
+            <article
+              key={project.slug}
+              className={rowClassName}
+              onMouseEnter={project.videoSrc ? () => setActiveProjectSlug(project.slug) : undefined}
+              onMouseLeave={project.videoSrc ? () => setActiveProjectSlug(null) : undefined}
+            >
               <div className={styles.mediaColumn}>
-                <ProjectFrame project={project} index={index} />
+                <ProjectFrame
+                  project={project}
+                  index={index}
+                  isPlaybackActive={activeProjectSlug === project.slug}
+                />
               </div>
 
               <div className={styles.copyColumn}>
