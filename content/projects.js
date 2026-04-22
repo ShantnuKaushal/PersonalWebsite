@@ -9,11 +9,6 @@ export const projects = [
     tags: ['PyTorch', 'Go', 'Kafka', 'BERT', 'FastAPI'],
     githubUrl: 'https://github.com/ShantnuKaushal/TweetCheck',
     liveUrl: '',
-    visualVideo: '/videos/projects/tweetcheck-demo.mp4',
-    visualPoster: '/images/projects/tweetcheck-video-poster.jpg',
-    visualAlt: 'TweetCheck dashboard demo',
-    visualScale: '1.015',
-    visualTranslateX: '0.9%',
   },
   {
     slug: 'resource',
@@ -25,11 +20,6 @@ export const projects = [
     tags: ['RAG', 'pgvector', 'Local Embeddings', 'Flask'],
     githubUrl: 'https://github.com/ShantnuKaushal/ReSource',
     liveUrl: '',
-    visualVideo: '/videos/projects/resource-demo.mp4',
-    visualPoster: '/images/projects/resource-video-poster.jpg',
-    visualAlt: 'ReSource document workspace demo',
-    visualScale: '1.015',
-    visualTranslateX: '0.9%',
   },
   {
     slug: 'airaware',

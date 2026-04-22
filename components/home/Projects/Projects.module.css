@@ -4,8 +4,8 @@
 
 .sectionMeta {
   margin-top: 30px;
-  padding-bottom: 16px;
   margin-bottom: 28px;
+  padding-bottom: 16px;
   border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 92%, transparent);
 }
 
@@ -20,24 +20,18 @@
 
 .projectList {
   display: grid;
-  gap: 64px;
+  gap: 68px;
 }
 
 .projectRow {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: 42px;
-  align-items: center;
-}
-
-.projectRowFeature {
-  grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
+  grid-template-columns: minmax(0, 1.28fr) minmax(380px, 1.06fr);
+  gap: clamp(40px, 5vw, 72px);
   align-items: start;
-  margin-bottom: 28px;
 }
 
-.projectRowFeature.projectRowReversed {
-  grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+.projectRowReversed {
+  grid-template-columns: minmax(380px, 1.06fr) minmax(0, 1.28fr);
 }
 
 .projectRowReversed .mediaColumn {
@@ -53,607 +47,269 @@
   min-width: 0;
 }
 
-.projectMedia {
+.mediaColumn {
+  width: 100%;
+}
+
+.mediaShell {
+  border-radius: 18px;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--surface-border) 88%, transparent);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0)),
+    #090b0f;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.02),
+    0 26px 50px rgba(0, 0, 0, 0.18);
+  transition:
+    border-color 220ms var(--ease-standard),
+    transform 220ms var(--ease-standard),
+    box-shadow 220ms var(--ease-standard);
+}
+
+.projectRow:hover .mediaShell,
+.projectRow:focus-within .mediaShell {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 16%, var(--surface-border));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 28px 58px rgba(0, 0, 0, 0.24);
+}
+
+.mediaViewport {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1.24 / 1;
-  border-radius: 18px;
-  border: 1px solid color-mix(in srgb, var(--surface-border) 82%, transparent);
-  background: linear-gradient(180deg, var(--project-visual-start), var(--project-visual-end));
-  transition:
-    transform 260ms var(--ease-standard),
-    border-color 260ms var(--ease-standard),
-    box-shadow 260ms var(--ease-standard);
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  border: 1px solid rgba(115, 124, 142, 0.18);
+  background: #050608;
 }
 
-.projectRow:hover .projectMedia,
-.projectRow:focus-within .projectMedia,
-.projectMedia:hover {
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--accent) 10%, var(--surface-border));
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
-}
-
-.projectMediaVideoFrame {
-  background:
-    radial-gradient(circle at 18% 16%, rgba(45, 230, 125, 0.1), transparent 22%),
-    radial-gradient(circle at 84% 14%, rgba(71, 151, 255, 0.1), transparent 24%),
-    linear-gradient(180deg, #071018 0%, #0b1823 100%);
-}
-
-.projectMediaIllustrated {
-  isolation: isolate;
-}
-
-.projectMediaIllustrated::before {
-  content: '';
+.placeholderStage {
+  --frame-accent: #d4af37;
+  --frame-accent-soft: rgba(212, 175, 55, 0.14);
+  --frame-glow: rgba(212, 175, 55, 0.18);
   position: absolute;
   inset: 0;
+  overflow: hidden;
   background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 32%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 44%);
-  pointer-events: none;
-  z-index: 0;
+    radial-gradient(circle at 15% 14%, var(--frame-glow), transparent 28%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent 42%),
+    linear-gradient(180deg, rgba(12, 15, 20, 0.98), rgba(5, 7, 10, 1));
 }
 
-.projectMediaTweetcheck {
-  background:
-    radial-gradient(circle at 18% 16%, rgba(45, 230, 125, 0.16), transparent 22%),
-    radial-gradient(circle at 84% 14%, rgba(71, 151, 255, 0.16), transparent 24%),
-    linear-gradient(180deg, #08121b 0%, #0d1d2a 100%);
+.placeholderStagetweetcheck {
+  --frame-accent: #89c7ff;
+  --frame-accent-soft: rgba(137, 199, 255, 0.16);
+  --frame-glow: rgba(80, 169, 255, 0.18);
 }
 
-.projectMediaResource {
-  background:
-    radial-gradient(circle at 12% 24%, rgba(90, 76, 255, 0.15), transparent 24%),
-    radial-gradient(circle at 82% 12%, rgba(255, 207, 112, 0.12), transparent 22%),
-    linear-gradient(180deg, #0d1016 0%, #151a22 100%);
+.placeholderStageresource {
+  --frame-accent: #e4c078;
+  --frame-accent-soft: rgba(228, 192, 120, 0.14);
+  --frame-glow: rgba(228, 192, 120, 0.16);
 }
 
-.tweetCover,
-.resourceCover {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  padding: 22px;
+.placeholderStageairaware {
+  --frame-accent: #8bd0bf;
+  --frame-accent-soft: rgba(139, 208, 191, 0.14);
+  --frame-glow: rgba(69, 196, 153, 0.18);
 }
 
-.tweetCover {
-  display: grid;
-  gap: 16px;
+.placeholderStagevcrts {
+  --frame-accent: #bfabff;
+  --frame-accent-soft: rgba(191, 171, 255, 0.15);
+  --frame-glow: rgba(150, 120, 255, 0.18);
 }
 
-.tweetStatRow {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+.placeholderGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.1;
+  mix-blend-mode: screen;
 }
 
-.tweetStatCard {
-  display: grid;
-  gap: 6px;
-  padding: 14px 16px;
-  border-radius: 16px;
-  border: 1px solid rgba(113, 148, 175, 0.18);
-  background: linear-gradient(180deg, rgba(20, 46, 64, 0.96), rgba(16, 37, 51, 0.92));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 18px 34px rgba(0, 0, 0, 0.24);
+.placeholderCrosshairHorizontal,
+.placeholderCrosshairVertical {
+  position: absolute;
+  background: var(--frame-accent-soft);
 }
 
-.tweetStatCard span,
-.tweetSectionEyebrow,
-.tweetRecentLabel,
-.resourceScope,
-.resourceSummaryHeader span {
-  color: rgba(184, 203, 219, 0.7);
-  font-size: 0.59rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+.placeholderCrosshairHorizontal {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
 }
 
-.tweetStatCard strong {
-  color: #f2f7fb;
-  font-size: 1.45rem;
-  font-weight: 700;
-  letter-spacing: -0.05em;
+.placeholderCrosshairVertical {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
 }
 
-.tweetGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(138px, 0.72fr);
-  gap: 14px;
-  min-height: 0;
-  flex: 1;
-}
-
-.tweetStreamCard,
-.tweetControlCard,
-.tweetTestCard {
-  border-radius: 20px;
-  border: 1px solid rgba(109, 153, 184, 0.14);
-  background: linear-gradient(180deg, rgba(17, 44, 62, 0.96), rgba(11, 31, 45, 0.94));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 26px 48px rgba(0, 0, 0, 0.24);
-}
-
-.tweetStreamCard {
-  display: grid;
-  gap: 14px;
-  padding: 18px;
-}
-
-.tweetCardHeader {
+.placeholderHud {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  align-items: baseline;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(140, 176, 197, 0.12);
-}
-
-.tweetSectionTitle {
-  color: #f3f7fa;
-  font-size: 1.02rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
-.tweetConfidence {
-  color: rgba(201, 219, 231, 0.82);
+  color: rgba(226, 230, 236, 0.52);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
   font-size: 0.58rem;
   font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.placeholderLayout {
+  position: absolute;
+  inset: 58px 24px 24px;
+  display: grid;
+  gap: 14px;
+  align-content: end;
+}
+
+.placeholderHero {
+  display: grid;
+  gap: 12px;
+  width: min(100%, 360px);
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
+    rgba(8, 11, 15, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 22px 42px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(8px);
+}
+
+.placeholderSerial {
+  width: fit-content;
+  min-width: 46px;
+  padding: 4px 10px;
+  border: 1px solid var(--frame-accent-soft);
+  color: var(--frame-accent);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.58rem;
+  font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
-.tweetHero {
+.placeholderHero strong {
+  color: #f5f7fb;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  font-weight: 650;
+}
+
+.placeholderBars {
   display: grid;
-  align-content: start;
-  gap: 16px;
-  min-height: 164px;
-  padding: 16px;
-  border-radius: 18px;
-  border: 1px solid rgba(88, 121, 144, 0.16);
-  background:
-    linear-gradient(180deg, rgba(10, 29, 43, 0.98), rgba(9, 27, 39, 0.9)),
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.03), transparent 32%);
+  gap: 8px;
 }
 
-.sentimentPill {
-  width: fit-content;
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-size: 0.52rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.sentimentNegative {
-  color: #ff8c84;
-  border: 1px solid rgba(255, 122, 112, 0.24);
-  background: rgba(120, 42, 51, 0.32);
-}
-
-.sentimentPositive {
-  color: #5cf2a8;
-  border: 1px solid rgba(76, 223, 150, 0.24);
-  background: rgba(22, 95, 74, 0.32);
-}
-
-.tweetHeadline {
-  margin: 0;
-  max-width: 9ch;
-  color: #f5f8fb;
-  font-size: clamp(1.8rem, 3vw, 2.55rem);
-  line-height: 0.95;
-  letter-spacing: -0.08em;
-  font-weight: 700;
-  text-wrap: balance;
-}
-
-.tweetRecent {
-  display: grid;
-  gap: 10px;
-}
-
-.tweetRecentGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.tweetMiniTile {
-  display: grid;
-  gap: 10px;
-  min-height: 102px;
-  padding: 12px;
-  border-radius: 16px;
-  border: 1px solid rgba(109, 153, 184, 0.12);
-  background: rgba(10, 29, 43, 0.72);
-}
-
-.tweetMiniTile p {
-  margin: 0;
-  color: rgba(211, 226, 236, 0.72);
-  font-size: 0.67rem;
-  line-height: 1.55;
-}
-
-.tweetSidebar {
-  display: grid;
-  gap: 12px;
-}
-
-.tweetControlCard,
-.tweetTestCard {
-  display: grid;
-  gap: 12px;
-  padding: 16px;
-}
-
-.tweetControlMeta {
-  color: rgba(215, 228, 237, 0.88);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-}
-
-.tweetSliderTrack {
-  position: relative;
+.placeholderBars span {
+  display: block;
   height: 8px;
   border-radius: 999px;
-  background: rgba(95, 124, 143, 0.2);
-  overflow: hidden;
+  background: linear-gradient(90deg, var(--frame-accent-soft), rgba(255, 255, 255, 0.08));
 }
 
-.tweetSliderFill {
-  display: block;
-  width: 48%;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #2fe57c, #3ad892);
-  box-shadow: 0 0 18px rgba(47, 229, 124, 0.3);
+.placeholderBars span:nth-child(1) {
+  width: 92%;
 }
 
-.tweetSpeedRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  color: rgba(190, 209, 221, 0.74);
-  font-size: 0.55rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+.placeholderBars span:nth-child(2) {
+  width: 70%;
 }
 
-.tweetAction,
-.tweetSecondaryAction {
+.placeholderBars span:nth-child(3) {
+  width: 54%;
+}
+
+.placeholderPanels {
   display: grid;
-  place-items: center;
-  min-height: 42px;
-  border-radius: 14px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.tweetAction {
-  color: #082719;
-  background: linear-gradient(180deg, #4be287, #2ecb72);
-}
-
-.tweetInputMock {
-  min-height: 72px;
-  border-radius: 14px;
-  border: 1px solid rgba(109, 153, 184, 0.12);
-  background: rgba(10, 29, 43, 0.72);
-  padding: 14px;
-  color: rgba(200, 215, 225, 0.44);
-  font-size: 0.74rem;
-}
-
-.tweetSecondaryAction {
-  color: rgba(233, 241, 246, 0.94);
-  border: 1px solid rgba(109, 153, 184, 0.14);
-  background: rgba(33, 68, 92, 0.92);
-}
-
-.resourceCover {
-  display: grid;
-  gap: 14px;
-  background:
-    radial-gradient(circle at 10% 32%, rgba(101, 84, 255, 0.16), transparent 26%),
-    linear-gradient(180deg, rgba(255, 246, 231, 0.04), rgba(255, 255, 255, 0));
-}
-
-.resourceScope {
-  justify-self: end;
-}
-
-.resourceChipRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.resourceChip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  border-radius: 999px;
-  padding: 0 14px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(254, 248, 237, 0.94);
-  color: #504665;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
-}
-
-.resourceQuestion {
-  display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-  align-items: start;
-  padding-top: 2px;
 }
 
-.resourceAvatar {
+.placeholderPanel {
   display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 240, 209, 0.16);
-  background: rgba(255, 244, 223, 0.08);
-  color: #f5dba2;
-  font-size: 0.84rem;
+  gap: 12px;
+  min-height: 84px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 13, 18, 0.82);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.placeholderPanel span {
+  color: rgba(224, 231, 240, 0.84);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.58rem;
   font-weight: 700;
-}
-
-.resourceQuestion p {
-  margin: 0;
-  color: rgba(248, 243, 237, 0.92);
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.35;
-  text-wrap: balance;
-}
-
-.resourceSummaryCard {
-  display: grid;
-  gap: 16px;
-  padding: 20px;
-  border-radius: 24px;
-  background:
-    linear-gradient(180deg, rgba(252, 247, 240, 0.98), rgba(243, 236, 224, 0.94)),
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.58), transparent 32%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    0 28px 54px rgba(0, 0, 0, 0.22);
-}
-
-.resourceSummaryHeader {
-  display: grid;
-  gap: 6px;
-}
-
-.resourceSummaryHeader strong {
-  color: #212634;
-  font-size: 1.18rem;
-  font-weight: 800;
-  letter-spacing: -0.05em;
-}
-
-.resourceSummaryHeader span {
-  color: rgba(103, 97, 112, 0.68);
-}
-
-.resourceRiskList {
-  display: grid;
-  gap: 14px;
-}
-
-.resourceRiskItem {
-  position: relative;
-  display: grid;
-  gap: 8px;
-  padding: 2px 0 2px 18px;
-}
-
-.resourceRiskItem::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 2px;
-  bottom: 2px;
-  width: 4px;
-  border-radius: 999px;
-}
-
-.resourceRiskLabel {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.resourceRiskLabel span {
-  color: #232736;
-  font-size: 0.79rem;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
-
-.resourceRiskLabel em {
-  font-style: normal;
-  font-size: 0.69rem;
-  font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.resourceRiskItem p {
-  margin: 0;
-  max-width: 48ch;
-  color: rgba(67, 70, 81, 0.78);
-  font-size: 0.72rem;
-  line-height: 1.55;
+.placeholderPanel em {
+  display: block;
+  width: 70%;
+  height: 6px;
+  margin-top: auto;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--frame-accent), rgba(255, 255, 255, 0.1));
+  box-shadow: 0 0 18px var(--frame-glow);
 }
 
-.resourceRiskHigh::before {
-  background: linear-gradient(180deg, #ff5d6f, #ff3159);
-}
-
-.resourceRiskHigh em {
-  color: #ff4f69;
-}
-
-.resourceRiskMedium::before {
-  background: linear-gradient(180deg, #ffbc57, #ff9811);
-}
-
-.resourceRiskMedium em {
-  color: #f39a15;
-}
-
-.resourceRiskCompliant::before {
-  background: linear-gradient(180deg, #21d49a, #0db77d);
-}
-
-.resourceRiskCompliant em {
-  color: #11b986;
-}
-
-.resourceComposer {
-  display: flex;
-  justify-content: space-between;
-  gap: 14px;
-  align-items: center;
-  min-height: 56px;
-  padding: 0 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 250, 240, 0.08);
-  background: rgba(255, 247, 232, 0.06);
-  color: rgba(248, 242, 233, 0.64);
-  font-size: 0.78rem;
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.16);
-}
-
-.resourceSendButton {
+.playButton {
+  position: absolute;
+  inset: 50% auto auto 50%;
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: linear-gradient(180deg, #7368ff, #5543f3);
-  color: #ffffff;
-  font-size: 1rem;
-  box-shadow: 0 10px 24px rgba(89, 72, 255, 0.35);
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  border: 1px solid color-mix(in srgb, var(--frame-accent) 58%, rgba(255, 255, 255, 0.2));
+  background: color-mix(in srgb, #0b0e12 74%, var(--frame-accent-soft));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 14px 26px rgba(0, 0, 0, 0.28);
+  z-index: 3;
 }
 
-.projectImage {
-  object-fit: cover;
-  object-position: var(--project-visual-position, 50% 50%);
-  transform: scale(var(--project-visual-scale, 1));
-}
-
-.projectVideo {
+.playGlyph {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: var(--project-visual-position, 50% 50%);
-  transform:
-    translateX(var(--project-visual-translate-x, 0))
-    scale(var(--project-visual-scale, 1));
-  background: transparent;
-}
-
-.projectVideoReady {
-  background: #071018;
-}
-
-.projectImageLight {
-  display: none;
-}
-
-.projectImageDark {
-  display: block;
-}
-
-html[data-theme='light'] .projectImageLight {
-  display: block;
-}
-
-html[data-theme='light'] .projectImageDark {
-  display: none;
-}
-
-.projectMediaPlaceholder {
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 82%, transparent), transparent),
-    linear-gradient(180deg, var(--project-visual-start), var(--project-visual-end));
-}
-
-.placeholderCanvas {
-  position: absolute;
-  inset: 0;
-  padding: 18px;
-  display: grid;
-  gap: 14px;
-  align-content: end;
-  background:
-    linear-gradient(130deg, rgba(255, 255, 255, 0.03), transparent 45%),
-    radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 10%, transparent), transparent 30%);
-}
-
-.placeholderPanel {
-  display: block;
-  border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--surface-border) 74%, transparent);
-  background: color-mix(in srgb, var(--surface-strong) 72%, transparent);
-}
-
-.placeholderPanel:nth-child(1) {
-  height: 48%;
-}
-
-.placeholderPanel:nth-child(2) {
-  width: 72%;
-  height: 16%;
-}
-
-.placeholderPanel:nth-child(3) {
-  width: 54%;
-  height: 12%;
-}
-
-.placeholderCanvasairaware {
-  background:
-    linear-gradient(140deg, rgba(255, 255, 255, 0.03), transparent 48%),
-    radial-gradient(circle at 84% 18%, rgba(212, 175, 55, 0.1), transparent 22%),
-    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 88%, transparent), transparent);
-}
-
-.placeholderCanvasvcrts {
-  background:
-    linear-gradient(125deg, rgba(255, 255, 255, 0.03), transparent 42%),
-    radial-gradient(circle at 16% 24%, rgba(212, 175, 55, 0.08), transparent 18%),
-    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 84%, transparent), transparent);
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 17px solid var(--frame-accent);
+  filter: drop-shadow(0 0 12px var(--frame-glow));
 }
 
 .copyColumn {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+  gap: 26px;
+  padding: 18px 0 0;
 }
 
 .projectHeader {
@@ -664,8 +320,8 @@ html[data-theme='light'] .projectImageDark {
 .projectHeader h3 {
   margin: 0;
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(1.7rem, 2.5vw, 2.2rem);
-  line-height: 0.98;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 0.94;
   letter-spacing: -0.05em;
   font-weight: 650;
 }
@@ -673,57 +329,48 @@ html[data-theme='light'] .projectImageDark {
 .tagList {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 14px;
-  align-items: center;
+  gap: 12px 20px;
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
-  position: relative;
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.11em;
+  color: color-mix(in srgb, var(--muted) 88%, var(--text));
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   white-space: nowrap;
-  transition:
-    color 220ms var(--ease-standard),
-    opacity 220ms var(--ease-standard);
 }
 
 .tag::before {
   content: '';
   width: 6px;
   height: 6px;
-  margin-right: 14px;
-  border-radius: 50%;
+  margin-right: 11px;
+  border-radius: 999px;
   background: var(--accent);
-  flex: 0 0 auto;
   opacity: 0.9;
 }
 
 .projectBody {
-  display: grid;
-  gap: 12px;
+  display: block;
 }
 
 .projectSummary,
 .projectDetail {
   margin: 0;
-  max-width: 58ch;
   color: var(--muted);
-  line-height: 1.72;
   text-wrap: pretty;
 }
 
 .projectSummary {
+  max-width: 46ch;
   color: color-mix(in srgb, var(--text) 88%, var(--muted));
-  font-size: 1.04rem;
-}
-
-.projectDetail {
-  font-size: 0.98rem;
+  font-size: 1.08rem;
+  line-height: 1.72;
 }
 
 .projectActions {
@@ -780,21 +427,29 @@ html[data-theme='light'] .projectImageDark {
 }
 
 .primaryAction:hover::before,
-.primaryAction:focus-visible::before {
+.primaryAction:focus-visible::before,
+.secondaryAction:hover::before,
+.secondaryAction:focus-visible::before {
   transform: scaleX(1);
 }
 
-.primaryAction:hover::after {
+.primaryAction:hover::after,
+.secondaryAction:hover::after {
   transform: translate(2px, -2px);
-}
-
-.primaryAction:focus-visible {
-  color: color-mix(in srgb, var(--accent) 88%, var(--text));
-  outline: none;
 }
 
 .secondaryAction {
   color: var(--muted);
+}
+
+.secondaryAction::after {
+  content: '\2197';
+  font-size: 1.18rem;
+  line-height: 1;
+  color: color-mix(in srgb, var(--accent) 84%, var(--text));
+  transition:
+    transform 220ms var(--ease-standard),
+    color 220ms var(--ease-standard);
 }
 
 .secondaryAction:hover {
@@ -802,15 +457,12 @@ html[data-theme='light'] .projectImageDark {
 }
 
 @media (max-width: 1100px) {
-  .projectRow,
-  .projectRowReversed,
-  .projectRowFeature {
+  .projectRow {
     grid-template-columns: 1fr;
-    gap: 22px;
   }
 
-  .projectRowFeature {
-    margin-bottom: 0;
+  .projectRowReversed {
+    grid-template-columns: 1fr;
   }
 
   .projectRowReversed .mediaColumn,
@@ -818,16 +470,8 @@ html[data-theme='light'] .projectImageDark {
     order: initial;
   }
 
-  .projectMedia {
-    aspect-ratio: 1.5 / 1;
-  }
-
-  .tweetGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .tweetSidebar {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .copyColumn {
+    padding-top: 0;
   }
 }
 
@@ -845,89 +489,56 @@ html[data-theme='light'] .projectImageDark {
     gap: 44px;
   }
 
-  .projectRow {
-    gap: 18px;
-  }
-
-  .projectMedia {
-    aspect-ratio: 1.28 / 1;
+  .mediaShell {
+    padding: 10px;
     border-radius: 14px;
   }
 
-  .tweetCover,
-  .resourceCover {
+  .mediaViewport {
+    border-radius: 8px;
+  }
+
+  .placeholderHud {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    font-size: 0.5rem;
+  }
+
+  .placeholderLayout {
+    inset: 50px 14px 14px;
+    gap: 10px;
+  }
+
+  .placeholderHero {
+    width: min(100%, 270px);
     padding: 14px;
   }
 
-  .tweetStatRow,
-  .tweetRecentGrid,
-  .tweetSidebar {
+  .placeholderHero strong {
+    font-size: clamp(1.18rem, 5vw, 1.6rem);
+  }
+
+  .placeholderPanels {
     grid-template-columns: 1fr;
   }
 
-  .tweetStatCard {
-    padding: 12px 14px;
+  .placeholderPanel {
+    min-height: 54px;
   }
 
-  .tweetStreamCard,
-  .tweetControlCard,
-  .tweetTestCard,
-  .resourceSummaryCard {
-    border-radius: 16px;
+  .playButton {
+    width: 62px;
+    height: 62px;
   }
 
-  .tweetStreamCard,
-  .tweetControlCard,
-  .tweetTestCard {
-    padding: 14px;
+  .projectHeader h3 {
+    font-size: clamp(1.72rem, 7vw, 2.2rem);
   }
 
-  .tweetHero {
-    min-height: 132px;
-    padding: 14px;
-  }
-
-  .tweetHeadline {
-    font-size: clamp(1.6rem, 7vw, 2rem);
-  }
-
-  .tweetMiniTile {
-    min-height: 0;
-  }
-
-  .tweetCardHeader {
-    align-items: start;
-    flex-direction: column;
-  }
-
-  .resourceQuestion p {
-    font-size: 0.82rem;
-  }
-
-  .resourceSummaryHeader strong {
+  .projectSummary {
+    max-width: none;
     font-size: 1rem;
-  }
-
-  .resourceRiskLabel span {
-    font-size: 0.68rem;
-  }
-
-  .resourceRiskItem p,
-  .resourceComposer {
-    font-size: 0.68rem;
-  }
-
-  .placeholderCanvas {
-    padding: 14px;
-    gap: 10px;
-  }
-
-  .copyColumn {
-    gap: 16px;
-  }
-
-  .projectHeader {
-    gap: 10px;
   }
 
   .tagList {
@@ -935,21 +546,6 @@ html[data-theme='light'] .projectImageDark {
   }
 
   .tag {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-  }
-
-  .tag::before {
-    width: 6px;
-    height: 6px;
-    margin-right: 14px;
-  }
-
-  .projectHeader h3 {
-    font-size: clamp(1.5rem, 6vw, 1.9rem);
-  }
-
-  .projectSummary {
-    font-size: 1rem;
+    font-size: 0.68rem;
   }
 }
