@@ -5,9 +5,6 @@ import SectionHeading from '../SectionHeading/SectionHeading';
 import { projects } from '../../../content/projects';
 import styles from './Projects.module.css';
 
-const LOOP_HANDOFF_WINDOW_SECONDS = 0.58;
-const LOOP_CROSSFADE_DURATION_MS = 520;
-
 function formatProjectIndex(index) {
   return String(index + 1).padStart(2, '0');
 }
@@ -34,263 +31,50 @@ function ProjectActions({ githubUrl, liveUrl }) {
 }
 
 function LocalVideoProjectFrame({ project, isPlaybackActive }) {
-  const primaryVideoRef = useRef(null);
-  const secondaryVideoRef = useRef(null);
-  const animationFrameRef = useRef(null);
-  const crossfadeTimeoutRef = useRef(null);
-  const durationRef = useRef(0);
-  const activeIndexRef = useRef(0);
-  const crossfadeStateRef = useRef(null);
-  const isPlaybackActiveRef = useRef(isPlaybackActive);
+  const videoRef = useRef(null);
   const [hasMounted, setHasMounted] = useState(false);
-  const [visibleIndex, setVisibleIndex] = useState(0);
-
-  const getVideoRefs = () => [primaryVideoRef, secondaryVideoRef];
-
-  const cancelPlaybackMonitor = () => {
-    if (!animationFrameRef.current) {
-      return;
-    }
-
-    cancelAnimationFrame(animationFrameRef.current);
-    animationFrameRef.current = null;
-  };
-
-  const clearCrossfadeTimeout = () => {
-    if (!crossfadeTimeoutRef.current) {
-      return;
-    }
-
-    clearTimeout(crossfadeTimeoutRef.current);
-    crossfadeTimeoutRef.current = null;
-  };
-
-  const finalizeCrossfade = () => {
-    const crossfadeState = crossfadeStateRef.current;
-
-    if (!crossfadeState) {
-      return;
-    }
-
-    const videoRefs = getVideoRefs();
-    const fromVideo = videoRefs[crossfadeState.fromIndex].current;
-    const toVideo = videoRefs[crossfadeState.toIndex].current;
-
-    clearCrossfadeTimeout();
-
-    if (fromVideo) {
-      fromVideo.pause();
-      fromVideo.currentTime = 0;
-    }
-
-    if (toVideo) {
-      toVideo.muted = true;
-    }
-
-    activeIndexRef.current = crossfadeState.toIndex;
-    crossfadeStateRef.current = null;
-    setVisibleIndex(crossfadeState.toIndex);
-  };
-
-  const scheduleCrossfadeFinalize = (durationMs) => {
-    clearCrossfadeTimeout();
-    crossfadeTimeoutRef.current = setTimeout(() => {
-      finalizeCrossfade();
-    }, durationMs);
-  };
-
-  const startCrossfade = () => {
-    if (crossfadeStateRef.current) {
-      return;
-    }
-
-    const videoRefs = getVideoRefs();
-    const fromIndex = activeIndexRef.current;
-    const toIndex = fromIndex === 0 ? 1 : 0;
-    const fromVideo = videoRefs[fromIndex].current;
-    const toVideo = videoRefs[toIndex].current;
-
-    if (!fromVideo || !toVideo) {
-      return;
-    }
-
-    toVideo.pause();
-    toVideo.currentTime = 0;
-    toVideo.muted = true;
-
-    const playPromise = toVideo.play();
-    if (playPromise?.catch) {
-      playPromise.catch(() => {});
-    }
-
-    crossfadeStateRef.current = {
-      fromIndex,
-      toIndex,
-      durationMs: LOOP_CROSSFADE_DURATION_MS,
-      remainingMs: LOOP_CROSSFADE_DURATION_MS,
-      startedAt: performance.now(),
-    };
-
-    setVisibleIndex(toIndex);
-    scheduleCrossfadeFinalize(LOOP_CROSSFADE_DURATION_MS);
-  };
-
-  const monitorLoopBoundary = () => {
-    cancelPlaybackMonitor();
-
-    const tick = () => {
-      if (!isPlaybackActiveRef.current) {
-        animationFrameRef.current = null;
-        return;
-      }
-
-      const activeVideo = getVideoRefs()[activeIndexRef.current].current;
-      const duration = durationRef.current || activeVideo?.duration || 0;
-
-      if (
-        activeVideo &&
-        duration > LOOP_HANDOFF_WINDOW_SECONDS &&
-        !crossfadeStateRef.current &&
-        duration - activeVideo.currentTime <= LOOP_HANDOFF_WINDOW_SECONDS
-      ) {
-        startCrossfade();
-      }
-
-      animationFrameRef.current = requestAnimationFrame(tick);
-    };
-
-    animationFrameRef.current = requestAnimationFrame(tick);
-  };
-
-  const pauseAllVideos = () => {
-    cancelPlaybackMonitor();
-
-    const crossfadeState = crossfadeStateRef.current;
-    if (crossfadeState && crossfadeState.startedAt !== null) {
-      const elapsedMs = Math.max(0, performance.now() - crossfadeState.startedAt);
-      crossfadeState.remainingMs = Math.max(0, crossfadeState.durationMs - elapsedMs);
-      crossfadeState.startedAt = null;
-      clearCrossfadeTimeout();
-    }
-
-    getVideoRefs().forEach((videoRef) => {
-      videoRef.current?.pause();
-    });
-  };
-
-  const resumeVideos = () => {
-    const videoRefs = getVideoRefs();
-    let crossfadeState = crossfadeStateRef.current;
-
-    if (crossfadeState) {
-      if (crossfadeState.remainingMs <= 40) {
-        finalizeCrossfade();
-        crossfadeState = crossfadeStateRef.current;
-      }
-    }
-
-    if (crossfadeState) {
-      const fromVideo = videoRefs[crossfadeState.fromIndex].current;
-      const toVideo = videoRefs[crossfadeState.toIndex].current;
-
-      if (fromVideo) {
-        fromVideo.muted = true;
-        const fromPlayPromise = fromVideo.play();
-        if (fromPlayPromise?.catch) {
-          fromPlayPromise.catch(() => {});
-        }
-      }
-
-      if (toVideo) {
-        toVideo.muted = true;
-        const toPlayPromise = toVideo.play();
-        if (toPlayPromise?.catch) {
-          toPlayPromise.catch(() => {});
-        }
-      }
-
-      crossfadeState.durationMs = Math.max(crossfadeState.remainingMs, 40);
-      crossfadeState.startedAt = performance.now();
-      scheduleCrossfadeFinalize(crossfadeState.durationMs);
-      monitorLoopBoundary();
-      return;
-    }
-
-    const activeVideo = videoRefs[activeIndexRef.current].current;
-    if (!activeVideo) {
-      return;
-    }
-
-    activeVideo.muted = true;
-    const playPromise = activeVideo.play();
-    if (playPromise?.catch) {
-      playPromise.catch(() => {});
-    }
-
-    monitorLoopBoundary();
-  };
 
   useEffect(() => {
     setHasMounted(true);
   }, []);
 
   useEffect(() => {
-    isPlaybackActiveRef.current = isPlaybackActive;
-
     if (!hasMounted) {
       return undefined;
     }
 
-    if (isPlaybackActive) {
-      resumeVideos();
+    const video = videoRef.current;
+    if (!video) {
       return undefined;
     }
 
-    pauseAllVideos();
+    if (isPlaybackActive) {
+      video.muted = true;
+      const playPromise = video.play();
+      if (playPromise?.catch) {
+        playPromise.catch(() => {});
+      }
+      return undefined;
+    }
+
+    video.pause();
     return undefined;
   }, [hasMounted, isPlaybackActive]);
-
-  useEffect(() => {
-    return () => {
-      cancelPlaybackMonitor();
-      clearCrossfadeTimeout();
-    };
-  }, []);
 
   return (
     <div className={styles.mediaShell}>
       <div className={styles.mediaViewport} aria-label={`${project.title} demo reel`}>
         {hasMounted ? (
-          <>
-            <video
-              ref={primaryVideoRef}
-              className={`${styles.mediaVideo} ${styles.mediaVideoLayer} ${
-                visibleIndex === 0 ? styles.mediaVideoVisible : ''
-              }`}
-              src={project.videoSrc}
-              muted
-              playsInline
-              preload="auto"
-              aria-hidden="true"
-              onLoadedMetadata={(event) => {
-                durationRef.current = event.currentTarget.duration || durationRef.current;
-              }}
-            />
-            <video
-              ref={secondaryVideoRef}
-              className={`${styles.mediaVideo} ${styles.mediaVideoLayer} ${
-                visibleIndex === 1 ? styles.mediaVideoVisible : ''
-              }`}
-              src={project.videoSrc}
-              muted
-              playsInline
-              preload="auto"
-              aria-hidden="true"
-              onLoadedMetadata={(event) => {
-                durationRef.current = event.currentTarget.duration || durationRef.current;
-              }}
-            />
-          </>
+          <video
+            ref={videoRef}
+            className={styles.mediaVideo}
+            src={project.videoSrc}
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+          />
         ) : (
           <div className={styles.mediaVideoMountPlaceholder} aria-hidden="true" />
         )}

@@ -21,6 +21,7 @@ export const projects = [
     tags: ['RAG', 'pgvector', 'Local Embeddings', 'Flask'],
     githubUrl: 'https://github.com/ShantnuKaushal/ReSource',
     liveUrl: '',
+    videoSrc: '/videos/projects/resource-demo.mov',
   },
   {
     slug: 'airaware',
