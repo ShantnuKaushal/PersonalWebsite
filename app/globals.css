@@ -26,10 +26,12 @@
   --nav-bg: rgba(18, 18, 18, 0.9);
   --nav-border: rgba(50, 50, 52, 0.9);
   --nav-text: rgba(245, 245, 247, 0.82);
-  --hero-ring-start: #2c2c2c;
-  --hero-ring-end: #1e1e1e;
-  --hero-ring-shadow: rgba(50, 50, 52, 0.38);
-  --portrait-bg: #252525;
+  --hero-ring-start: #1e1e1e;
+  --hero-ring-end: #252525;
+  --hero-ring-stroke: rgba(50, 50, 52, 0.9);
+  --hero-ring-stroke-strong: rgba(44, 44, 44, 0.96);
+  --hero-ring-shadow: rgba(0, 0, 0, 0.22);
+  --portrait-bg: #1e1e1e;
   --button-soft-border: #424245;
   --button-hover-bg: #2c2c2c;
   --project-visual-glow: transparent;
@@ -40,50 +42,52 @@
   --project-visual-muted: rgba(161, 161, 166, 0.78);
   --footer-muted: rgba(161, 161, 166, 0.82);
   --page-glow: transparent;
-  --page-top: #121212;
-  --page-mid: #1b1b1b;
-  --page-bottom: #121212;
+  --page-top: #111111;
+  --page-mid: #171717;
+  --page-bottom: #171718;
   --page-grid: transparent;
-  --page-fade: rgba(18, 18, 18, 0);
+  --page-fade: rgba(23, 23, 24, 0);
   --selection-bg: rgba(212, 175, 55, 0.28);
 }
 
 html[data-theme='light'] {
-  --bg: #ffffff;
-  --bg-strong: #f8f8f8;
-  --surface: #f8f8f8;
-  --surface-strong: #f2f2f2;
-  --surface-border: #e5e5e5;
-  --text: #1a1a1a;
-  --muted: #4a4a4a;
-  --accent: #d4af37;
-  --accent-on: #ffffff;
-  --accent-soft: rgba(212, 175, 55, 0.12);
-  --accent-warm: #d4af37;
-  --shadow: 0 20px 48px rgba(26, 26, 26, 0.05);
-  --nav-bg: rgba(255, 255, 255, 0.9);
-  --nav-border: rgba(229, 229, 229, 0.9);
-  --nav-text: rgba(26, 26, 26, 0.76);
-  --hero-ring-start: #f2f2f2;
-  --hero-ring-end: #f8f8f8;
-  --hero-ring-shadow: rgba(229, 229, 229, 0.88);
-  --portrait-bg: #f2f2f2;
-  --button-soft-border: #d1d1d1;
-  --button-hover-bg: #f2f2f2;
-  --project-visual-glow: transparent;
-  --project-visual-start: #ffffff;
-  --project-visual-end: #f2f2f2;
-  --project-visual-border: #e5e5e5;
-  --project-visual-text: rgba(26, 26, 26, 0.9);
-  --project-visual-muted: rgba(74, 74, 74, 0.76);
-  --footer-muted: rgba(74, 74, 74, 0.84);
-  --page-glow: transparent;
-  --page-top: #ffffff;
-  --page-mid: #fafafa;
-  --page-bottom: #ffffff;
+  --bg: #f5f5f5;
+  --bg-strong: #efede8;
+  --surface: #ffffff;
+  --surface-strong: #f3f1ec;
+  --surface-border: #ddd8cf;
+  --text: #111111;
+  --muted: #5c5a55;
+  --accent: #b88a24;
+  --accent-on: #fffdf8;
+  --accent-soft: rgba(184, 138, 36, 0.12);
+  --accent-warm: #c79a3a;
+  --shadow: 0 20px 48px rgba(50, 39, 16, 0.08);
+  --nav-bg: rgba(251, 250, 247, 0.88);
+  --nav-border: rgba(221, 216, 207, 0.92);
+  --nav-text: rgba(17, 17, 17, 0.76);
+  --hero-ring-start: #f7f5e9;
+  --hero-ring-end: #ebe8d8;
+  --hero-ring-stroke: rgba(207, 202, 192, 0.9);
+  --hero-ring-stroke-strong: rgba(223, 219, 208, 0.98);
+  --hero-ring-shadow: rgba(58, 53, 47, 0.08);
+  --portrait-bg: #f7f5e9;
+  --button-soft-border: #d6cfc1;
+  --button-hover-bg: #f3f1ec;
+  --project-visual-glow: rgba(184, 138, 36, 0.08);
+  --project-visual-start: #f8f6f1;
+  --project-visual-end: #ece8e0;
+  --project-visual-border: #ddd8cf;
+  --project-visual-text: rgba(17, 17, 17, 0.9);
+  --project-visual-muted: rgba(92, 90, 85, 0.76);
+  --footer-muted: rgba(92, 90, 85, 0.84);
+  --page-glow: rgba(184, 138, 36, 0.06);
+  --page-top: #fbfaf7;
+  --page-mid: #f3f1ec;
+  --page-bottom: #ece8e0;
   --page-grid: transparent;
-  --page-fade: rgba(255, 255, 255, 0);
-  --selection-bg: rgba(212, 175, 55, 0.2);
+  --page-fade: rgba(236, 232, 224, 0);
+  --selection-bg: rgba(184, 138, 36, 0.18);
 }
 
 * {
@@ -102,9 +106,9 @@ body {
   background: linear-gradient(
     180deg,
     var(--page-top) 0%,
-    color-mix(in srgb, var(--page-top) 78%, var(--page-mid)) 24%,
-    var(--page-mid) 52%,
-    color-mix(in srgb, var(--page-bottom) 78%, var(--page-mid)) 78%,
+    color-mix(in srgb, var(--page-top) 52%, var(--page-mid)) 18%,
+    var(--page-mid) 58%,
+    color-mix(in srgb, var(--page-bottom) 72%, var(--page-mid)) 82%,
     var(--page-bottom) 100%
   );
   transition:
@@ -117,7 +121,9 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: none;
+  background:
+    radial-gradient(circle at 12% 0%, var(--page-glow), transparent 32%),
+    radial-gradient(circle at 88% 12%, var(--page-glow), transparent 28%);
 }
 
 body::after {

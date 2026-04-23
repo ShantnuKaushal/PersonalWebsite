@@ -7,15 +7,17 @@ export default function Hero() {
   return (
     <section className={styles.hero} id="top">
       <div className={styles.heroVisual}>
-        <div className={styles.portraitRing}>
-          <Image
-            src={profile.profileImage}
-            alt="Shantnu Kaushal portfolio image"
-            width={430}
-            height={430}
-            priority
-            className={styles.portrait}
-          />
+        <div className={styles.portraitFloat}>
+          <div className={styles.portraitRing}>
+            <Image
+              src={profile.profileImage}
+              alt="Shantnu Kaushal portfolio image"
+              width={430}
+              height={430}
+              priority
+              className={styles.portrait}
+            />
+          </div>
         </div>
       </div>
 

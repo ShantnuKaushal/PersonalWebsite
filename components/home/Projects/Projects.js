@@ -6,10 +6,6 @@ import { projects } from '../../../content/projects';
 import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import styles from './Projects.module.css';
 
-function formatProjectIndex(index) {
-  return String(index + 1).padStart(2, '0');
-}
-
 function ProjectActions({ githubUrl, liveUrl, statusText }) {
   if (!githubUrl && !liveUrl && !statusText) {
     return null;
@@ -87,47 +83,60 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
   );
 }
 
+function SkillScanConceptArtwork() {
+  return (
+    <div className={styles.conceptScene}>
+      <div className={styles.skillscanCanvas} aria-hidden="true">
+        <span className={styles.skillscanTileRear} />
+        <span className={styles.skillscanTileSide} />
+        <span className={styles.skillscanTilePrimary} />
+      </div>
+    </div>
+  );
+}
+
+function PneumoraConceptArtwork() {
+  return <SkillScanConceptArtwork />;
+}
+
 function PlaceholderProjectFrame({ project, index }) {
-  const indexLabel = formatProjectIndex(index);
   const frameClassName = styles[`placeholderStage${project.slug}`] ?? '';
+  const isSkillScan = project.slug === 'skillscan';
+  const isPneumora = project.slug === 'pneumora';
 
   return (
     <div className={styles.mediaShell}>
       <div className={styles.mediaViewport} role="img" aria-label={`${project.title} placeholder preview`}>
         <div className={`${styles.placeholderStage} ${frameClassName}`}>
-          <div className={styles.placeholderGrid} />
-          <span className={styles.placeholderCrosshairHorizontal} />
-          <span className={styles.placeholderCrosshairVertical} />
+          {isSkillScan ? <SkillScanConceptArtwork /> : null}
+          {isPneumora ? <PneumoraConceptArtwork /> : null}
+          {!isSkillScan && !isPneumora ? (
+            <>
+              <div className={styles.placeholderGrid} />
+              <span className={styles.placeholderCrosshairHorizontal} />
+              <span className={styles.placeholderCrosshairVertical} />
 
-          <div className={styles.placeholderHud}>
-            <span>{`Fig. ${indexLabel} // Display`}</span>
-            <span>Preview Mode</span>
-          </div>
-
-          <div className={styles.placeholderLayout}>
-            <div className={styles.placeholderHero}>
-              <span className={styles.placeholderSerial}>{`P${indexLabel}`}</span>
-              <strong>{project.title}</strong>
-              <div className={styles.placeholderBars} aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </div>
-            </div>
-
-            <div className={styles.placeholderPanels} aria-hidden="true">
-              {project.tags.slice(0, 3).map((tag) => (
-                <div key={tag} className={styles.placeholderPanel}>
-                  <span>{tag}</span>
-                  <em />
+              <div className={styles.placeholderLayout}>
+                <div className={styles.placeholderHero}>
+                  <strong>{project.title}</strong>
+                  <div className={styles.placeholderBars} aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          <span className={styles.playButton} aria-hidden="true">
-            <span className={styles.playGlyph} />
-          </span>
+                <div className={styles.placeholderPanels} aria-hidden="true">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <div key={tag} className={styles.placeholderPanel}>
+                      <span>{tag}</span>
+                      <em />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </div>

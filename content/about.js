@@ -10,7 +10,7 @@ export const about = {
   commandModes: [
     {
       id: 'programming',
-      label: 'software',
+      label: 'engineering',
       description: 'Core languages and frameworks I rely on when shipping product work.',
       skills: [
         { label: 'Python', icon: 'python' },
@@ -40,7 +40,7 @@ export const about = {
     },
     {
       id: 'data_infra',
-      label: 'systems',
+      label: 'infrastructure',
       description: 'Storage, messaging, and delivery tools behind reliable production systems.',
       skills: [
         { label: 'PostgreSQL', icon: 'postgresql' },

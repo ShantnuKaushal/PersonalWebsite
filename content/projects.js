@@ -39,9 +39,9 @@ export const projects = [
     slug: 'pneumora',
     title: 'Pneumora',
     summary:
-      'Educational chest X-ray inference pipeline that preprocesses medical images, routes them through a dedicated TensorFlow Serving runtime, and returns confidence-scored triage predictions through a web interface.',
+      'Computer vision and machine learning application that uses TensorFlow to analyze chest X-ray images and return confidence-scored predictions through a web interface.',
     detail:
-      'Structured as a FastAPI orchestration layer with Pillow and NumPy preprocessing, TensorFlow model serving, and a containerized frontend flow for upload, prediction, and visible research-use disclaimers.',
+      'Built around a FastAPI orchestration layer with Pillow and NumPy preprocessing, TensorFlow model serving, and a containerized frontend flow for image upload, AI inference, and prediction delivery.',
     tags: ['TensorFlow', 'FastAPI', 'Computer Vision', 'NumPy'],
     githubUrl: '',
     liveUrl: '',
