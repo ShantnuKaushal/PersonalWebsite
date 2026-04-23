@@ -6,7 +6,7 @@ export const experiences = [
     logoSrc: '/images/experience/sports-excitement.svg',
     logoAlt: 'Sports Excitement logo',
     summary:
-      'Driving platform engineering in an Agile Scrum environment, turning product ideas into a working career-growth platform for students and early-career professionals. Owning the platform across the stack, from product development and scalable system design to deployment and platform operations.',
+      'Driving platform engineering in an Agile/Scrum environment, turning product ideas into a working career-growth platform for students and early-career professionals. Owning the platform across the stack, from product development and scalable system design to deployment and platform operations.',
     tech: ['Platform Engineering', 'API Development', 'Next.js', 'Node.js', 'PostgreSQL'],
   },
   {
