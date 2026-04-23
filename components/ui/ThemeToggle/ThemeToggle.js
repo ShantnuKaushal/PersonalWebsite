@@ -21,10 +21,10 @@ function MoonIcon() {
 }
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
-    const currentTheme = document.documentElement.dataset.theme || 'dark';
+    const currentTheme = document.documentElement.dataset.theme || 'light';
     setTheme(currentTheme);
   }, []);
 

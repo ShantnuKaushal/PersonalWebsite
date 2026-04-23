@@ -3,7 +3,7 @@ import './globals.css';
 const themeInitScript = `
   (() => {
     const savedTheme = window.localStorage.getItem('theme');
-    const theme = savedTheme === 'light' ? 'light' : 'dark';
+    const theme = savedTheme === 'dark' ? 'dark' : 'light';
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
   })();
