@@ -1002,10 +1002,27 @@ html[data-theme='light'] .placeholderPanel em {
   }
 
   .tagList {
-    gap: 10px 14px;
+    flex-wrap: nowrap;
+    gap: 8px 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
   }
 
   .tag {
-    font-size: 0.68rem;
+    flex: 0 0 auto;
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tagList::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tag::before {
+    margin-right: 8px;
   }
 }
