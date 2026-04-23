@@ -1,27 +1,34 @@
-# Profile Page
+# Personal Website
 
-This repository contains the source code for a single-page personal profile website built with React, HTML, CSS and JavaScript. It serves as a living, interactive résumé and portfolio that introduces me, showcases my skills and experience, and gives visitors multiple ways to connect with me.
+This repository contains the source for my personal website and portfolio. I use it as a central place to present my background as a software engineer, highlight the projects and experience I care most about, and make it easy for people to find my work, resume, and contact information. It is also the version of the site I deploy and self-host on my own server.
 
-## Features
+## Tech Stack
 
-The site embraces a modern, glassmorphism aesthetic with semi-transparent cards and subtle drop shadows. Page sections snap neatly into the viewport, ensuring that only one major section occupies the center of the screen at a time. All buttons and icons animate smoothly on hover or focus. Responsive breakpoints ensure the layout adjusts gracefully across desktops, tablets, and phones. 
-
-## Technologies Used
-
-This project is built with:
-- **React** for component-based architecture and smooth state-driven animations  
-- **HTML5** and **CSS3** (including CSS variables and keyframe animations)  
-- **JavaScript** for carousel logic and scroll-spy behavior  
+- `Next.js 16` with the App Router
+- `React 19`
+- `CSS Modules` and global CSS
+- `react-icons`
+- Local content modules in `content/`
+- Static assets served from `public/`
 
 ## Getting Started
 
-To run this site on your own machine, begin by cloning this repository:
+### Prerequisites
+
+- `Node.js 20.9.0` or newer
+
+### Install And Run
 
 ```bash
-git clone https://github.com/ShantnuKaushal/PersonalWebsite.git
-```
-Install the dependencies and start the development server:
-```bash
 npm install
-npm start
+npm run dev
+```
+
+The local development server runs at `http://localhost:3000`.
+
+### Production Build
+
+```bash
+npm run build
+npm run start
 ```

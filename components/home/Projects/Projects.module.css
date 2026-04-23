@@ -1,0 +1,1011 @@
+.section {
+  padding: 72px 0;
+}
+
+.sectionMeta {
+  margin-top: 30px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 92%, transparent);
+}
+
+.fileLabel {
+  color: var(--muted);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.projectList {
+  display: grid;
+  gap: 76px;
+}
+
+.projectRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.42fr) minmax(360px, 0.94fr);
+  gap: clamp(36px, 4.6vw, 64px);
+  align-items: start;
+}
+
+.projectRowReversed {
+  grid-template-columns: minmax(360px, 0.94fr) minmax(0, 1.42fr);
+}
+
+.projectRowReversed .mediaColumn {
+  order: 2;
+}
+
+.projectRowReversed .copyColumn {
+  order: 1;
+}
+
+.mediaColumn,
+.copyColumn {
+  min-width: 0;
+}
+
+.mediaColumn {
+  width: 100%;
+}
+
+.mediaShell {
+  border-radius: 18px;
+  padding: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  background: rgba(8, 10, 14, 0.52);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.02),
+    0 0 0 1px rgba(212, 175, 55, 0.06),
+    0 24px 44px rgba(0, 0, 0, 0.16);
+  transition:
+    border-color 220ms var(--ease-standard),
+    transform 220ms var(--ease-standard),
+    box-shadow 220ms var(--ease-standard);
+}
+
+.projectRow:hover .mediaShell,
+.projectRow:focus-within .mediaShell {
+  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 0 0 1px rgba(212, 175, 55, 0.12),
+    0 28px 52px rgba(0, 0, 0, 0.2);
+}
+
+.mediaViewport {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.08);
+  background: #080a0d;
+}
+
+.mediaVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #080a0d;
+}
+
+.mediaVideoLayer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 520ms var(--ease-standard);
+}
+
+.mediaVideoVisible {
+  opacity: 1;
+}
+
+.mediaVideoMountPlaceholder {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.03), transparent 42%),
+    linear-gradient(180deg, rgba(12, 15, 20, 0.98), rgba(5, 7, 10, 1));
+}
+
+.placeholderStage {
+  --frame-accent: #d4af37;
+  --frame-accent-soft: rgba(212, 175, 55, 0.14);
+  --frame-glow: rgba(212, 175, 55, 0.18);
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 14%, var(--frame-glow), transparent 28%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent 42%),
+    linear-gradient(180deg, rgba(12, 15, 20, 0.98), rgba(5, 7, 10, 1));
+}
+
+.placeholderStagetweetcheck {
+  --frame-accent: #89c7ff;
+  --frame-accent-soft: rgba(137, 199, 255, 0.16);
+  --frame-glow: rgba(80, 169, 255, 0.18);
+}
+
+.placeholderStageresource {
+  --frame-accent: #e4c078;
+  --frame-accent-soft: rgba(228, 192, 120, 0.14);
+  --frame-glow: rgba(228, 192, 120, 0.16);
+}
+
+.placeholderStageskillscan {
+  --frame-accent: #8bd0bf;
+  --frame-accent-soft: rgba(139, 208, 191, 0.14);
+  --frame-glow: rgba(69, 196, 153, 0.18);
+  background:
+    radial-gradient(circle at 85% 14%, var(--frame-glow), transparent 28%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent 42%),
+    linear-gradient(180deg, rgba(12, 15, 20, 0.98), rgba(5, 7, 10, 1));
+}
+
+.placeholderStagepneumora {
+  --frame-accent: #8bd0bf;
+  --frame-accent-soft: rgba(139, 208, 191, 0.14);
+  --frame-glow: rgba(69, 196, 153, 0.18);
+}
+
+.placeholderGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.1;
+  mix-blend-mode: screen;
+}
+
+.placeholderCrosshairHorizontal,
+.placeholderCrosshairVertical {
+  position: absolute;
+  background: var(--frame-accent-soft);
+}
+
+.placeholderCrosshairHorizontal {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.placeholderCrosshairVertical {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.placeholderHud {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(226, 230, 236, 0.52);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.conceptScene {
+  position: absolute;
+  inset: 0;
+  padding: 22px;
+}
+
+.skillscanCanvas,
+.pneumoraCanvas {
+  position: absolute;
+  inset: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 14, 19, 0.92);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 18px 32px rgba(0, 0, 0, 0.18);
+}
+
+.skillscanCanvas span,
+.pneumoraCanvas span {
+  position: absolute;
+}
+
+.skillscanCanvas::before,
+.skillscanCanvas::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.skillscanCanvas::before {
+  inset: 12px;
+  border: 1px solid rgba(139, 208, 191, 0.08);
+}
+
+.skillscanCanvas::after {
+  inset: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.skillscanTileRear,
+.skillscanTileSide,
+.skillscanTilePrimary {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  background: rgba(11, 14, 19, 0.92);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 14px 22px rgba(0, 0, 0, 0.18);
+}
+
+.skillscanTileRear {
+  inset: 18% 14% 20% 26%;
+  background:
+    linear-gradient(180deg, rgba(18, 25, 31, 0.96), rgba(10, 13, 17, 0.94));
+  transform: translate(-12px, 14px) rotate(-4deg);
+}
+
+.skillscanTileSide {
+  inset: 34% 44% 18% 16%;
+  background:
+    linear-gradient(180deg, rgba(18, 34, 33, 0.96), rgba(11, 20, 19, 0.94));
+  border-color: rgba(139, 208, 191, 0.12);
+  transform: translate(-22px, 10px) rotate(-2deg);
+}
+
+.skillscanTilePrimary {
+  inset: 24% 20% 24% 22%;
+  background:
+    linear-gradient(180deg, rgba(139, 208, 191, 0.08), transparent 34%),
+    rgba(12, 15, 20, 0.96);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 22px 34px rgba(0, 0, 0, 0.22);
+  transform: translate(8px, 0) rotate(1deg);
+}
+
+.pneumoraCanvas {
+  display: grid;
+  place-items: center;
+}
+
+.pneumoraPlateRear,
+.pneumoraPlateSide,
+.pneumoraPlatePrimary {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  background: rgba(12, 15, 20, 0.94);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 14px 26px rgba(0, 0, 0, 0.12);
+}
+
+.pneumoraPlateRear {
+  inset: 18% 18% 22% 28%;
+  transform: rotate(-7deg);
+  background:
+    linear-gradient(180deg, rgba(112, 165, 194, 0.08), transparent 30%),
+    rgba(11, 15, 20, 0.92);
+  border-color: rgba(126, 173, 201, 0.14);
+}
+
+.pneumoraPlateSide {
+  inset: 24% 28% 18% 16%;
+  transform: rotate(4deg);
+  background:
+    linear-gradient(180deg, rgba(159, 176, 214, 0.08), transparent 30%),
+    rgba(13, 16, 21, 0.9);
+  border-color: rgba(159, 176, 214, 0.12);
+}
+
+.pneumoraPlatePrimary {
+  inset: 28% 22% 24% 24%;
+  transform: rotate(-1.5deg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 24%),
+    rgba(12, 15, 20, 0.96);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 30px rgba(0, 0, 0, 0.16);
+}
+
+.pneumoraPlatePrimary::before,
+.pneumoraPlatePrimary::after,
+.pneumoraPlateRear::before,
+.pneumoraPlateSide::before {
+  content: '';
+  position: absolute;
+}
+
+.pneumoraPlateRear::before,
+.pneumoraPlateSide::before {
+  inset: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pneumoraPlatePrimary::before {
+  inset: 18px 20px 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 50% 48%, rgba(160, 187, 224, 0.22), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 30%);
+}
+
+.pneumoraPlatePrimary::after {
+  left: 50%;
+  bottom: 16px;
+  width: 92px;
+  height: 10px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, rgba(126, 173, 201, 0.1), rgba(160, 187, 224, 0.42), rgba(126, 173, 201, 0.1));
+}
+
+.pneumoraScanAura {
+  top: 50%;
+  left: 50%;
+  width: 196px;
+  height: 196px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(126, 173, 201, 0.12), transparent 68%);
+  filter: blur(10px);
+}
+
+.placeholderLayout {
+  position: absolute;
+  inset: 58px 24px 24px;
+  display: grid;
+  gap: 14px;
+  align-content: end;
+}
+
+.placeholderHero {
+  display: grid;
+  gap: 12px;
+  width: min(100%, 360px);
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
+    rgba(8, 11, 15, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 22px 42px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(8px);
+}
+
+.placeholderHero strong {
+  color: #f5f7fb;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  font-weight: 650;
+}
+
+.placeholderBars {
+  display: grid;
+  gap: 8px;
+}
+
+.placeholderBars span {
+  display: block;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--frame-accent-soft), rgba(255, 255, 255, 0.08));
+}
+
+.placeholderBars span:nth-child(1) {
+  width: 92%;
+}
+
+.placeholderBars span:nth-child(2) {
+  width: 70%;
+}
+
+.placeholderBars span:nth-child(3) {
+  width: 54%;
+}
+
+.placeholderPanels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.placeholderPanel {
+  display: grid;
+  gap: 12px;
+  min-height: 84px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 13, 18, 0.82);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.placeholderPanel span {
+  color: rgba(224, 231, 240, 0.84);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.placeholderPanel em {
+  display: block;
+  width: 70%;
+  height: 6px;
+  margin-top: auto;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--frame-accent), rgba(255, 255, 255, 0.1));
+  box-shadow: 0 0 18px var(--frame-glow);
+}
+
+.copyColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding: 18px 0 0;
+}
+
+.projectHeader {
+  display: grid;
+  gap: 16px;
+}
+
+.projectHeader h3 {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+  font-weight: 650;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  color: color-mix(in srgb, var(--muted) 88%, var(--text));
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-right: 11px;
+  border-radius: 999px;
+  background: var(--accent);
+  opacity: 0.9;
+}
+
+.projectBody {
+  display: block;
+}
+
+.projectSummary,
+.projectDetail {
+  margin: 0;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.projectSummary {
+  max-width: 46ch;
+  color: color-mix(in srgb, var(--text) 88%, var(--muted));
+  font-size: 1.08rem;
+  line-height: 1.72;
+}
+
+.projectActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.primaryAction,
+.secondaryAction,
+.staticAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  width: fit-content;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  padding: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.primaryAction {
+  color: var(--text);
+}
+
+.primaryAction::before,
+.secondaryAction::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: calc(100% - 1rem);
+  height: 1px;
+  background: color-mix(in srgb, var(--accent) 82%, transparent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms var(--ease-standard);
+}
+
+.primaryAction::after {
+  content: '\2197';
+  font-size: 0.92rem;
+  line-height: 1;
+  color: color-mix(in srgb, var(--accent) 84%, var(--text));
+  transition:
+    transform 220ms var(--ease-standard),
+    color 220ms var(--ease-standard);
+}
+
+.primaryAction:hover {
+  color: color-mix(in srgb, var(--accent) 88%, var(--text));
+}
+
+.primaryAction:hover::before,
+.primaryAction:focus-visible::before,
+.secondaryAction:hover::before,
+.secondaryAction:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.primaryAction:hover::after,
+.secondaryAction:hover::after {
+  transform: translate(1px, -1px);
+}
+
+.secondaryAction {
+  color: var(--muted);
+}
+
+.staticAction {
+  color: color-mix(in srgb, var(--text) 78%, var(--accent) 22%);
+  cursor: default;
+}
+
+.secondaryAction::after {
+  content: '\2197';
+  font-size: 0.92rem;
+  line-height: 1;
+  color: color-mix(in srgb, var(--accent) 84%, var(--text));
+  transition:
+    transform 220ms var(--ease-standard),
+    color 220ms var(--ease-standard);
+}
+
+.secondaryAction:hover {
+  color: var(--text);
+}
+
+html[data-theme='light'] .mediaShell {
+  border-color: color-mix(in srgb, var(--accent) 12%, var(--surface-border));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(243, 241, 236, 0.98)),
+    rgba(255, 255, 255, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.74),
+    0 0 0 1px rgba(184, 138, 36, 0.04),
+    0 22px 38px rgba(58, 46, 20, 0.08);
+}
+
+html[data-theme='light'] .projectRow:hover .mediaShell,
+html[data-theme='light'] .projectRow:focus-within .mediaShell {
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--surface-border));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 0 0 1px rgba(184, 138, 36, 0.08),
+    0 28px 48px rgba(58, 46, 20, 0.1);
+}
+
+html[data-theme='light'] .mediaViewport,
+html[data-theme='light'] .mediaVideo {
+  border-color: color-mix(in srgb, var(--accent) 8%, var(--project-visual-border));
+  background: linear-gradient(180deg, var(--project-visual-start), var(--project-visual-end));
+}
+
+html[data-theme='light'] .mediaVideoMountPlaceholder {
+  background:
+    radial-gradient(circle at 18% 10%, var(--project-visual-glow), transparent 24%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), transparent 48%),
+    linear-gradient(180deg, var(--project-visual-start), var(--project-visual-end));
+}
+
+html[data-theme='light'] .placeholderStage {
+  --frame-accent: #b88a24;
+  --frame-accent-soft: rgba(184, 138, 36, 0.12);
+  --frame-glow: rgba(184, 138, 36, 0.1);
+  background:
+    radial-gradient(circle at 15% 14%, var(--frame-glow), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), transparent 48%),
+    linear-gradient(180deg, var(--project-visual-start), var(--project-visual-end));
+}
+
+html[data-theme='light'] .placeholderStagetweetcheck {
+  --frame-accent: #6ea6de;
+  --frame-accent-soft: rgba(110, 166, 222, 0.14);
+  --frame-glow: rgba(110, 166, 222, 0.08);
+}
+
+html[data-theme='light'] .placeholderStageresource {
+  --frame-accent: #c79a3a;
+  --frame-accent-soft: rgba(199, 154, 58, 0.14);
+  --frame-glow: rgba(199, 154, 58, 0.09);
+}
+
+html[data-theme='light'] .placeholderStageskillscan {
+  --frame-accent: #6fae9b;
+  --frame-accent-soft: rgba(111, 174, 155, 0.14);
+  --frame-glow: rgba(111, 174, 155, 0.08);
+  background:
+    radial-gradient(circle at 85% 14%, var(--frame-glow), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), transparent 48%),
+    linear-gradient(180deg, var(--project-visual-start), var(--project-visual-end));
+}
+
+html[data-theme='light'] .placeholderStagepneumora {
+  --frame-accent: #6fae9b;
+  --frame-accent-soft: rgba(111, 174, 155, 0.14);
+  --frame-glow: rgba(111, 174, 155, 0.08);
+}
+
+html[data-theme='light'] .placeholderGrid {
+  background-image:
+    linear-gradient(to right, rgba(92, 90, 85, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(92, 90, 85, 0.08) 1px, transparent 1px);
+  opacity: 0.42;
+  mix-blend-mode: normal;
+}
+
+html[data-theme='light'] .placeholderHud {
+  color: rgba(92, 90, 85, 0.64);
+}
+
+html[data-theme='light'] .skillscanCanvas,
+html[data-theme='light'] .pneumoraCanvas {
+  border-color: rgba(92, 90, 85, 0.16);
+  background:
+    radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.88), transparent 28%),
+    linear-gradient(180deg, rgba(252, 251, 248, 0.96), rgba(239, 237, 232, 0.98));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 16px 28px rgba(58, 46, 20, 0.08);
+}
+
+html[data-theme='light'] .skillscanCanvas::before {
+  inset: 12px;
+  border-color: rgba(111, 174, 155, 0.14);
+}
+
+html[data-theme='light'] .skillscanCanvas::after,
+html[data-theme='light'] .pneumoraCanvas::after {
+  border-color: rgba(92, 90, 85, 0.08);
+}
+
+html[data-theme='light'] .skillscanTileRear,
+html[data-theme='light'] .skillscanTileSide,
+html[data-theme='light'] .skillscanTilePrimary {
+  border-color: rgba(92, 90, 85, 0.12);
+  border-radius: 12px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 14px 22px rgba(58, 46, 20, 0.08);
+}
+
+html[data-theme='light'] .skillscanTileRear {
+  background:
+    linear-gradient(180deg, rgba(248, 246, 241, 0.94), rgba(234, 229, 220, 0.92));
+  transform: translate(-12px, 14px) rotate(-4deg);
+}
+
+html[data-theme='light'] .skillscanTileSide {
+  background:
+    linear-gradient(180deg, rgba(232, 243, 239, 0.92), rgba(213, 230, 223, 0.94));
+  border-color: rgba(111, 174, 155, 0.22);
+  transform: translate(-22px, 10px) rotate(-2deg);
+}
+
+html[data-theme='light'] .skillscanTilePrimary {
+  background:
+    linear-gradient(180deg, rgba(111, 174, 155, 0.12), transparent 30%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(244, 242, 237, 0.96));
+  border-color: rgba(111, 174, 155, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.84),
+    0 22px 34px rgba(58, 46, 20, 0.12);
+  transform: translate(8px, 0) rotate(1deg);
+}
+
+html[data-theme='light'] .pneumoraCanvas {
+  background:
+    linear-gradient(180deg, rgba(252, 251, 248, 0.98), rgba(239, 237, 232, 0.98));
+}
+
+html[data-theme='light'] .pneumoraCanvas::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(92, 90, 85, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6), transparent 34%),
+    linear-gradient(180deg, rgba(249, 247, 242, 0.86), rgba(243, 240, 233, 0.9));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
+}
+
+html[data-theme='light'] .pneumoraCanvas::after {
+  display: none;
+}
+
+html[data-theme='light'] .pneumoraPlateRear,
+html[data-theme='light'] .pneumoraPlateSide,
+html[data-theme='light'] .pneumoraPlatePrimary {
+  border-color: rgba(92, 90, 85, 0.12);
+  border-radius: 18px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.84),
+    0 18px 28px rgba(58, 46, 20, 0.1);
+}
+
+html[data-theme='light'] .pneumoraPlateRear {
+  inset: 20% 20% 24% 30%;
+  background:
+    linear-gradient(180deg, rgba(235, 244, 247, 0.96), rgba(223, 235, 236, 0.94));
+  border-color: rgba(112, 170, 181, 0.18);
+  transform: translate(-16px, 12px) rotate(-5deg);
+}
+
+html[data-theme='light'] .pneumoraPlateSide {
+  inset: 24% 24% 20% 18%;
+  background:
+    linear-gradient(180deg, rgba(245, 247, 249, 0.96), rgba(232, 235, 239, 0.94));
+  border-color: rgba(176, 188, 208, 0.18);
+  transform: translate(10px, -4px) rotate(4deg);
+}
+
+html[data-theme='light'] .pneumoraPlatePrimary {
+  inset: 28% 22% 24% 24%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 240, 234, 0.94));
+  border-color: rgba(92, 90, 85, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 24px 36px rgba(58, 46, 20, 0.12);
+  transform: translate(0, -2px) rotate(-1.5deg);
+}
+
+html[data-theme='light'] .pneumoraPlateRear::before,
+html[data-theme='light'] .pneumoraPlateSide::before,
+html[data-theme='light'] .pneumoraPlatePrimary::before {
+  border-color: rgba(92, 90, 85, 0.08);
+}
+
+html[data-theme='light'] .pneumoraPlatePrimary::before {
+  inset: 18px 18px 42px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(197, 214, 233, 0.42), rgba(197, 214, 233, 0.1) 22%, transparent 46%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 30%);
+}
+
+html[data-theme='light'] .pneumoraPlatePrimary::after {
+  width: 88px;
+  height: 8px;
+  bottom: 16px;
+  background: linear-gradient(90deg, rgba(176, 188, 208, 0.08), rgba(176, 188, 208, 0.34), rgba(176, 188, 208, 0.08));
+}
+
+html[data-theme='light'] .pneumoraScanAura {
+  top: 48%;
+  left: 44%;
+  width: 210px;
+  height: 210px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(197, 214, 233, 0.2), transparent 70%);
+  filter: blur(14px);
+}
+
+html[data-theme='light'] .placeholderHero {
+  border-color: rgba(92, 90, 85, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(248, 246, 241, 0.74)),
+    rgba(255, 255, 255, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.86),
+    0 20px 36px rgba(58, 46, 20, 0.08);
+}
+
+html[data-theme='light'] .placeholderHero strong {
+  color: var(--text);
+}
+
+html[data-theme='light'] .placeholderBars span {
+  background: linear-gradient(90deg, var(--frame-accent-soft), rgba(92, 90, 85, 0.1));
+}
+
+html[data-theme='light'] .placeholderPanel {
+  border-color: rgba(92, 90, 85, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+html[data-theme='light'] .placeholderPanel span {
+  color: rgba(92, 90, 85, 0.84);
+}
+
+html[data-theme='light'] .placeholderPanel em {
+  background: linear-gradient(90deg, var(--frame-accent), rgba(92, 90, 85, 0.16));
+  box-shadow: 0 0 14px var(--frame-glow);
+}
+
+@media (max-width: 1100px) {
+  .projectRow {
+    grid-template-columns: 1fr;
+  }
+
+  .projectRowReversed {
+    grid-template-columns: 1fr;
+  }
+
+  .projectRowReversed .mediaColumn,
+  .projectRowReversed .copyColumn {
+    order: initial;
+  }
+
+  .copyColumn {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 0;
+  }
+
+  .sectionMeta {
+    margin-top: 24px;
+    margin-bottom: 22px;
+  }
+
+  .projectList {
+    gap: 44px;
+  }
+
+  .projectRow {
+    gap: 18px;
+  }
+
+  .mediaColumn {
+    margin-inline: -10px;
+  }
+
+  .mediaShell {
+    padding: 4px;
+    border-radius: 12px;
+  }
+
+  .mediaViewport {
+    border-radius: 8px;
+  }
+
+  .placeholderHud {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    font-size: 0.5rem;
+  }
+
+  .conceptScene {
+    padding: 12px;
+  }
+
+  .skillscanCanvas,
+  .pneumoraCanvas {
+    inset: 12px;
+  }
+
+  .skillscanTileRear {
+    inset: 16% 8% 22% 24%;
+  }
+
+  .skillscanTileSide {
+    inset: 42% 38% 14% 12%;
+  }
+
+  .skillscanTilePrimary {
+    inset: 24% 12% 26% 18%;
+  }
+
+  .pneumoraGlow {
+    width: 120px;
+    height: 120px;
+  }
+
+  .pneumoraCapsule {
+    width: 150px;
+    height: 92px;
+    border-radius: 30px;
+  }
+
+  .placeholderLayout {
+    inset: 50px 14px 14px;
+    gap: 10px;
+  }
+
+  .placeholderHero {
+    width: min(100%, 270px);
+    padding: 14px;
+  }
+
+  .placeholderHero strong {
+    font-size: clamp(1.18rem, 5vw, 1.6rem);
+  }
+
+  .placeholderPanels {
+    grid-template-columns: 1fr;
+  }
+
+  .placeholderPanel {
+    min-height: 54px;
+  }
+
+  .projectHeader h3 {
+    font-size: clamp(1.72rem, 7vw, 2.2rem);
+  }
+
+  .projectSummary {
+    max-width: none;
+    font-size: 1rem;
+  }
+
+  .tagList {
+    gap: 10px 14px;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+  }
+}

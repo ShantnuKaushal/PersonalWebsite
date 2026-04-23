@@ -1,0 +1,164 @@
+.siteHeader {
+  position: sticky;
+  top: 14px;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 34px;
+  width: min(100%, 1040px);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  border: 1px solid color-mix(in srgb, var(--surface-border) 86%, transparent);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  backdrop-filter: saturate(130%) blur(14px);
+  -webkit-backdrop-filter: saturate(130%) blur(14px);
+  transition:
+    box-shadow 260ms var(--ease-standard),
+    background-color 260ms var(--ease-standard),
+    border-color 260ms var(--ease-standard);
+}
+
+.nav:hover {
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.navLinks a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 2px;
+  color: var(--nav-text);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition:
+    color 220ms var(--ease-standard),
+    opacity 220ms var(--ease-standard),
+    transform 220ms var(--ease-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navLinks a:hover {
+  color: var(--text) !important;
+  transform: translateY(-1px);
+}
+
+.navLinks a:active {
+  color: var(--text) !important;
+  transform: translateY(-1px);
+}
+
+.activeLink {
+  color: var(--text) !important;
+}
+
+.activeMarker {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 18px;
+  height: 2px;
+  display: block;
+  border-radius: 999px;
+  background: var(--accent);
+  transform: translateX(-50%) scaleX(0.25);
+  transform-origin: center;
+  opacity: 0;
+  transition:
+    transform 260ms var(--ease-standard),
+    opacity 220ms var(--ease-standard);
+}
+
+.activeMarkerVisible {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
+}
+
+.navToggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 14px;
+    width: min(100%, 100%);
+  }
+
+  .navLinks {
+    gap: 14px;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-right: 44px;
+  }
+
+  .navLinks a {
+    font-size: 0.84rem;
+    min-height: 28px;
+    padding: 0 2px;
+  }
+
+  .activeMarker {
+    width: 16px;
+    bottom: -5px;
+  }
+
+  .navToggle {
+    right: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .navLinks {
+    gap: 12px;
+    padding-right: 40px;
+  }
+
+  .navLinks a {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav {
+    padding: 9px 12px;
+  }
+
+  .navLinks {
+    gap: 10px;
+    padding-right: 36px;
+  }
+
+  .navLinks a {
+    font-size: 0.76rem;
+  }
+}

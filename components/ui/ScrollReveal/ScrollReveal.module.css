@@ -1,0 +1,67 @@
+.reveal {
+  --reveal-delay: 0ms;
+  --reveal-distance: 24px;
+  --reveal-translate-x: 0px;
+  --reveal-translate-y: var(--reveal-distance);
+  --reveal-scale: 1;
+  --reveal-rotate: 0deg;
+  opacity: 0;
+  transform: translate3d(var(--reveal-translate-x), var(--reveal-translate-y), 0)
+    scale(var(--reveal-scale)) rotate(var(--reveal-rotate));
+  transition:
+    opacity 560ms var(--ease-standard) var(--reveal-delay),
+    transform 700ms var(--ease-emphasized) var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+.visible,
+.instant {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+}
+
+.instant {
+  transition: none;
+}
+
+.rise {}
+
+.driftLeft {
+  --reveal-translate-x: calc(var(--reveal-distance) * -0.58);
+  --reveal-scale: 0.992;
+}
+
+.driftRight {
+  --reveal-translate-x: calc(var(--reveal-distance) * 0.58);
+  --reveal-scale: 0.992;
+}
+
+.pop {
+  --reveal-translate-y: calc(var(--reveal-distance) * 0.7);
+  --reveal-scale: 0.972;
+}
+
+.soft {
+  --reveal-translate-y: calc(var(--reveal-distance) * 0.5);
+}
+
+.tilt {
+  --reveal-scale: 0.99;
+  --reveal-rotate: 0.35deg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .visible,
+  .instant,
+  .driftLeft,
+  .driftRight,
+  .pop,
+  .soft,
+  .tilt {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}

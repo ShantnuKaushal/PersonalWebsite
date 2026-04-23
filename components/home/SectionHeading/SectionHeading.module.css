@@ -1,0 +1,32 @@
+.heading {
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.heading h2 {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  letter-spacing: -0.045em;
+  font-size: clamp(1.9rem, 3vw, 2.75rem);
+  line-height: 1.02;
+  font-weight: 650;
+}
+
+.heading p {
+  margin: 14px 0 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.64;
+  text-wrap: pretty;
+}

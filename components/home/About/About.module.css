@@ -1,0 +1,384 @@
+.section {
+  padding: 72px 0;
+}
+
+.sectionHeader {
+  margin-bottom: 30px;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-weight: 650;
+}
+
+.aboutLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 1fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.copyPanel,
+.commandPanel {
+  min-width: 0;
+}
+
+.panelHeader {
+  padding-bottom: 16px;
+  border-bottom: 1px solid color-mix(in srgb, var(--surface-border) 92%, transparent);
+}
+
+.fileLabel {
+  color: var(--muted);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.copyBody {
+  display: grid;
+  gap: 20px;
+  padding-top: 28px;
+}
+
+.readmeBlock {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.84;
+  text-wrap: pretty;
+}
+
+.commandBody {
+  margin-top: 28px;
+  padding: 34px 32px 30px;
+  border: 1px solid color-mix(in srgb, var(--surface-border) 92%, transparent);
+  background: color-mix(in srgb, var(--surface-strong) 44%, transparent);
+}
+
+.commandBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-bottom: 22px;
+}
+
+.commandButton,
+.commandActive {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0 10px;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 180ms var(--ease-standard),
+    border-color 180ms var(--ease-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.commandButton:hover {
+  color: var(--text);
+}
+
+.commandButton:active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.commandButton:focus-visible,
+.commandActive:focus-visible {
+  outline: none;
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.commandActive {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.outputHeader {
+  display: grid;
+  gap: 0;
+  margin-bottom: 18px;
+}
+
+.commandContent {
+  animation: commandContentIn 300ms var(--ease-standard);
+}
+
+.outputDescription {
+  margin: 0;
+  max-width: 31rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.skillDivider {
+  height: 1px;
+  margin-bottom: 24px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--surface-border) 92%, transparent),
+    color-mix(in srgb, var(--surface-border) 48%, transparent)
+  );
+}
+
+.skillGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 42px;
+}
+
+.skillItem {
+  display: flex;
+  padding: 16px 0 16px 16px;
+  min-width: 0;
+  border-left: 1px solid color-mix(in srgb, var(--surface-border) 82%, transparent);
+  transition:
+    border-color 180ms var(--ease-standard),
+    transform 180ms var(--ease-standard);
+}
+
+.skillInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  animation: skillModeIn 280ms var(--ease-standard) both;
+}
+
+.commandContent .skillItem:nth-child(1) .skillInner,
+.commandContent .skillItem:nth-child(2) .skillInner {
+  animation-delay: 40ms;
+}
+
+.commandContent .skillItem:nth-child(3) .skillInner,
+.commandContent .skillItem:nth-child(4) .skillInner {
+  animation-delay: 90ms;
+}
+
+.commandContent .skillItem:nth-child(5) .skillInner,
+.commandContent .skillItem:nth-child(6) .skillInner {
+  animation-delay: 140ms;
+}
+
+.commandContent .skillItem:nth-child(7) .skillInner,
+.commandContent .skillItem:nth-child(8) .skillInner {
+  animation-delay: 190ms;
+}
+
+.commandContent .skillItem:nth-child(n + 9) .skillInner {
+  animation-delay: 240ms;
+}
+
+.skillIconFrame {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: color-mix(in srgb, var(--muted) 74%, var(--surface-border));
+  transition: color 180ms var(--ease-standard);
+}
+
+.skillItem:hover {
+  border-left-color: var(--accent);
+  transform: translateX(2px);
+}
+
+.skillItem:hover .skillIconFrame {
+  color: var(--accent);
+}
+
+.skillIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.skillIconTypescript {
+  width: 14px;
+  height: 14px;
+}
+
+.skillText {
+  color: var(--text);
+  font-family:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  transition:
+    color 180ms var(--ease-standard),
+    text-shadow 180ms var(--ease-standard);
+  white-space: normal;
+}
+
+.skillItem:hover .skillText {
+  color: var(--text);
+  text-shadow: 0 0 10px rgba(245, 245, 247, 0.12);
+}
+
+@keyframes commandContentIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes skillModeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .commandContent,
+  .skillInner {
+    animation: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .aboutLayout {
+    grid-template-columns: 1fr;
+    gap: 52px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 0;
+  }
+
+  .sectionHeader {
+    margin-bottom: 24px;
+  }
+
+  .aboutLayout {
+    gap: 40px;
+  }
+
+  .copyBody {
+    padding-top: 22px;
+  }
+
+  .commandBody {
+    margin-top: 22px;
+    padding: 24px 18px 20px;
+  }
+
+  .readmeBlock {
+    font-size: 0.94rem;
+    line-height: 1.76;
+  }
+
+  .commandBar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+
+  .commandButton,
+  .commandActive {
+    justify-content: flex-start;
+    min-height: 0;
+    padding: 0 0 8px;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    text-align: left;
+  }
+
+  .outputHeader {
+    margin-bottom: 12px;
+  }
+
+  .outputDescription {
+    max-width: none;
+    font-size: 0.82rem;
+    line-height: 1.68;
+  }
+
+  .skillDivider {
+    margin-bottom: 16px;
+  }
+
+  .skillGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 18px;
+  }
+
+  .skillItem {
+    padding: 13px 0 13px 12px;
+  }
+
+  .skillItem:hover {
+    transform: translateX(2px);
+  }
+
+  .skillText {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    line-height: 1.35;
+  }
+
+  .skillInner {
+    width: auto;
+    gap: 10px;
+  }
+
+  .skillIconFrame {
+    width: 18px;
+    height: 18px;
+  }
+
+  .skillItem:active {
+    border-left-color: var(--accent);
+    transform: translateX(2px);
+  }
+
+  .skillItem:active .skillIconFrame {
+    color: var(--accent);
+  }
+
+  .skillItem:active .skillText {
+    color: var(--text);
+    text-shadow: 0 0 10px rgba(245, 245, 247, 0.12);
+  }
+}

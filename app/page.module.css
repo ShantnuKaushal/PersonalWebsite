@@ -1,0 +1,20 @@
+.page {
+  width: min(100%, calc(var(--content-width) + 64px));
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 32px 56px;
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding-inline: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 12px clamp(18px, 5vw, 22px) 42px;
+  }
+}

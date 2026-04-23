@@ -1,0 +1,57 @@
+export const about = {
+  readmeLabel: 'README.md',
+  fileLabel: 'skills.ts',
+  readmeBlocks: [
+    "I'm a software engineer with a B.S. in Computer Science from St. John's University. I'm most interested in backend systems, machine learning, and the kind of technical work that turns rough ideas into software people can actually use.",
+    'Most of my recent work sits at the intersection of full-stack products, backend architecture, and applied AI. I enjoy building APIs, shaping platform systems, and turning strong technical ideas into software that feels practical, thoughtful, and durable.',
+    'I am especially drawn to work that rewards good engineering judgment and attention to detail, whether the goal is product execution, platform design, or research-informed problem solving.',
+  ],
+  defaultMode: 'programming',
+  commandModes: [
+    {
+      id: 'programming',
+      label: 'engineering',
+      description: 'Core languages and frameworks I rely on when shipping product work.',
+      skills: [
+        { label: 'Python', icon: 'python' },
+        { label: 'TypeScript', icon: 'typescript' },
+        { label: 'Node.js', icon: 'node' },
+        { label: 'Golang', icon: 'golang' },
+        { label: 'C++', icon: 'cplusplus' },
+        { label: 'React', icon: 'react' },
+        { label: 'Next.js', icon: 'nextjs' },
+        { label: 'Java', icon: 'java' },
+      ],
+    },
+    {
+      id: 'ai_ml',
+      label: 'ai/ml',
+      description: 'Modeling and retrieval tooling I use when building applied ML systems.',
+      skills: [
+        { label: 'PyTorch', icon: 'pytorch' },
+        { label: 'TensorFlow', icon: 'tensorflow' },
+        { label: 'Transformers', icon: 'huggingface' },
+        { label: 'RAG', icon: 'rag' },
+        { label: 'Vector Search', icon: 'vector-search' },
+        { label: 'Pandas', icon: 'pandas' },
+        { label: 'NumPy', icon: 'numpy' },
+        { label: 'scikit-learn', icon: 'scikit-learn' },
+      ],
+    },
+    {
+      id: 'data_infra',
+      label: 'infrastructure',
+      description: 'Storage, messaging, and delivery tools behind reliable production systems.',
+      skills: [
+        { label: 'PostgreSQL', icon: 'postgresql' },
+        { label: 'SQL', icon: 'sql' },
+        { label: 'Redis', icon: 'redis' },
+        { label: 'Apache Kafka', icon: 'kafka' },
+        { label: 'Docker', icon: 'docker' },
+        { label: 'MinIO', icon: 'minio' },
+        { label: 'Prisma', icon: 'prisma' },
+        { label: 'CI/CD', icon: 'cicd' },
+      ],
+    },
+  ],
+};
