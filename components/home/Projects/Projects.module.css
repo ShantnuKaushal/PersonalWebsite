@@ -137,13 +137,13 @@
   --frame-glow: rgba(228, 192, 120, 0.16);
 }
 
-.placeholderStageairaware {
+.placeholderStageskillscan {
   --frame-accent: #8bd0bf;
   --frame-accent-soft: rgba(139, 208, 191, 0.14);
   --frame-glow: rgba(69, 196, 153, 0.18);
 }
 
-.placeholderStagevcrts {
+.placeholderStagepneumora {
   --frame-accent: #bfabff;
   --frame-accent-soft: rgba(191, 171, 255, 0.15);
   --frame-glow: rgba(150, 120, 255, 0.18);
@@ -408,7 +408,8 @@
 }
 
 .primaryAction,
-.secondaryAction {
+.secondaryAction,
+.staticAction {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -469,6 +470,11 @@
 
 .secondaryAction {
   color: var(--muted);
+}
+
+.staticAction {
+  color: color-mix(in srgb, var(--text) 78%, var(--accent) 22%);
+  cursor: default;
 }
 
 .secondaryAction::after {

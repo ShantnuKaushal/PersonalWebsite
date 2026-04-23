@@ -10,8 +10,8 @@ function formatProjectIndex(index) {
   return String(index + 1).padStart(2, '0');
 }
 
-function ProjectActions({ githubUrl, liveUrl }) {
-  if (!githubUrl && !liveUrl) {
+function ProjectActions({ githubUrl, liveUrl, statusText }) {
+  if (!githubUrl && !liveUrl && !statusText) {
     return null;
   }
 
@@ -26,6 +26,9 @@ function ProjectActions({ githubUrl, liveUrl }) {
         <a href={liveUrl} target="_blank" rel="noreferrer" className={styles.secondaryAction}>
           Live preview
         </a>
+      ) : null}
+      {!githubUrl && !liveUrl && statusText ? (
+        <span className={styles.staticAction}>{statusText}</span>
       ) : null}
     </div>
   );
@@ -202,7 +205,11 @@ export default function Projects() {
                   <p className={styles.projectSummary}>{project.summary}</p>
                 </div>
 
-                <ProjectActions githubUrl={project.githubUrl} liveUrl={project.liveUrl} />
+                <ProjectActions
+                  githubUrl={project.githubUrl}
+                  liveUrl={project.liveUrl}
+                  statusText={project.statusText}
+                />
               </ScrollReveal>
             </article>
           );

@@ -18,31 +18,33 @@ export const projects = [
       'Browser-first PDF retrieval workspace for grounded document question answering with local embeddings, persistent vector search, and conversation-level source selection.',
     detail:
       'The stack pairs a Flask ingestion and retrieval API with PostgreSQL plus pgvector, local all-MiniLM-L6-v2 embeddings, PDF parsing, and a Next.js interface that keeps answers tied to uploaded source material.',
-    tags: ['RAG', 'pgvector', 'Local Embeddings', 'Flask'],
+    tags: ['RAG', 'pgvector', 'Semantic Search', 'Flask'],
     githubUrl: 'https://github.com/ShantnuKaushal/ReSource',
     liveUrl: '',
     videoSrc: '/videos/projects/resource-demo.mov',
   },
   {
-    slug: 'airaware',
-    title: 'AirAware',
+    slug: 'skillscan',
+    title: 'SkillScan',
     summary:
-      'Aviation logistics and predictive maintenance platform that combines .NET microservices, gRPC communication, PostgreSQL state, and Redis caching for fleet health monitoring.',
+      'AI-powered job intelligence platform that ingests large posting datasets, extracts canonical skill entities from unstructured descriptions, and combines typo-tolerant search with graph-based relationship discovery.',
     detail:
-      'Structured around service orchestration, internal RPC flows, and operational data movement so fleet health signals stay queryable, responsive, and reliable across the wider platform.',
-    tags: ['Microservices', 'Service Orchestration', 'gRPC', '.NET 8'],
-    githubUrl: 'https://github.com/ShantnuKaushal/AirAware',
+      'Built around a Django ingestion pipeline with spaCy enrichment, Elasticsearch retrieval, Neo4j relationship modeling, Redis caching, and a GraphQL layer that feeds a React search and graph exploration interface.',
+    tags: ['Neo4j', 'Elasticsearch', 'Django', 'spaCy'],
+    githubUrl: '',
     liveUrl: '',
+    statusText: 'Coming soon',
   },
   {
-    slug: 'vcrts',
-    title: 'VCRTS',
+    slug: 'pneumora',
+    title: 'Pneumora',
     summary:
-      'Vehicular Cloud Real-Time System for allocating distributed compute jobs across contributed vehicles, with Java desktop workflows, persistence, validation, and live task coordination.',
+      'Educational chest X-ray inference pipeline that preprocesses medical images, routes them through a dedicated TensorFlow Serving runtime, and returns confidence-scored triage predictions through a web interface.',
     detail:
-      'Designed as a systems research project focused on scheduling, validation, and real-time coordination between contributed nodes so compute jobs can be dispatched and tracked across the network.',
-    tags: ['Vehicular Cloud', 'Resource Allocation', 'Scheduling', 'Java'],
-    githubUrl: 'https://github.com/ShantnuKaushal/vcrts',
+      'Structured as a FastAPI orchestration layer with Pillow and NumPy preprocessing, TensorFlow model serving, and a containerized frontend flow for upload, prediction, and visible research-use disclaimers.',
+    tags: ['TensorFlow', 'FastAPI', 'Computer Vision', 'NumPy'],
+    githubUrl: '',
     liveUrl: '',
+    statusText: 'Coming soon',
   },
 ];
