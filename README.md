@@ -1,34 +1,34 @@
 # Personal Website
 
-This branch contains the redesigned personal portfolio built with `Next.js` and `React`.
+This repository contains the source for my personal website and portfolio. I use it as a central place to present my background as a software engineer, highlight the projects and experience I care most about, and make it easy for people to find my work, resume, and contact information. It is also the version of the site I deploy and self-host on my own server.
 
-## Stack
+## Tech Stack
 
-- `Next.js` app router
+- `Next.js 16` with the App Router
 - `React 19`
-- CSS modules + global CSS
-- Static content stored locally in the `content/` folder
+- `CSS Modules` and global CSS
+- `react-icons`
+- Local content modules in `content/`
+- Static assets served from `public/`
 
-## Local Development
+## Getting Started
+
+### Prerequisites
+
+- `Node.js 20.9.0` or newer
+
+### Install And Run
 
 ```bash
 npm install
 npm run dev
 ```
 
-Production build:
+The local development server runs at `http://localhost:3000`.
+
+### Production Build
 
 ```bash
 npm run build
 npm run start
 ```
-
-## Content Notes
-
-- Project cards are placeholder-ready by design.
-- Final project titles, descriptions, images, and GitHub links can be dropped into the content files later without redesigning the section.
-- Resume is served from `public/resume/shantnu-kaushal-resume.pdf`.
-
-## Deployment
-
-The redesign is intended to deploy cleanly on `Vercel` with the existing custom domain.
