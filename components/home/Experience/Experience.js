@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { experiences } from '../../../content/experience';
 import SectionHeading from '../SectionHeading/SectionHeading';
+import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import styles from './Experience.module.css';
 
 function ExperienceLogo({ company, logoSrc, logoAlt }) {
@@ -36,13 +37,22 @@ function ExperienceLogo({ company, logoSrc, logoAlt }) {
 export default function Experience() {
   return (
     <section className={styles.section} id="experience">
-      <SectionHeading title="Experience" />
-      <div className={styles.sectionMeta}>
+      <ScrollReveal as="div" variant="soft" distance={18}>
+        <SectionHeading title="Experience" />
+      </ScrollReveal>
+      <ScrollReveal as="div" className={styles.sectionMeta} variant="rise" delay={50} distance={16}>
         <span className={styles.fileLabel}>career.yml</span>
-      </div>
+      </ScrollReveal>
       <div className={styles.experienceList}>
-        {experiences.map((experience) => (
-          <article key={`${experience.company}-${experience.role}`} className={styles.experienceRow}>
+        {experiences.map((experience, index) => (
+          <ScrollReveal
+            key={`${experience.company}-${experience.role}`}
+            as="article"
+            className={styles.experienceRow}
+            variant={index % 2 === 0 ? 'driftLeft' : 'driftRight'}
+            delay={index * 70}
+            distance={20}
+          >
             <div className={styles.anchorColumn}>
               <div className={styles.identityCluster}>
                 <ExperienceLogo
@@ -69,7 +79,7 @@ export default function Experience() {
                 ))}
               </div>
             </div>
-          </article>
+          </ScrollReveal>
         ))}
       </div>
     </section>

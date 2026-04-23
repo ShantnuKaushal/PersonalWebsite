@@ -104,6 +104,10 @@
   margin-bottom: 18px;
 }
 
+.commandContent {
+  animation: commandContentIn 300ms var(--ease-standard);
+}
+
 .outputDescription {
   margin: 0;
   max-width: 31rem;
@@ -131,14 +135,44 @@
 
 .skillItem {
   display: flex;
-  align-items: center;
-  gap: 14px;
   padding: 16px 0 16px 16px;
   min-width: 0;
   border-left: 1px solid color-mix(in srgb, var(--surface-border) 82%, transparent);
   transition:
     border-color 180ms var(--ease-standard),
     transform 180ms var(--ease-standard);
+}
+
+.skillInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  animation: skillModeIn 280ms var(--ease-standard) both;
+}
+
+.commandContent .skillItem:nth-child(1) .skillInner,
+.commandContent .skillItem:nth-child(2) .skillInner {
+  animation-delay: 40ms;
+}
+
+.commandContent .skillItem:nth-child(3) .skillInner,
+.commandContent .skillItem:nth-child(4) .skillInner {
+  animation-delay: 90ms;
+}
+
+.commandContent .skillItem:nth-child(5) .skillInner,
+.commandContent .skillItem:nth-child(6) .skillInner {
+  animation-delay: 140ms;
+}
+
+.commandContent .skillItem:nth-child(7) .skillInner,
+.commandContent .skillItem:nth-child(8) .skillInner {
+  animation-delay: 190ms;
+}
+
+.commandContent .skillItem:nth-child(n + 9) .skillInner {
+  animation-delay: 240ms;
 }
 
 .skillIconFrame {
@@ -190,6 +224,37 @@
 .skillItem:hover .skillText {
   color: var(--text);
   text-shadow: 0 0 10px rgba(245, 245, 247, 0.12);
+}
+
+@keyframes commandContentIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes skillModeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .commandContent,
+  .skillInner {
+    animation: none;
+  }
 }
 
 @media (max-width: 1024px) {

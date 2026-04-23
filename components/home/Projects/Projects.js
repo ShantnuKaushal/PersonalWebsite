@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import SectionHeading from '../SectionHeading/SectionHeading';
 import { projects } from '../../../content/projects';
+import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import styles from './Projects.module.css';
 
 function formatProjectIndex(index) {
@@ -143,15 +144,20 @@ export default function Projects() {
 
   return (
     <section className={styles.section} id="projects">
-      <SectionHeading title="Projects" />
-      <div className={styles.sectionMeta}>
+      <ScrollReveal as="div" variant="soft" distance={18}>
+        <SectionHeading title="Projects" />
+      </ScrollReveal>
+      <ScrollReveal as="div" className={styles.sectionMeta} variant="rise" delay={50} distance={16}>
         <span className={styles.fileLabel}>portfolio.manifest</span>
-      </div>
+      </ScrollReveal>
 
       <div className={styles.projectList}>
         {projects.map((project, index) => {
           const isMediaRight = index % 2 === 0;
           const rowClassName = `${styles.projectRow}${isMediaRight ? ` ${styles.projectRowReversed}` : ''}`;
+          const mediaVariant = isMediaRight ? 'pop' : 'tilt';
+          const copyVariant = isMediaRight ? 'driftLeft' : 'driftRight';
+          const revealDelay = index * 70;
 
           return (
             <article
@@ -160,15 +166,27 @@ export default function Projects() {
               onMouseEnter={project.videoSrc ? () => setActiveProjectSlug(project.slug) : undefined}
               onMouseLeave={project.videoSrc ? () => setActiveProjectSlug(null) : undefined}
             >
-              <div className={styles.mediaColumn}>
+              <ScrollReveal
+                as="div"
+                className={styles.mediaColumn}
+                variant={mediaVariant}
+                delay={revealDelay}
+                distance={18}
+              >
                 <ProjectFrame
                   project={project}
                   index={index}
                   isPlaybackActive={activeProjectSlug === project.slug}
                 />
-              </div>
+              </ScrollReveal>
 
-              <div className={styles.copyColumn}>
+              <ScrollReveal
+                as="div"
+                className={styles.copyColumn}
+                variant={copyVariant}
+                delay={revealDelay + 90}
+                distance={22}
+              >
                 <div className={styles.projectHeader}>
                   <h3>{project.title}</h3>
                   <div className={styles.tagList}>
@@ -185,7 +203,7 @@ export default function Projects() {
                 </div>
 
                 <ProjectActions githubUrl={project.githubUrl} liveUrl={project.liveUrl} />
-              </div>
+              </ScrollReveal>
             </article>
           );
         })}

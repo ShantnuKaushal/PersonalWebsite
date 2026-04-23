@@ -26,6 +26,7 @@ import {
   SiTypescript,
 } from 'react-icons/si';
 import { about } from '../../../content/about';
+import ScrollReveal from '../../ui/ScrollReveal/ScrollReveal';
 import styles from './About.module.css';
 
 const skillIcons = {
@@ -63,11 +64,11 @@ export default function About() {
 
   return (
     <section className={styles.section} id="about">
-      <div className={styles.sectionHeader}>
+      <ScrollReveal as="div" className={styles.sectionHeader} variant="soft" distance={16}>
         <h2>About</h2>
-      </div>
+      </ScrollReveal>
       <div className={styles.aboutLayout}>
-        <div className={styles.copyPanel}>
+        <ScrollReveal as="div" className={styles.copyPanel} variant="driftLeft" distance={22}>
           <div className={styles.panelHeader}>
             <span className={styles.fileLabel}>{about.readmeLabel}</span>
           </div>
@@ -78,8 +79,15 @@ export default function About() {
               </p>
             ))}
           </div>
-        </div>
-        <div className={styles.commandPanel} aria-label="Technical skills">
+        </ScrollReveal>
+        <ScrollReveal
+          as="div"
+          className={styles.commandPanel}
+          variant="pop"
+          delay={70}
+          distance={18}
+          aria-label="Technical skills"
+        >
           <div className={styles.panelHeader}>
             <span className={styles.fileLabel}>{about.fileLabel}</span>
           </div>
@@ -98,30 +106,34 @@ export default function About() {
                 </button>
               ))}
             </div>
-            <div className={styles.outputHeader}>
-              <p className={styles.outputDescription}>{activeCommand.description}</p>
-            </div>
-            <div className={styles.skillDivider} aria-hidden="true" />
-            <div className={styles.skillGrid}>
-              {activeCommand.skills.map((skill) => {
-                const Icon = skillIcons[skill.icon] ?? HiOutlineCodeBracketSquare;
-                const iconClass =
-                  skill.icon === 'typescript'
-                    ? `${styles.skillIcon} ${styles.skillIconTypescript}`
-                    : styles.skillIcon;
+            <div key={activeCommand.id} className={styles.commandContent}>
+              <div className={styles.outputHeader}>
+                <p className={styles.outputDescription}>{activeCommand.description}</p>
+              </div>
+              <div className={styles.skillDivider} aria-hidden="true" />
+              <div className={styles.skillGrid}>
+                {activeCommand.skills.map((skill) => {
+                  const Icon = skillIcons[skill.icon] ?? HiOutlineCodeBracketSquare;
+                  const iconClass =
+                    skill.icon === 'typescript'
+                      ? `${styles.skillIcon} ${styles.skillIconTypescript}`
+                      : styles.skillIcon;
 
-                return (
-                  <div key={skill.label} className={styles.skillItem}>
-                    <span className={styles.skillIconFrame}>
-                      <Icon className={iconClass} aria-hidden="true" />
-                    </span>
-                    <span className={styles.skillText}>{skill.label}</span>
-                  </div>
-                );
-              })}
+                  return (
+                    <div key={skill.label} className={styles.skillItem}>
+                      <span className={styles.skillInner}>
+                        <span className={styles.skillIconFrame}>
+                          <Icon className={iconClass} aria-hidden="true" />
+                        </span>
+                        <span className={styles.skillText}>{skill.label}</span>
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
