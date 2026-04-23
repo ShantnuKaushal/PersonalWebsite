@@ -33,9 +33,24 @@ function ProjectActions({ githubUrl, liveUrl, statusText }) {
 function LocalVideoProjectFrame({ project, isPlaybackActive }) {
   const videoRef = useRef(null);
   const [hasMounted, setHasMounted] = useState(false);
+  const [shouldAutoPlay, setShouldAutoPlay] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: none), (pointer: coarse)');
+    const updateAutoPlayPreference = () => {
+      setShouldAutoPlay(mediaQuery.matches);
+    };
+
+    updateAutoPlayPreference();
+    mediaQuery.addEventListener('change', updateAutoPlayPreference);
+
+    return () => {
+      mediaQuery.removeEventListener('change', updateAutoPlayPreference);
+    };
   }, []);
 
   useEffect(() => {
@@ -48,7 +63,7 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
       return undefined;
     }
 
-    if (isPlaybackActive) {
+    if (isPlaybackActive || shouldAutoPlay) {
       video.muted = true;
       const playPromise = video.play();
       if (playPromise?.catch) {
@@ -59,7 +74,7 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
 
     video.pause();
     return undefined;
-  }, [hasMounted, isPlaybackActive]);
+  }, [hasMounted, isPlaybackActive, shouldAutoPlay]);
 
   return (
     <div className={styles.mediaShell}>

@@ -15,6 +15,6 @@
 
 @media (max-width: 768px) {
   .page {
-    padding: 12px 14px 42px;
+    padding: 12px clamp(18px, 5vw, 22px) 42px;
   }
 }

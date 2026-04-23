@@ -284,9 +284,21 @@ html[data-theme='light'] .portrait {
     padding: 58px 0 28px;
   }
 
+  .heroVisual {
+    width: 100%;
+    justify-self: center;
+  }
+
+  .portraitFloat {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
   .portraitRing {
     width: min(100%, 300px);
     padding: 12px;
+    margin-inline: auto;
   }
 
   .heroCopy h1 {
@@ -298,5 +310,51 @@ html[data-theme='light'] .portrait {
     font-size: clamp(1.45rem, 5.8vw, 1.95rem);
     align-self: center;
     text-align: center;
+  }
+
+  .heroActions {
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .heroActions a {
+    flex: 0 0 auto;
+    min-height: 30px;
+    padding: 0 14px 8px;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+
+  .heroActions a:first-child {
+    padding-left: 0;
+  }
+
+  .heroActions a:last-child {
+    padding-right: 0;
+  }
+
+  .heroActions a + a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 18px;
+    background: color-mix(in srgb, var(--surface-border) 78%, transparent);
+    transform: translateY(calc(-50% - 2px));
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .heroActions a {
+    padding: 0 10px 8px;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
   }
 }

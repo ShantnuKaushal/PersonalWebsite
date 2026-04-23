@@ -17,6 +17,6 @@ export const experiences = [
     logoAlt: 'NASA logo',
     summary:
       "Explored machine-learning and signal-processing methods for improving interference mitigation in lunar and low-frequency astronomy settings. Helped define a theoretical SDR-based approach targeting roughly 20 dB interference suppression and translated the work into proposal materials and a New Technology Report for potential NASA applications.",
-    tech: ['Python', 'Machine Learning', 'Systems Design', 'Research'],
+    tech: ['Machine Learning', 'Systems Design', 'Research', 'Python'],
   },
 ];

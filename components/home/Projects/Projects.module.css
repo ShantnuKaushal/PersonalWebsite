@@ -914,9 +914,17 @@ html[data-theme='light'] .placeholderPanel em {
     gap: 44px;
   }
 
+  .projectRow {
+    gap: 18px;
+  }
+
+  .mediaColumn {
+    margin-inline: -10px;
+  }
+
   .mediaShell {
-    padding: 6px;
-    border-radius: 14px;
+    padding: 4px;
+    border-radius: 12px;
   }
 
   .mediaViewport {
