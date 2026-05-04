@@ -12,6 +12,8 @@
   flex-direction: column;
   align-items: center;
   gap: 28px;
+  animation: heroVisualEnter 900ms var(--ease-emphasized) 80ms both;
+  will-change: opacity, transform;
 }
 
 .portraitFloat {
@@ -98,6 +100,8 @@ html[data-theme='light'] .portrait {
   line-height: 0.92;
   white-space: nowrap;
   font-weight: 700;
+  animation: heroCopyEnter 760ms var(--ease-emphasized) 260ms both;
+  will-change: opacity, transform;
 }
 
 .heroRole {
@@ -110,6 +114,8 @@ html[data-theme='light'] .portrait {
   width: auto;
   text-align: right;
   padding-right: 0.08em;
+  animation: heroCopyEnter 720ms var(--ease-emphasized) 360ms both;
+  will-change: opacity, transform;
 }
 
 .heroActions {
@@ -120,6 +126,8 @@ html[data-theme='light'] .portrait {
   margin-top: 38px;
   width: 100%;
   justify-content: flex-end;
+  animation: heroCopyEnter 680ms var(--ease-emphasized) 470ms both;
+  will-change: opacity, transform;
 }
 
 .heroActions a {
@@ -156,6 +164,8 @@ html[data-theme='light'] .portrait {
   margin-top: 20px;
   width: 100%;
   justify-content: flex-end;
+  animation: heroCopyEnter 640ms var(--ease-emphasized) 560ms both;
+  will-change: opacity, transform;
 }
 
 .heroLinks a {
@@ -297,6 +307,31 @@ html[data-theme='light'] .portrait {
   }
 }
 
+@keyframes heroVisualEnter {
+  0% {
+    opacity: 0;
+    transform: translate3d(-18px, 14px, 0) scale(0.982);
+  }
+  62% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes heroCopyEnter {
+  0% {
+    opacity: 0;
+    transform: translate3d(18px, 16px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @media (hover: none), (pointer: coarse) {
   .portraitFloat {
     animation: none;
@@ -428,5 +463,18 @@ html[data-theme='light'] .portrait {
     padding: 0 10px 8px;
     font-size: 0.74rem;
     letter-spacing: 0.1em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroVisual,
+  .heroCopy h1,
+  .heroRole,
+  .heroActions,
+  .heroLinks {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    will-change: auto;
   }
 }
