@@ -34,10 +34,15 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
   const videoRef = useRef(null);
   const [hasMounted, setHasMounted] = useState(false);
   const [shouldAutoPlay, setShouldAutoPlay] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
   }, []);
+
+  useEffect(() => {
+    setIsVideoPlaying(false);
+  }, [project.videoSrc]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(hover: none), (pointer: coarse)');
@@ -67,14 +72,19 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
       video.muted = true;
       const playPromise = video.play();
       if (playPromise?.catch) {
-        playPromise.catch(() => {});
+        playPromise.catch(() => {
+          setIsVideoPlaying(false);
+        });
       }
       return undefined;
     }
 
     video.pause();
+    setIsVideoPlaying(false);
     return undefined;
   }, [hasMounted, isPlaybackActive, shouldAutoPlay]);
+
+  const posterClassName = `${styles.mediaPoster}${isVideoPlaying ? ` ${styles.mediaPosterHidden}` : ''}`;
 
   return (
     <div className={styles.mediaShell}>
@@ -88,11 +98,19 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
             loop
             playsInline
             preload="auto"
+            poster={project.posterSrc}
             aria-hidden="true"
+            onPlaying={() => setIsVideoPlaying(true)}
+            onPause={() => setIsVideoPlaying(false)}
+            onEnded={() => setIsVideoPlaying(false)}
+            onError={() => setIsVideoPlaying(false)}
           />
-        ) : (
+        ) : null}
+        {project.posterSrc ? (
+          <img className={posterClassName} src={project.posterSrc} alt="" aria-hidden="true" />
+        ) : !hasMounted ? (
           <div className={styles.mediaVideoMountPlaceholder} aria-hidden="true" />
-        )}
+        ) : null}
       </div>
     </div>
   );
@@ -175,7 +193,7 @@ export default function Projects() {
         <SectionHeading title="Projects" />
       </ScrollReveal>
       <ScrollReveal as="div" className={styles.sectionMeta} variant="rise" delay={50} distance={16}>
-        <span className={styles.fileLabel}>portfolio.manifest</span>
+        <span className={styles.fileLabel}>portfolio.json</span>
       </ScrollReveal>
 
       <div className={styles.projectList}>

@@ -10,6 +10,7 @@ export const projects = [
     githubUrl: 'https://github.com/ShantnuKaushal/TweetCheck',
     liveUrl: '',
     videoSrc: '/videos/projects/tweetcheck-demo.mov',
+    posterSrc: '/images/projects/tweetcheck-poster.jpg',
   },
   {
     slug: 'resource',
@@ -22,18 +23,20 @@ export const projects = [
     githubUrl: 'https://github.com/ShantnuKaushal/ReSource',
     liveUrl: '',
     videoSrc: '/videos/projects/resource-demo.mov',
+    posterSrc: '/images/projects/resource-poster.jpg',
   },
   {
     slug: 'skillscan',
     title: 'SkillScan',
     summary:
-      'AI-powered job intelligence platform that ingests large posting datasets, extracts canonical skill entities from unstructured descriptions, and combines typo-tolerant search with graph-based relationship discovery.',
+      'Job market intelligence platform that turns posting data into typo-tolerant search, normalized skill extraction, and interactive skill-demand graphs.',
     detail:
-      'Built around a Django ingestion pipeline with spaCy enrichment, Elasticsearch retrieval, Neo4j relationship modeling, Redis caching, and a GraphQL layer that feeds a React search and graph exploration interface.',
-    tags: ['Neo4j', 'Elasticsearch', 'Django', 'spaCy'],
-    githubUrl: '',
+      'Built with a Django backend, Strawberry GraphQL API, Elasticsearch indexing, Neo4j job-company-skill relationships, and a Next.js Market Map interface for filtering postings by selected skills.',
+    tags: ['Neo4j', 'Elasticsearch', 'GraphQL', 'spaCy', 'Django'],
+    githubUrl: 'https://github.com/ShantnuKaushal/SkillScan',
     liveUrl: '',
-    statusText: 'Coming soon',
+    videoSrc: '/videos/projects/skillscan-demo.mov',
+    posterSrc: '/images/projects/skillscan-poster.jpg',
   },
   {
     slug: 'pneumora',
