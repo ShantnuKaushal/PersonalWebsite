@@ -33,7 +33,6 @@ function ProjectActions({ githubUrl, liveUrl, statusText }) {
 function LocalVideoProjectFrame({ project, isPlaybackActive }) {
   const videoRef = useRef(null);
   const [hasMounted, setHasMounted] = useState(false);
-  const [shouldAutoPlay, setShouldAutoPlay] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   useEffect(() => {
@@ -45,20 +44,6 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
   }, [project.videoSrc]);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(hover: none), (pointer: coarse)');
-    const updateAutoPlayPreference = () => {
-      setShouldAutoPlay(mediaQuery.matches);
-    };
-
-    updateAutoPlayPreference();
-    mediaQuery.addEventListener('change', updateAutoPlayPreference);
-
-    return () => {
-      mediaQuery.removeEventListener('change', updateAutoPlayPreference);
-    };
-  }, []);
-
-  useEffect(() => {
     if (!hasMounted) {
       return undefined;
     }
@@ -68,7 +53,7 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
       return undefined;
     }
 
-    if (isPlaybackActive || shouldAutoPlay) {
+    if (isPlaybackActive) {
       video.muted = true;
       const playPromise = video.play();
       if (playPromise?.catch) {
@@ -82,7 +67,7 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
     video.pause();
     setIsVideoPlaying(false);
     return undefined;
-  }, [hasMounted, isPlaybackActive, shouldAutoPlay]);
+  }, [hasMounted, isPlaybackActive]);
 
   const posterClassName = `${styles.mediaPoster}${isVideoPlaying ? ` ${styles.mediaPosterHidden}` : ''}`;
 
@@ -186,6 +171,104 @@ function ProjectFrame({ project, index, isPlaybackActive }) {
 
 export default function Projects() {
   const [activeProjectSlug, setActiveProjectSlug] = useState(null);
+  const [focusedProjectSlug, setFocusedProjectSlug] = useState(null);
+  const [usesViewportPlayback, setUsesViewportPlayback] = useState(false);
+  const projectRowRefs = useRef(new Map());
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: none), (pointer: coarse)');
+    const updatePlaybackMode = () => {
+      const shouldUseViewportPlayback = mediaQuery.matches;
+      setUsesViewportPlayback(shouldUseViewportPlayback);
+
+      if (!shouldUseViewportPlayback) {
+        setFocusedProjectSlug(null);
+      }
+    };
+
+    updatePlaybackMode();
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', updatePlaybackMode);
+      return () => {
+        mediaQuery.removeEventListener('change', updatePlaybackMode);
+      };
+    }
+
+    mediaQuery.addListener(updatePlaybackMode);
+
+    return () => {
+      mediaQuery.removeListener(updatePlaybackMode);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!usesViewportPlayback) {
+      return undefined;
+    }
+
+    let animationFrameId = 0;
+
+    const updateFocusedProject = () => {
+      animationFrameId = 0;
+      const viewportCenter = window.innerHeight / 2;
+      let nextFocusedProjectSlug = null;
+      let bestDistance = Number.POSITIVE_INFINITY;
+
+      projects.forEach((project) => {
+        if (!project.videoSrc) {
+          return;
+        }
+
+        const row = projectRowRefs.current.get(project.slug);
+        if (!row) {
+          return;
+        }
+
+        const rect = row.getBoundingClientRect();
+        const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+        const minimumVisibleHeight = Math.min(rect.height * 0.3, 180);
+
+        if (visibleHeight < minimumVisibleHeight) {
+          return;
+        }
+
+        const rowCenter = rect.top + rect.height / 2;
+        const distanceFromViewportCenter = Math.abs(rowCenter - viewportCenter);
+
+        if (distanceFromViewportCenter < bestDistance) {
+          bestDistance = distanceFromViewportCenter;
+          nextFocusedProjectSlug = project.slug;
+        }
+      });
+
+      setFocusedProjectSlug((currentSlug) =>
+        currentSlug === nextFocusedProjectSlug ? currentSlug : nextFocusedProjectSlug
+      );
+    };
+
+    const scheduleFocusedProjectUpdate = () => {
+      if (animationFrameId) {
+        return;
+      }
+
+      animationFrameId = window.requestAnimationFrame(updateFocusedProject);
+    };
+
+    updateFocusedProject();
+    window.addEventListener('scroll', scheduleFocusedProjectUpdate, { passive: true });
+    window.addEventListener('resize', scheduleFocusedProjectUpdate);
+    window.addEventListener('orientationchange', scheduleFocusedProjectUpdate);
+
+    return () => {
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+
+      window.removeEventListener('scroll', scheduleFocusedProjectUpdate);
+      window.removeEventListener('resize', scheduleFocusedProjectUpdate);
+      window.removeEventListener('orientationchange', scheduleFocusedProjectUpdate);
+    };
+  }, [usesViewportPlayback]);
 
   return (
     <section className={styles.section} id="projects">
@@ -207,9 +290,23 @@ export default function Projects() {
           return (
             <article
               key={project.slug}
+              ref={(node) => {
+                if (node) {
+                  projectRowRefs.current.set(project.slug, node);
+                  return;
+                }
+
+                projectRowRefs.current.delete(project.slug);
+              }}
               className={rowClassName}
-              onMouseEnter={project.videoSrc ? () => setActiveProjectSlug(project.slug) : undefined}
-              onMouseLeave={project.videoSrc ? () => setActiveProjectSlug(null) : undefined}
+              onMouseEnter={
+                project.videoSrc && !usesViewportPlayback
+                  ? () => setActiveProjectSlug(project.slug)
+                  : undefined
+              }
+              onMouseLeave={
+                project.videoSrc && !usesViewportPlayback ? () => setActiveProjectSlug(null) : undefined
+              }
             >
               <ScrollReveal
                 as="div"
@@ -221,7 +318,11 @@ export default function Projects() {
                 <ProjectFrame
                   project={project}
                   index={index}
-                  isPlaybackActive={activeProjectSlug === project.slug}
+                  isPlaybackActive={
+                    usesViewportPlayback
+                      ? focusedProjectSlug === project.slug
+                      : activeProjectSlug === project.slug
+                  }
                 />
               </ScrollReveal>
 
