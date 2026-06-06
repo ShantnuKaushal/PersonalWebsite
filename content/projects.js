@@ -1,5 +1,18 @@
 export const projects = [
   {
+    slug: 'neura',
+    title: 'Neura',
+    summary:
+      'Deep-sea organism detection app that fine-tunes a YOLOv8 model on underwater imagery, then returns confidence-scored species labels and bounding boxes for uploaded images.',
+    detail:
+      'Built with a TensorFlow 2.16 GPU training pipeline, KerasCV YOLOv8, COCO-format data loading, OpenCV/Pillow preprocessing, a FastAPI inference service, and a Next.js scan interface.',
+    tags: ['TensorFlow', 'YOLO', 'FastAPI', 'Computer Vision'],
+    githubUrl: 'https://github.com/ShantnuKaushal/Neura',
+    liveUrl: '',
+    videoSrc: '/videos/projects/neura-demo-fast.mp4',
+    posterSrc: '/images/projects/neura-poster.jpg',
+  },
+  {
     slug: 'tweetcheck',
     title: 'TweetCheck',
     summary:
@@ -37,17 +50,5 @@ export const projects = [
     liveUrl: '',
     videoSrc: '/videos/projects/skillscan-demo.mov',
     posterSrc: '/images/projects/skillscan-poster.jpg',
-  },
-  {
-    slug: 'pneumora',
-    title: 'Pneumora',
-    summary:
-      'Computer vision and machine learning application that uses TensorFlow to analyze chest X-ray images and return confidence-scored predictions through a web interface.',
-    detail:
-      'Built around a FastAPI orchestration layer with Pillow and NumPy preprocessing, TensorFlow model serving, and a containerized frontend flow for image upload, AI inference, and prediction delivery.',
-    tags: ['TensorFlow', 'FastAPI', 'Computer Vision', 'NumPy'],
-    githubUrl: '',
-    liveUrl: '',
-    statusText: 'Coming soon',
   },
 ];

@@ -11,7 +11,7 @@ export const about = {
     {
       id: 'programming',
       label: 'engineering',
-      description: 'Core languages and frameworks I rely on when shipping product work.',
+      description: 'Core languages and frameworks I use to build practical software.',
       skills: [
         { label: 'Python', icon: 'python' },
         { label: 'TypeScript', icon: 'typescript' },
@@ -41,7 +41,7 @@ export const about = {
     {
       id: 'data_infra',
       label: 'infrastructure',
-      description: 'Storage, messaging, and delivery tools behind reliable production systems.',
+      description: 'Storage, messaging, and delivery tools I use to keep production services reliable.',
       skills: [
         { label: 'PostgreSQL', icon: 'postgresql' },
         { label: 'SQL', icon: 'sql' },
