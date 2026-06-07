@@ -74,7 +74,9 @@ export default function SilkHeroCanvas() {
     let height = 0;
     let dpr = 1;
     let frame = 0;
-    let time = 0;
+    let waveTime = 0;
+    let pointerTime = 0;
+    let lastTimestamp = 0;
     let colors = readThemeColors();
     const coarsePointerQuery = window.matchMedia('(pointer: coarse)');
     let hasTouchPointer = coarsePointerQuery.matches;
@@ -95,36 +97,41 @@ export default function SilkHeroCanvas() {
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    function updatePointer() {
+    function updatePointer(usesCompactMotion) {
       if (hasTouchPointer) {
-        pointer.tx = width * (0.5 + Math.sin(time * 0.34) * 0.16);
-        pointer.ty = height * (0.5 + Math.cos(time * 0.28) * 0.12);
+        pointer.tx = width * (0.5 + Math.sin(pointerTime * 0.62) * 0.18);
+        pointer.ty = height * (0.51 + Math.cos(pointerTime * 0.48) * 0.1);
       }
 
       const dx = pointer.tx - pointer.x;
       const dy = pointer.ty - pointer.y;
-      pointer.vx += dx * 0.026;
-      pointer.vy += dy * 0.026;
-      pointer.vx *= 0.86;
-      pointer.vy *= 0.86;
+      pointer.vx += dx * (usesCompactMotion ? 0.034 : 0.026);
+      pointer.vy += dy * (usesCompactMotion ? 0.034 : 0.026);
+      pointer.vx *= usesCompactMotion ? 0.84 : 0.86;
+      pointer.vy *= usesCompactMotion ? 0.84 : 0.86;
       pointer.x += pointer.vx;
       pointer.y += pointer.vy;
     }
 
-    function drawStrand(strand, index) {
+    function drawStrand(strand, index, usesCompactMotion) {
       const points = 112;
-      const shouldUseCompactStrandPlacement = hasTouchPointer || width <= 900;
-      const strandY = shouldUseCompactStrandPlacement && strand.compactY ? strand.compactY : strand.y;
+      const strandY = usesCompactMotion && strand.compactY ? strand.compactY : strand.y;
       const baseY = height * strandY;
       const cursorRange = Math.min(340, width * 0.42);
+      const waveAmplitude = strand.amp * (usesCompactMotion ? 1.14 : 1);
 
       context.beginPath();
 
       for (let point = 0; point <= points; point += 1) {
         const progress = point / points;
         const x = progress * width;
-        const waveA = Math.sin(progress * Math.PI * 2 * strand.freq + strand.phase + time * 0.12) * strand.amp;
-        const waveB = Math.sin(progress * Math.PI * 4.4 + strand.phase * 0.65 - time * 0.08) * strand.amp * 0.26;
+        const waveA =
+          Math.sin(progress * Math.PI * 2 * strand.freq + strand.phase + waveTime * 0.12) *
+          waveAmplitude;
+        const waveB =
+          Math.sin(progress * Math.PI * 4.4 + strand.phase * 0.65 - waveTime * 0.08) *
+          waveAmplitude *
+          0.26;
         const naturalY = baseY + waveA + waveB;
         const distance = Math.hypot(x - pointer.x, naturalY - pointer.y);
         const influence = Math.max(0, 1 - distance / cursorRange);
@@ -146,11 +153,17 @@ export default function SilkHeroCanvas() {
       context.stroke();
     }
 
-    function render() {
-      time += 0.016;
-      updatePointer();
+    function render(timestamp) {
+      const usesCompactMotion = hasTouchPointer || width <= 900;
+      const deltaSeconds = lastTimestamp ? Math.min((timestamp - lastTimestamp) / 1000, 0.08) : 1 / 60;
+      const compactSpeed = usesCompactMotion ? 3.6 : 1;
+
+      lastTimestamp = timestamp;
+      waveTime += deltaSeconds * compactSpeed;
+      pointerTime += deltaSeconds;
+      updatePointer(usesCompactMotion);
       context.clearRect(0, 0, width, height);
-      strands.forEach(drawStrand);
+      strands.forEach((strand, index) => drawStrand(strand, index, usesCompactMotion));
       frame = window.requestAnimationFrame(render);
     }
 
@@ -177,7 +190,7 @@ export default function SilkHeroCanvas() {
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
 
     resize();
-    render();
+    frame = window.requestAnimationFrame(render);
 
     return () => {
       window.cancelAnimationFrame(frame);
