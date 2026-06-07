@@ -6,7 +6,7 @@ export const projects = [
       'Deep-sea organism detection app that fine-tunes a YOLOv8 model on underwater imagery, then returns confidence-scored species labels and bounding boxes for uploaded images.',
     detail:
       'Built with a TensorFlow 2.16 GPU training pipeline, KerasCV YOLOv8, COCO-format data loading, OpenCV/Pillow preprocessing, a FastAPI inference service, and a Next.js scan interface.',
-    tags: ['TensorFlow', 'YOLO', 'FastAPI', 'Computer Vision'],
+    tags: ['TensorFlow', 'Computer Vision', 'YOLOV8', 'FastAPI'],
     githubUrl: 'https://github.com/ShantnuKaushal/Neura',
     liveUrl: '',
     videoSrc: '/videos/projects/neura-demo-fast.mp4',

@@ -173,6 +173,47 @@ body::after {
   background: linear-gradient(180deg, transparent, var(--page-fade));
 }
 
+@media (max-width: 768px) {
+  :root {
+    --page-groove-a: rgba(245, 245, 247, 0.014);
+    --page-groove-b: rgba(212, 175, 55, 0.008);
+    --page-groove-shadow: rgba(0, 0, 0, 0.06);
+  }
+
+  html[data-theme='light'] {
+    --page-groove-a: rgba(17, 17, 17, 0.034);
+    --page-groove-b: rgba(184, 138, 36, 0.028);
+    --page-groove-shadow: rgba(148, 132, 96, 0.05);
+  }
+
+  body {
+    background: linear-gradient(
+      180deg,
+      var(--page-top) 0,
+      var(--page-mid) 34rem,
+      var(--page-mid) calc(100% - 34rem),
+      var(--page-bottom) 100%
+    );
+  }
+
+  body::before {
+    position: fixed;
+    bottom: auto;
+    height: 100svh;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 50% 0%, var(--page-glow), transparent 30rem),
+      radial-gradient(ellipse at 50% 56%, var(--page-groove-a), transparent 34rem),
+      linear-gradient(180deg, transparent 0%, var(--page-groove-b) 54%, transparent 100%);
+    background-repeat: no-repeat;
+    background-size:
+      100% 720px,
+      100% 900px,
+      100% 100%;
+    opacity: 0.48;
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;

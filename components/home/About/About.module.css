@@ -297,11 +297,17 @@
   .commandBody {
     margin-top: 22px;
     padding: 24px 18px 20px;
+    border-color: color-mix(in srgb, var(--surface-border) 96%, transparent);
+    background: color-mix(in srgb, var(--surface-strong) 82%, var(--bg));
   }
 
   .readmeBlock {
     font-size: 0.94rem;
     line-height: 1.76;
+  }
+
+  .panelHeader {
+    border-bottom-color: color-mix(in srgb, var(--surface-border) 96%, transparent);
   }
 
   .commandBar {
@@ -342,6 +348,7 @@
 
   .skillDivider {
     margin-bottom: 16px;
+    background: color-mix(in srgb, var(--surface-border) 82%, transparent);
   }
 
   .skillGrid {
@@ -385,5 +392,11 @@
   .skillItem:active .skillText {
     color: var(--text);
     text-shadow: 0 0 10px rgba(245, 245, 247, 0.12);
+  }
+}
+
+@media (max-width: 768px) {
+  html[data-theme='light'] .commandBody {
+    background: color-mix(in srgb, var(--surface) 82%, var(--bg-strong));
   }
 }
