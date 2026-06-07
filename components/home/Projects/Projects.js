@@ -30,6 +30,14 @@ function ProjectActions({ githubUrl, liveUrl, statusText }) {
   );
 }
 
+function prepareInlineMutedVideo(video) {
+  video.muted = true;
+  video.defaultMuted = true;
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
+  video.setAttribute('webkit-playsinline', '');
+}
+
 function LocalVideoProjectFrame({ project, isPlaybackActive }) {
   const videoRef = useRef(null);
   const [hasMounted, setHasMounted] = useState(false);
@@ -54,14 +62,58 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
     }
 
     if (isPlaybackActive) {
-      video.muted = true;
-      const playPromise = video.play();
-      if (playPromise?.catch) {
-        playPromise.catch(() => {
-          setIsVideoPlaying(false);
+      const playFrames = new Set();
+      let hasAttemptedPlay = false;
+      let isCancelled = false;
+
+      const requestPlayback = () => {
+        if (isCancelled) {
+          return;
+        }
+
+        if (hasAttemptedPlay) {
+          return;
+        }
+
+        hasAttemptedPlay = true;
+        prepareInlineMutedVideo(video);
+
+        if (video.readyState === 0) {
+          video.load();
+        }
+
+        const playPromise = video.play();
+        if (playPromise?.then) {
+          playPromise
+            .then(() => {
+              setIsVideoPlaying(!video.paused);
+            })
+            .catch(() => {
+              setIsVideoPlaying(false);
+            });
+        }
+      };
+
+      const schedulePlayback = () => {
+        const frame = window.requestAnimationFrame(() => {
+          playFrames.delete(frame);
+          requestPlayback();
         });
-      }
-      return undefined;
+        playFrames.add(frame);
+      };
+
+      video.addEventListener('canplay', schedulePlayback, { once: true });
+      video.addEventListener('loadeddata', schedulePlayback, { once: true });
+      schedulePlayback();
+
+      return () => {
+        isCancelled = true;
+        playFrames.forEach((frame) => window.cancelAnimationFrame(frame));
+        playFrames.clear();
+
+        video.removeEventListener('canplay', schedulePlayback);
+        video.removeEventListener('loadeddata', schedulePlayback);
+      };
     }
 
     video.pause();
@@ -80,6 +132,7 @@ function LocalVideoProjectFrame({ project, isPlaybackActive }) {
             className={styles.mediaVideo}
             src={project.videoSrc}
             muted
+            autoPlay={isPlaybackActive}
             loop
             playsInline
             preload="auto"
@@ -178,7 +231,8 @@ export default function Projects() {
   useEffect(() => {
     const mediaQuery = window.matchMedia('(hover: none), (pointer: coarse)');
     const updatePlaybackMode = () => {
-      const shouldUseViewportPlayback = mediaQuery.matches;
+      const shouldUseViewportPlayback =
+        mediaQuery.matches || window.navigator.maxTouchPoints > 0 || window.innerWidth <= 900;
       setUsesViewportPlayback(shouldUseViewportPlayback);
 
       if (!shouldUseViewportPlayback) {
@@ -210,7 +264,8 @@ export default function Projects() {
 
     const updateFocusedProject = () => {
       animationFrameId = 0;
-      const viewportCenter = window.innerHeight / 2;
+      const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
       let nextFocusedProjectSlug = null;
       let bestDistance = Number.POSITIVE_INFINITY;
 
@@ -256,8 +311,14 @@ export default function Projects() {
 
     updateFocusedProject();
     window.addEventListener('scroll', scheduleFocusedProjectUpdate, { passive: true });
+    window.addEventListener('touchmove', scheduleFocusedProjectUpdate, { passive: true });
+    window.addEventListener('touchend', scheduleFocusedProjectUpdate, { passive: true });
     window.addEventListener('resize', scheduleFocusedProjectUpdate);
     window.addEventListener('orientationchange', scheduleFocusedProjectUpdate);
+    window.addEventListener('pageshow', scheduleFocusedProjectUpdate);
+    document.addEventListener('visibilitychange', scheduleFocusedProjectUpdate);
+    window.visualViewport?.addEventListener('scroll', scheduleFocusedProjectUpdate, { passive: true });
+    window.visualViewport?.addEventListener('resize', scheduleFocusedProjectUpdate);
 
     return () => {
       if (animationFrameId) {
@@ -265,8 +326,14 @@ export default function Projects() {
       }
 
       window.removeEventListener('scroll', scheduleFocusedProjectUpdate);
+      window.removeEventListener('touchmove', scheduleFocusedProjectUpdate);
+      window.removeEventListener('touchend', scheduleFocusedProjectUpdate);
       window.removeEventListener('resize', scheduleFocusedProjectUpdate);
       window.removeEventListener('orientationchange', scheduleFocusedProjectUpdate);
+      window.removeEventListener('pageshow', scheduleFocusedProjectUpdate);
+      document.removeEventListener('visibilitychange', scheduleFocusedProjectUpdate);
+      window.visualViewport?.removeEventListener('scroll', scheduleFocusedProjectUpdate);
+      window.visualViewport?.removeEventListener('resize', scheduleFocusedProjectUpdate);
     };
   }, [usesViewportPlayback]);
 

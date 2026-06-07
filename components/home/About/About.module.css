@@ -325,6 +325,11 @@
     text-align: left;
   }
 
+  .commandActive {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
   .outputHeader {
     margin-bottom: 12px;
   }

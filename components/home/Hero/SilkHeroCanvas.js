@@ -58,7 +58,16 @@ export default function SilkHeroCanvas() {
     const strands = [
       { y: 0.34, amp: 20, freq: 1.05, phase: 0.3, darkAlpha: 0.12, lightAlpha: 0.28, accent: false },
       { y: 0.47, amp: 24, freq: 0.9, phase: 1.8, darkAlpha: 0.13, lightAlpha: 0.19, accent: true },
-      { y: 0.675, amp: 18, freq: 1.1, phase: 2.95, darkAlpha: 0.12, lightAlpha: 0.3, accent: false },
+      {
+        y: 0.675,
+        compactY: 0.695,
+        amp: 18,
+        freq: 1.1,
+        phase: 2.95,
+        darkAlpha: 0.12,
+        lightAlpha: 0.3,
+        accent: false,
+      },
     ];
 
     let width = 0;
@@ -67,7 +76,8 @@ export default function SilkHeroCanvas() {
     let frame = 0;
     let time = 0;
     let colors = readThemeColors();
-    let reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const coarsePointerQuery = window.matchMedia('(pointer: coarse)');
+    let hasTouchPointer = coarsePointerQuery.matches;
 
     function rgba(color, alpha) {
       return `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
@@ -86,6 +96,11 @@ export default function SilkHeroCanvas() {
     }
 
     function updatePointer() {
+      if (hasTouchPointer) {
+        pointer.tx = width * (0.5 + Math.sin(time * 0.34) * 0.16);
+        pointer.ty = height * (0.5 + Math.cos(time * 0.28) * 0.12);
+      }
+
       const dx = pointer.tx - pointer.x;
       const dy = pointer.ty - pointer.y;
       pointer.vx += dx * 0.026;
@@ -98,7 +113,9 @@ export default function SilkHeroCanvas() {
 
     function drawStrand(strand, index) {
       const points = 112;
-      const baseY = height * strand.y;
+      const shouldUseCompactStrandPlacement = hasTouchPointer || width <= 900;
+      const strandY = shouldUseCompactStrandPlacement && strand.compactY ? strand.compactY : strand.y;
+      const baseY = height * strandY;
       const cursorRange = Math.min(340, width * 0.42);
 
       context.beginPath();
@@ -130,7 +147,7 @@ export default function SilkHeroCanvas() {
     }
 
     function render() {
-      time += reduceMotion ? 0 : 0.016;
+      time += 0.016;
       updatePointer();
       context.clearRect(0, 0, width, height);
       strands.forEach(drawStrand);
@@ -147,17 +164,16 @@ export default function SilkHeroCanvas() {
       colors = readThemeColors();
     }
 
-    function handleReducedMotionChange(event) {
-      reduceMotion = event.matches;
+    function handlePointerCapabilityChange(event) {
+      hasTouchPointer = event.matches;
     }
 
     const observer = new ResizeObserver(resize);
     const themeObserver = new MutationObserver(handleThemeChange);
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     observer.observe(wrap);
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    motionQuery.addEventListener('change', handleReducedMotionChange);
+    coarsePointerQuery.addEventListener('change', handlePointerCapabilityChange);
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
 
     resize();
@@ -167,7 +183,7 @@ export default function SilkHeroCanvas() {
       window.cancelAnimationFrame(frame);
       observer.disconnect();
       themeObserver.disconnect();
-      motionQuery.removeEventListener('change', handleReducedMotionChange);
+      coarsePointerQuery.removeEventListener('change', handlePointerCapabilityChange);
       window.removeEventListener('pointermove', handlePointerMove);
     };
   }, []);
