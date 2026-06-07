@@ -1,120 +1,76 @@
 .hero {
-  min-height: calc(100vh - 120px);
-  display: grid;
-  grid-template-columns: minmax(420px, 1fr) minmax(0, 1.15fr);
-  align-items: center;
-  gap: 88px;
-  padding: 92px 0 56px;
-}
-
-.heroVisual {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-  animation: heroVisualEnter 900ms var(--ease-emphasized) 80ms both;
-  will-change: opacity, transform;
-}
-
-.portraitFloat {
-  animation: heroFloat 4.8s ease-in-out infinite;
-}
-
-.portraitRing {
-  width: min(100%, 430px);
-  aspect-ratio: 1;
-  padding: 12px;
+  position: relative;
+  width: 100vw;
+  min-height: calc(100vh - 88px);
+  margin-inline: calc(50% - 50vw);
   display: grid;
   place-items: center;
-  border-radius: 50%;
-  position: relative;
-  isolation: isolate;
-  background: linear-gradient(135deg, var(--hero-ring-start), var(--hero-ring-end));
-  border: 1px solid color-mix(in srgb, var(--hero-ring-stroke) 92%, transparent);
-  box-shadow: 0 14px 30px color-mix(in srgb, var(--hero-ring-shadow) 82%, transparent);
-  backdrop-filter: saturate(160%) blur(28px);
-  -webkit-backdrop-filter: saturate(160%) blur(28px);
-  transition:
-    background 320ms var(--ease-standard),
-    border-color 320ms var(--ease-standard),
-    box-shadow 320ms var(--ease-standard),
-    transform 320ms var(--ease-standard);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .portraitFloat:hover .portraitRing {
-    transform: translateY(-2px) scale(1.004);
-    border-color: color-mix(in srgb, var(--hero-ring-stroke-strong) 92%, transparent);
-    box-shadow: 0 16px 32px color-mix(in srgb, var(--hero-ring-shadow) 86%, transparent);
-  }
-}
-
-.portraitViewport {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
   overflow: hidden;
-  position: relative;
-  z-index: 0;
-  background: var(--portrait-bg);
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  isolation: isolate;
+  padding: 124px 0 88px;
 }
 
-.portrait {
+.hero::before {
+  content: none;
+}
+
+.hero::after {
+  content: none;
+}
+
+.silkCanvasWrap {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  opacity: 1;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 68%, transparent 88%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 68%, transparent 88%);
+}
+
+.silkCanvas {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 54%;
   display: block;
-  border-radius: inherit;
-  background: transparent;
-  backface-visibility: hidden;
-  transform: scale(1.03);
-}
-
-html[data-theme='light'] .portraitRing {
-  border-color: color-mix(in srgb, var(--hero-ring-stroke) 90%, transparent);
-  background: linear-gradient(135deg, var(--hero-ring-start), var(--hero-ring-end));
-}
-
-html[data-theme='light'] .portrait {
-  background: linear-gradient(145deg, var(--portrait-bg), color-mix(in srgb, var(--portrait-bg) 82%, white));
 }
 
 .heroCopy {
-  display: grid;
-  grid-template-columns: max-content;
-  justify-items: start;
-  justify-self: start;
-  width: max-content;
-  max-width: 100%;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 1180px);
   min-width: 0;
+  margin-inline: auto;
+  padding-inline: 32px;
+  text-align: center;
 }
 
 .heroCopy h1 {
   margin: 0;
+  max-width: 100%;
+  color: var(--text);
   font-family: var(--font-display), sans-serif;
-  letter-spacing: -0.05em;
-  font-size: clamp(4.4rem, 6.8vw, 6.8rem);
-  line-height: 0.92;
-  white-space: nowrap;
+  font-size: clamp(4.35rem, 8.2vw, 8.7rem);
   font-weight: 700;
-  animation: heroCopyEnter 760ms var(--ease-emphasized) 260ms both;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  white-space: nowrap;
+  animation: heroCopyEnter 760ms var(--ease-emphasized) 160ms both;
+  text-shadow:
+    0 2px 22px color-mix(in srgb, var(--bg) 58%, transparent),
+    0 0 44px color-mix(in srgb, var(--bg) 48%, transparent);
   will-change: opacity, transform;
 }
 
 .heroRole {
-  margin: 22px 0 0;
+  margin: 24px 0 0;
   color: var(--muted);
-  font-size: clamp(1.65rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.5rem, 2.35vw, 2.25rem);
   font-weight: 500;
   line-height: 1.2;
-  justify-self: end;
-  width: auto;
-  text-align: right;
-  padding-right: 0.08em;
-  animation: heroCopyEnter 720ms var(--ease-emphasized) 360ms both;
+  animation: heroCopyEnter 720ms var(--ease-emphasized) 260ms both;
+  text-shadow: 0 2px 18px color-mix(in srgb, var(--bg) 56%, transparent);
   will-change: opacity, transform;
 }
 
@@ -122,11 +78,10 @@ html[data-theme='light'] .portrait {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0;
   margin-top: 38px;
-  width: 100%;
-  justify-content: flex-end;
-  animation: heroCopyEnter 680ms var(--ease-emphasized) 470ms both;
+  animation: heroCopyEnter 680ms var(--ease-emphasized) 360ms both;
   will-change: opacity, transform;
 }
 
@@ -161,10 +116,9 @@ html[data-theme='light'] .portrait {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+  justify-content: center;
   margin-top: 20px;
-  width: 100%;
-  justify-content: flex-end;
-  animation: heroCopyEnter 640ms var(--ease-emphasized) 560ms both;
+  animation: heroCopyEnter 640ms var(--ease-emphasized) 450ms both;
   will-change: opacity, transform;
 }
 
@@ -174,8 +128,8 @@ html[data-theme='light'] .portrait {
   justify-content: center;
   width: 50px;
   height: 50px;
-  border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--surface-border) 86%, transparent);
+  border-radius: 999px;
   background: color-mix(in srgb, var(--surface-strong) 72%, transparent);
   color: var(--muted);
   transition:
@@ -207,8 +161,8 @@ html[data-theme='light'] .portrait {
 }
 
 .githubIcon {
-  width: 2.0rem;
-  height: 2.0rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .primaryButton,
@@ -221,14 +175,14 @@ html[data-theme='light'] .portrait {
   padding: 0 0 8px;
   border: 0;
   background: none;
+  color: var(--text);
   font-family: var(--font-display), sans-serif;
   font-size: 0.96rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   line-height: 1;
-  text-transform: uppercase;
   text-decoration: none;
-  color: var(--text);
+  text-transform: uppercase;
   transition:
     color 240ms var(--ease-standard),
     transform 240ms var(--ease-standard);
@@ -257,14 +211,6 @@ html[data-theme='light'] .portrait {
   width: calc(100% - 16px);
 }
 
-.primaryButton {
-  color: var(--text);
-}
-
-.secondaryButton {
-  color: var(--text);
-}
-
 .primaryButton:hover,
 .secondaryButton:hover {
   color: var(--accent);
@@ -279,8 +225,8 @@ html[data-theme='light'] .portrait {
 
 .primaryButton:focus-visible,
 .secondaryButton:focus-visible {
-  color: var(--accent);
   outline: none;
+  color: var(--accent);
 }
 
 .primaryButton:hover,
@@ -288,167 +234,59 @@ html[data-theme='light'] .portrait {
 .primaryButton:focus-visible,
 .secondaryButton:focus-visible {
   transform: translateY(-1px);
-}
-
-.primaryButton:hover,
-.secondaryButton:hover,
-.primaryButton:focus-visible,
-.secondaryButton:focus-visible {
   text-shadow: 0 0 12px color-mix(in srgb, var(--accent) 18%, transparent);
-}
-
-@keyframes heroFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-@keyframes heroVisualEnter {
-  0% {
-    opacity: 0;
-    transform: translate3d(-18px, 14px, 0) scale(0.982);
-  }
-  62% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
 }
 
 @keyframes heroCopyEnter {
   0% {
     opacity: 0;
-    transform: translate3d(18px, 16px, 0);
+    transform: translate3d(0, 16px, 0);
   }
+
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
-@media (hover: none), (pointer: coarse) {
-  .portraitFloat {
-    animation: none;
-  }
-}
-
 @media (max-width: 1024px) {
   .hero {
-    min-height: auto;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    padding: 56px 0 40px;
-    justify-items: center;
-  }
-
-  .heroCopy {
-    order: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-self: center;
-    width: min(100%, 760px);
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .heroVisual {
-    order: 1;
-    width: 100%;
-    display: grid;
-    place-items: center;
-    justify-self: center;
-  }
-
-  .portraitFloat {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-inline: auto;
-  }
-
-  .portraitRing {
-    width: min(100%, 360px);
-    padding: 10px;
-    margin-inline: auto;
+    min-height: calc(100vh - 82px);
+    padding: 112px 0 74px;
   }
 
   .heroCopy h1 {
-    font-size: clamp(4.2rem, 8vw, 5.6rem);
+    font-size: clamp(4rem, 10vw, 6.2rem);
     white-space: normal;
-    text-align: center;
+    text-wrap: balance;
   }
 
   .heroRole {
-    margin-top: 18px;
-    font-size: clamp(1.5rem, 3vw, 1.9rem);
-    align-self: center;
-    text-align: center;
-    justify-self: center;
-  }
-
-  .heroLinks,
-  .heroActions {
-    justify-content: center;
-    align-self: center;
+    margin-top: 20px;
+    font-size: clamp(1.45rem, 3.2vw, 1.95rem);
   }
 
   .heroActions {
-    margin-top: 30px;
-    width: auto;
-    max-width: 100%;
+    margin-top: 34px;
   }
-
-  .heroLinks {
-    margin-top: 18px;
-  }
-
 }
 
 @media (max-width: 768px) {
   .hero {
-    min-height: auto;
-    gap: 34px;
-    padding: 58px 0 28px;
-  }
-
-  .heroVisual {
-    width: 100%;
-    justify-self: center;
-  }
-
-  .portraitFloat {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .portraitRing {
-    width: min(100%, 300px);
-    padding: 8px;
-    margin-inline: auto;
+    min-height: calc(100vh - 74px);
+    padding: 94px 0 58px;
   }
 
   .heroCopy h1 {
-    font-size: clamp(3.6rem, 13vw, 5.4rem);
-    white-space: normal;
+    font-size: clamp(3.45rem, 13.5vw, 5.6rem);
+  }
+
+  .heroCopy {
+    padding-inline: 20px;
   }
 
   .heroRole {
-    font-size: clamp(1.45rem, 5.8vw, 1.95rem);
-    align-self: center;
-    text-align: center;
-  }
-
-  .heroActions {
-    justify-content: center;
+    font-size: clamp(1.35rem, 5.4vw, 1.9rem);
   }
 
   .heroActions a {
@@ -464,10 +302,15 @@ html[data-theme='light'] .portrait {
     font-size: 0.74rem;
     letter-spacing: 0.1em;
   }
+
+  .heroLinks a {
+    width: 46px;
+    height: 46px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heroVisual,
+  .silkCanvasWrap,
   .heroCopy h1,
   .heroRole,
   .heroActions,
@@ -475,6 +318,7 @@ html[data-theme='light'] .portrait {
     opacity: 1;
     transform: none;
     animation: none;
+    transition: none;
     will-change: auto;
   }
 }

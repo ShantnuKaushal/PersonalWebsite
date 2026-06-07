@@ -1,27 +1,12 @@
-import Image from 'next/image';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6';
 import { profile } from '../../../content/profile';
+import SilkHeroCanvas from './SilkHeroCanvas';
 import styles from './Hero.module.css';
 
 export default function Hero() {
   return (
     <section className={styles.hero} id="top">
-      <div className={styles.heroVisual}>
-        <div className={styles.portraitFloat}>
-          <div className={styles.portraitRing}>
-            <div className={styles.portraitViewport}>
-              <Image
-                src={profile.profileImage}
-                alt="Shantnu Kaushal portfolio image"
-                width={430}
-                height={430}
-                priority
-                className={styles.portrait}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <SilkHeroCanvas />
 
       <div className={styles.heroCopy}>
         <h1>{profile.name}</h1>
