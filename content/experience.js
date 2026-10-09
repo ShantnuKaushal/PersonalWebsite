@@ -1,8 +1,8 @@
 export const experiences = [
   {
     company: 'Sports Excitement',
-    role: 'Founding Software Engineer',
-    dates: 'Apr 2025 — Present',
+    role: 'Lead Software Engineer',
+    dates: 'Apr 2025 — Oct 2026',
     logoSrc: '/images/experience/sports-excitement.svg',
     logoAlt: 'Sports Excitement logo',
     summary:
